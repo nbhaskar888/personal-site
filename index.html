@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishant Bhaskar</title>
+<meta name="description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta name="author" content="Nishant Bhaskar">
+<meta name="theme-color" content="#F5F0E8">
+<link rel="canonical" href="https://nbhas.xyz/">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Open Graph (LinkedIn, Slack, WhatsApp, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nishant Bhaskar">
+<meta property="og:title" content="Nishant Bhaskar">
+<meta property="og:description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta property="og:url" content="https://nbhas.xyz/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nbhas.xyz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nishant Bhaskar — New ventures. Old questions. A quiet obsession with how people live.">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nishant Bhaskar">
+<meta name="twitter:description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta name="twitter:site" content="@nbhaskar888">
+<meta name="twitter:creator" content="@nbhaskar888">
+<meta name="twitter:image" content="https://nbhas.xyz/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F0E8;
+    --surface: #FBF7F1;
+    --surface-alt: #ECE3D6;
+    --text: #2F2925;
+    --text-secondary: #5A514A;
+    --border: #D8CCBE;
+    --clay: #C97B5B;
+    --sage: #A8B39A;
+    --ink: #1B2A3A;
+
+    --max-width: 1200px;
+    --reading-width: 720px;
+
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --deva: 'Noto Sans Devanagari', 'Inter', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  /* ---------- Navigation ---------- */
+
+  nav.top {
+    position: sticky;
+    top: 0;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  nav.top.scrolled {
+    border-bottom-color: var(--border);
+  }
+
+  nav.top .inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav.top .brand {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  nav.top .links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  nav.top .links a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 4px 0;
+  }
+
+  nav.top .links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--clay);
+    transition: width 0.3s ease;
+  }
+
+  nav.top .links a:hover {
+    color: var(--text);
+  }
+
+  nav.top .links a:hover::after {
+    width: 100%;
+  }
+
+  /* ---------- Layout ---------- */
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  section {
+    padding: 120px 0;
+  }
+
+  .section-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .section-marker .num {
+    font-family: var(--deva);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--clay);
+    letter-spacing: 0.05em;
+  }
+
+  .section-marker .label {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .reading {
+    max-width: var(--reading-width);
+  }
+
+  /* ---------- Home ---------- */
+
+  section.home {
+    min-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 120px;
+  }
+
+  .home .positioning {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    max-width: 880px;
+    margin: 0 0 80px 0;
+  }
+
+  .home .entries {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .home .entry {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .home .entry .num {
+    font-family: var(--deva);
+    font-size: 13px;
+    color: var(--clay);
+    font-weight: 400;
+  }
+
+  .home .entry:hover {
+    border-bottom-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* ---------- Work ---------- */
+
+  .fragment {
+    padding: 56px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .fragment:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .fragment-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .fragment .era {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding-top: 10px;
+  }
+
+  .fragment .era.now {
+    color: var(--clay);
+  }
+
+  .fragment .title {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .fragment .body {
+    max-width: 640px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .fragment .body p + p {
+    margin-top: 16px;
+  }
+
+  .fragment .takeaway {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text);
+    max-width: 640px;
+    padding-left: 20px;
+    border-left: 2px solid var(--clay);
+    line-height: 1.5;
+  }
+
+  .fragment .images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    max-width: none;
+  }
+
+  /* Modifier: show whole image without cropping (for tiles where content near edges matters) */
+  .work-image--contain {
+    background: var(--surface);
+  }
+
+  .work-image--contain img {
+    object-fit: contain;
+    filter: saturate(0.95);
+  }
+
+  .img-placeholder {
+    aspect-ratio: 3/2;
+    background: var(--surface-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 30% 30%, rgba(201, 123, 91, 0.04), transparent 60%),
+                      radial-gradient(circle at 70% 70%, rgba(168, 179, 154, 0.05), transparent 60%);
+  }
+
+  .img-placeholder span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .img-placeholder.portrait { aspect-ratio: 4/5; }
+
+  /* Real image container (used in Work fragments) */
+  .work-image {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: var(--surface-alt);
+    position: relative;
+  }
+
+  .work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92) contrast(0.98);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .work-image:hover img {
+    filter: saturate(1.02) contrast(1);
+    transform: scale(1.02);
+  }
+
+  /* Foundations sub-entries */
+  .foundations-grid {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .foundation h4 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+
+  .foundation p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ---------- Explorations ---------- */
+
+  .stream {
+    padding: 72px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .stream:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .stream-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: baseline;
+  }
+
+  .stream .label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .stream-head .intro {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text);
+    max-width: 620px;
+  }
+
+  .stream-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .stream-body .filler { min-height: 1px; }
+
+  /* Places */
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+    max-width: 800px;
+  }
+
+  .place figure {
+    margin-bottom: 16px;
+  }
+
+  .place-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .place-note {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .place-note em {
+    color: var(--clay);
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Sound */
+  .sound-intro {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  .sound-caption {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .sound-list {
+    list-style: none;
+    max-width: 560px;
+  }
+
+  .sound-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  .sound-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Stages */
+  .stages-intro {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  .stages-list {
+    list-style: none;
+    max-width: 620px;
+  }
+
+  .stages-note {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-style: italic;
+    max-width: 620px;
+  }
+
+  .stages-list li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stages-list li:last-child {
+    border-bottom: none;
+  }
+
+  .stages-list .title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+
+  .stages-list .meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .stages-list .line {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  /* Kitchen */
+  .kitchen-intro {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  .kitchen-placeholder-note {
+    font-size: 13px;
+    color: var(--clay);
+    margin-bottom: 32px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border-left: 2px solid var(--clay);
+    max-width: 620px;
+  }
+
+  .recipes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 800px;
+  }
+
+  .recipe a {
+    display: block;
+  }
+
+  .recipe .cover {
+    aspect-ratio: 4/5;
+    background: var(--surface-alt);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .recipe .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 40% 40%, rgba(184, 150, 83, 0.08), transparent 60%);
+  }
+
+  .recipe .cover span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .recipe .cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+    transition: filter 0.3s ease, transform 0.6s ease;
+  }
+
+  .recipe a:hover .cover img {
+    filter: saturate(1.02);
+    transform: scale(1.03);
+  }
+
+  /* Kitchen header image */
+  .kitchen-header {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
+  .kitchen-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+  }
+
+  /* ---------- Video tile (YouTube thumbnail + play button) ---------- */
+
+  .video-tile {
+    display: block;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .video-tile .video-thumb {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: var(--surface-alt);
+  }
+
+  .video-tile .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.88) brightness(0.88);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .video-tile .video-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(47,41,37,0) 40%, rgba(47,41,37,0.35) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .video-tile .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(251, 247, 241, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .video-tile .play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 16px solid var(--clay);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-left: 4px;
+  }
+
+  .video-tile:hover .video-thumb img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .video-tile:hover .play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(251, 247, 241, 1);
+  }
+
+  .video-tile .video-caption {
+    margin-top: 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* ---------- In Public section ---------- */
+
+  .public-group {
+    padding: 56px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .public-group:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .public-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: baseline;
+  }
+
+  .public-head .label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .public-head .intro {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 620px;
+    line-height: 1.5;
+  }
+
+  .public-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: none;
+  }
+
+  .talk {
+    display: block;
+    color: inherit;
+  }
+
+  .talk-thumb {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--surface-alt);
+    position: relative;
+  }
+
+  .talk-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.88) brightness(0.88);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .talk-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(47,41,37,0) 40%, rgba(47,41,37,0.3) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .talk-thumb .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(251, 247, 241, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .talk-thumb .play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 13px solid var(--clay);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  .talk:hover .talk-thumb img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .talk:hover .talk-thumb .play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(251, 247, 241, 1);
+  }
+
+  /* Audio-only / no-video card */
+  .talk-thumb-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .talk-thumb-text::before { display: none; }
+
+  .talk-thumb-text .card-mark {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--clay);
+    text-align: center;
+  }
+
+  .talk:hover .talk-thumb-text {
+    background: var(--surface-alt);
+  }
+
+  .talk-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .talk-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  .talk-venue {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Press list */
+  .press-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+  }
+
+  .press-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 210px 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    color: inherit;
+  }
+
+  .press-item:last-child {
+    border-bottom: none;
+  }
+
+  .press-source {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .press-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .press-arrow {
+    color: var(--clay);
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .press-item:hover .press-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  .press-item:hover .press-title {
+    color: var(--ink);
+  }
+
+  .recipe a:hover .cover {
+    opacity: 0.85;
+  }
+
+  .recipe .name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .recipe .arrow {
+    font-size: 13px;
+    color: var(--clay);
+    margin-left: 6px;
+  }
+
+  /* ---------- About ---------- */
+
+  .about-body {
+    max-width: var(--reading-width);
+  }
+
+  .about-body p {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .about-body p.small {
+    font-size: 20px;
+  }
+
+  .about-portrait {
+    float: right;
+    width: 200px;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    margin: 4px 0 24px 40px;
+    shape-outside: margin-box;
+  }
+
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+  }
+
+  .elsewhere {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .elsewhere .label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .elsewhere .links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .elsewhere a {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink);
+    position: relative;
+    padding-bottom: 3px;
+  }
+
+  .elsewhere a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.3;
+    transition: opacity 0.2s ease;
+  }
+
+  .elsewhere a:hover::after {
+    opacity: 1;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer.site {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  /* =================================================================
+     RESPONSIVE
+     Breakpoints:
+       ≤ 960px  tablet / narrow laptop
+       ≤ 600px  phone (portrait)
+       ≤ 400px  small phone
+     ================================================================= */
+
+  @media (max-width: 960px) {
+    main { padding: 0 28px; }
+    nav.top .inner { padding: 14px 24px; }
+    section { padding: 80px 0; }
+    .section-marker { margin-bottom: 48px; }
+
+    /* Two-column "label | content" layouts collapse to stacked */
+    .fragment-grid,
+    .stream-head,
+    .stream-body,
+    .public-head,
+    .public-body {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .fragment .era { padding-top: 0; }
+    .fragment .title { font-size: 26px; }
+
+    /* Image grids (work + talks) go 2-wide */
+    .fragment .images,
+    .talks-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* Press rows stack */
+    .press-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 18px 0;
+    }
+    .press-arrow { display: none; }
+
+    /* Home entries stack */
+    .home .entries {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* About */
+    .about-body p { font-size: 19px; }
+    .about-body p.small { font-size: 17px; }
+    .about-portrait {
+      float: none;
+      width: 160px;
+      margin: 0 0 24px 0;
+    }
+
+    /* Nav (brand + 4 links) compresses */
+    nav.top .links { gap: 16px; }
+    nav.top .links a { font-size: 13px; }
+    nav.top .brand { font-size: 22px; }
+
+    footer.site { padding: 32px 28px; }
+  }
+
+  @media (max-width: 600px) {
+    main { padding: 0 20px; }
+    nav.top .inner { padding: 12px 20px; }
+    section { padding: 60px 0; }
+    .section-marker { margin-bottom: 32px; gap: 12px; }
+
+    /* Single column for most grids */
+    .fragment .images,
+    .talks-grid,
+    .places-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    /* Recipes stay 2-across on phone. If the total count is odd, hide the orphan last tile
+       so every row is full. 2 → show 2. 3 → show 2. 4 → show 4. 5 → show 4. Etc. */
+    .recipes {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .recipes .recipe:last-child:nth-child(odd) {
+      display: none;
+    }
+
+    /* Type scale */
+    .fragment .title { font-size: 22px; }
+    .fragment .body { font-size: 15px; }
+    .fragment .takeaway { font-size: 15px; padding-left: 14px; }
+    .foundation h4 { font-size: 17px; }
+
+    .home .positioning {
+      font-size: clamp(26px, 7vw, 36px);
+      margin-bottom: 56px;
+    }
+
+    /* Stream / public group padding */
+    .stream,
+    .public-group {
+      padding: 52px 0;
+    }
+
+    /* Talks */
+    .talk-title { font-size: 16px; }
+    .talk-venue { font-size: 12px; }
+
+    /* Press */
+    .press-title { font-size: 16px; line-height: 1.35; }
+    .press-source { font-size: 10px; }
+
+    /* About */
+    .about-portrait { width: 140px; }
+    .about-body p { font-size: 17px; }
+    .about-body p.small { font-size: 15px; }
+
+    /* Kitchen — narrower header */
+    .kitchen-header { aspect-ratio: 3/2; }
+
+    /* Sound list font */
+    .sound-list li { font-size: 15px; padding: 12px 0; }
+
+    /* Nav at phone */
+    nav.top .links { gap: 12px; }
+    nav.top .links a { font-size: 12px; }
+    nav.top .brand { font-size: 18px; }
+
+    footer.site {
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+  }
+
+  /* Small phone — tighten nav so the 4 links + brand still fit */
+  @media (max-width: 400px) {
+    nav.top .brand { font-size: 15px; }
+    nav.top .links { gap: 10px; }
+    nav.top .links a { font-size: 11px; }
+    nav.top .inner { padding: 10px 16px; }
+    main { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" id="nav">
+  <div class="inner">
+    <a href="#home" class="brand">Nishant Bhaskar</a>
+    <ul class="links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#explorations">Explorations</a></li>
+      <li><a href="#in-public">In Public</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========== 01 · HOME ========== -->
+  <section class="home" id="home">
+    <div class="section-marker">
+      <span class="num">०१</span>
+      <span class="label">Home</span>
+    </div>
+    <h1 class="positioning">New ventures. Old questions. A quiet obsession with how people live.</h1>
+    <div class="entries">
+      <a href="#work" class="entry"><span class="num">०२</span> Work</a>
+      <a href="#explorations" class="entry"><span class="num">०३</span> Explorations</a>
+      <a href="#in-public" class="entry"><span class="num">०४</span> In Public</a>
+      <a href="#about" class="entry"><span class="num">०५</span> About</a>
+    </div>
+  </section>
+
+  <!-- ========== 02 · WORK ========== -->
+  <section id="work">
+    <div class="section-marker">
+      <span class="num">०२</span>
+      <span class="label">Work</span>
+    </div>
+
+    <!-- Now -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era now">Now · 2025 →</div>
+        <div>
+          <h3 class="title">Godrej Enterprises — New Ventures + Investments</h3>
+          <div class="body">
+            <p>Back inside a conglomerate, at a different altitude. Group-level work: evaluating new businesses, incubating ventures, forging partnerships. Current focus — sustainability, lifestyle, and a music and cultural ecosystem play (under wraps).</p>
+          </div>
+          <p class="takeaway">Same company, different altitude.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advised -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Advised · 2024</div>
+        <div>
+          <h3 class="title">A portfolio of pro-bono work</h3>
+          <div class="body">
+            <p>Built a full India investment thesis for a VC fund — five emerging shifts, a hypothetical $100M portfolio. Token design for Nakamoto Hub, a Bitcoin-secured settlement platform for financial institutions. Product strategy for Delabel, digital twins for luxury.</p>
+            <p>And Mandala — a blockchain platform for tokenising e-waste lifecycle data. Explored, not pursued. The gestation before anything tangible felt too long and too taxing for the season I was in.</p>
+          </div>
+          <p class="takeaway">Some bets are right. Some are early. Some are right but not for right now.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founded -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Founded · 2021 – 2023</div>
+        <div>
+          <h3 class="title">Lomads</h3>
+          <div class="body">
+            <p>Community infrastructure for artists and creators. Started Web2, pivoted to Web3 in January 2022 as the wave hit. Moved to Paris. Raised through Terra-Luna and FTX collapses. Onboarded 60+ orgs in six months. Handed over to Blockstart Investments in 2023.</p>
+          </div>
+          <p class="takeaway">Plug into high-signal people. Scope and ship. Sell the vision. Walk the line between it and market reality. That's the whole game.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/lomads-treasury.png" alt="Lomads treasury interface"></div>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=tsIj8Ukt_sE" target="_blank" rel="noopener" aria-label="Watch the Lomads product demo on YouTube">
+              <div class="video-thumb">
+                <img src="website-images/video-lomads-demo.jpg" alt="Lomads product demo">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">Product demo</div>
+            </a>
+            <div class="work-image work-image--contain"><img src="website-images/lomads-community.png" alt="Lomads community event"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Built -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Built · 2016 – 2019</div>
+        <div>
+          <h3 class="title">Godrej Appliances — Innovation from scratch</h3>
+          <div class="body">
+            <p>Head of Innovation. Set up the function, hired the team, built the methods. Four connected kitchen products — voice control, companion app — in 18 months. $80M+ in projected revenue. $6M secured. Four patents filed. Also ran the group-level IoT platform — Wipro, TechM, Capgemini in the room.</p>
+          </div>
+          <p class="takeaway">Institutions can innovate. They just need someone willing to fight for it internally.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/nutricubator.jpg" alt="Nutricubator fermentation device"></div>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=vhWiJ0TIWts" target="_blank" rel="noopener" aria-label="The studio and lab where the team worked">
+              <div class="video-thumb">
+                <img src="website-images/video-godrej-studio.jpg" alt="The Godrej Appliances innovation studio and lab">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">The studio and lab where the team worked</div>
+            </a>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=E7i20kFnOp0" target="_blank" rel="noopener" aria-label="Watch the Godrej Appliances hackathon video">
+              <div class="video-thumb">
+                <img src="website-images/video-godrej-hackathon.jpg" alt="Hackathon organised at Godrej Appliances">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">A hackathon we ran with Maker&rsquo;s Asylum</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consulted -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Consulted · 2014</div>
+        <div>
+          <h3 class="title">Claro Partners — Barcelona</h3>
+          <div class="body">
+            <p>Reframed P&amp;G's mass fragrance market — from demographics to emotions. Mapped Intel's role in the emerging IoT landscape, plus an open-source template for building IoT products people actually want. Framed the proposal that won Claro's largest project to date — Fiat Chrysler's connected car future.</p>
+          </div>
+          <p class="takeaway">Opportunities are always earlier and stranger than people expect.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/fiat-cars-hero.png" alt="Cars are not the centre of our lives — Fiat Chrysler project"></div>
+            <div class="work-image"><img src="website-images/pg-benefit-spaces.png" alt="P&amp;G fragrance benefit spaces"></div>
+            <div class="work-image"><img src="website-images/fiat-phases.png" alt="Fiat Chrysler connected car project phases"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foundations -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Foundations · 2010 – 2013</div>
+        <div>
+          <h3 class="title">Three places, three things that still run underneath everything</h3>
+          <div class="foundations-grid">
+            <div class="foundation">
+              <h4>Maruti Suzuki — Delhi</h4>
+              <p>First job. Graduate Engineer Trainee, then Assistant Manager in R&amp;D. The Japanese shop-floor discipline landed early — managers on the floor, egalitarian teams, 5S as a working philosophy: sort, set in order, shine, standardize, sustain. Watched how a large company's functions actually sync. That clarity around operational detail has never left.</p>
+            </div>
+            <div class="foundation">
+              <h4>Thales — Paris</h4>
+              <p>Strategic Designer at their fledgling Design Centre, secured via cold email. My boss Didier spent hours walking me through design thinking and the real mechanics of changing a 70,000-person company. Shadowed meetings, ran workshops, helped build the space — IDEO and Stanford d.school as the reference points. First real schooling in translating between innovation and scale.</p>
+            </div>
+            <div class="foundation">
+              <h4>Board of Innovation — Antwerp</h4>
+              <p>Internship. Given a free hand to analyse new venture possibilities for Sappi — the global woodfibre giant looking to diversify using their existing assets. Framed the opportunities, presented to Sappi management. Watched BoI run venture-building for other clients at the same time. A masterclass in opportunity identification before I knew the phrase.</p>
+            </div>
+          </div>
+          <p class="takeaway">Operational discipline from Japan. Design methods from France. Venture thinking from Belgium. The stack I still run on.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 03 · EXPLORATIONS ========== -->
+  <section id="explorations">
+    <div class="section-marker">
+      <span class="num">०३</span>
+      <span class="label">Explorations</span>
+    </div>
+
+    <!-- Places -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Places</div>
+        <div class="intro">Places that stayed with me. Not tourism, not a list. Workaway, Airbnb, hostels, hotels, couchsurfing in remote places where a local was the whole point. The mode followed the place.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div class="places-grid">
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-menorca.jpg" alt="Menorca, 2014"></div></figure>
+            <div class="place-title">Menorca</div>
+            <div class="place-note">Eight days on foot around the island, thinking about what comes next after Barcelona.</div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-armenia.jpg" alt="Armenia, 2019"></div></figure>
+            <div class="place-title">Armenia &amp; Georgia</div>
+            <div class="place-note">Summer of 2019, couchsurfing in mountains, including a stretch in Nagorno-Karabakh when it still existed.</div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-ukraine.jpg" alt="Lviv, Ukraine, 2019"></div></figure>
+            <div class="place-title">Ukraine</div>
+            <div class="place-note">Couchsurfing in 2019, back when it still felt like any other trip.</div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-indonesia.jpg" alt="Bali, Indonesia, 2019"></div></figure>
+            <div class="place-title">Indonesia</div>
+            <div class="place-note">May 2019, the start of the sabbatical. Villages, not resorts.</div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-japan.jpg" alt="Japan, 2018"></div></figure>
+            <div class="place-title">Japan</div>
+            <div class="place-note"><em>More to come.</em></div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-china.jpg" alt="China, 2018"></div></figure>
+            <div class="place-title">China</div>
+            <div class="place-note">Small towns, not the postcards. <em>More to come.</em></div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-sf.jpg" alt="San Francisco, 2023"></div></figure>
+            <div class="place-title">San Francisco</div>
+            <div class="place-note"><em>More to come.</em></div>
+          </div>
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-delft.jpg" alt="Delft, Netherlands"></div></figure>
+            <div class="place-title">Delft</div>
+            <div class="place-note">Where strategic design cracked me open. The years that reshaped everything.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sound -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Sound</div>
+        <div class="intro">Indian at the roots. Spiritual at the core. Endlessly curious about global sound.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+          <div class="sound-caption">Now listening — Spring 2026</div>
+          <ul class="sound-list">
+            <li>Anoushka Shankar, live</li>
+            <li>Prabha Atre — thumris on quiet mornings</li>
+            <li>Rabindra Sangeet, the way Calcutta plays it</li>
+            <li>Rokia Traoré</li>
+            <li>Sufjan Stevens</li>
+            <li>Diljit, at scale</li>
+            <li>AURORA</li>
+            <li>Vedic chants at dawn</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stages -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Stages</div>
+        <div class="intro">Theatre and improv. The work I keep showing up for tends to be serious, political, or literary — G5A, Prithvi, NCPA, not the mainstream circuit.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div class="stages-note"><em>More to come.</em></div>
+      </div>
+    </div>
+
+    <!-- Kitchen -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Kitchen</div>
+        <div class="intro">A handful of things I actually cook. Slow, hands-on, attention to living systems. Fermentation, rice, dal, the occasional experiment that became a habit.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+          <div class="kitchen-header">
+            <img src="website-images/kitchen-fermentation.jpg" alt="Fermentation workshop">
+          </div>
+          <!-- TODO: add 2–3 cover sentences framing what I cook and why. -->
+          <!-- TODO: wire each recipe tile to a Notion (or other) recipe page; add recipe name and → arrow back. -->
+          <div class="recipes">
+            <div class="recipe">
+              <div class="cover"><img src="website-images/recipe-1.jpg" alt=""></div>
+            </div>
+            <div class="recipe">
+              <div class="cover"><img src="website-images/recipe-2.jpg" alt=""></div>
+            </div>
+            <div class="recipe">
+              <div class="cover"><img src="website-images/recipe-3.jpg" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 04 · IN PUBLIC ========== -->
+  <section id="in-public">
+    <div class="section-marker">
+      <span class="num">०४</span>
+      <span class="label">In Public</span>
+    </div>
+
+    <!-- Talks & Appearances -->
+    <div class="public-group">
+      <div class="public-head">
+        <div class="label">Talks</div>
+        <div class="intro">Stages, conversations, and places where the work has shown up.</div>
+      </div>
+      <div class="public-body">
+        <div class="filler"></div>
+        <div class="talks-grid">
+
+          <a class="talk" href="https://www.youtube.com/watch?v=4iJ2E3LS7F4" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-brussels.jpg" alt="">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Talk · June 2022</div>
+            <div class="talk-title">Brussels Blockchain Week</div>
+            <div class="talk-venue">Brussels</div>
+          </a>
+
+          <a class="talk" href="https://www.youtube.com/watch?v=qheE1hqOCvI" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-nft-london.jpg" alt="">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Talk · November 2022</div>
+            <div class="talk-title">NFT London</div>
+            <div class="talk-venue">London</div>
+          </a>
+
+          <a class="talk" href="https://medium.com/beautiful-business-in-web3/the-end-of-hierarchy-daos-eaf9cb88089" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-hierarchy.jpg" alt="">
+            </div>
+            <div class="talk-label">Essay &amp; Audio · October 2022</div>
+            <div class="talk-title">The End of Hierarchy: DAOs</div>
+            <div class="talk-venue">House of Beautiful Business</div>
+          </a>
+
+          <a class="talk" href="https://www.youtube.com/watch?v=h81RBoThu8Q" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-uplifters.jpg" alt="">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Podcast</div>
+            <div class="talk-title">The Uplifters</div>
+            <div class="talk-venue">—</div>
+          </a>
+
+          <a class="talk" href="#" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-kula.jpg" alt="">
+            </div>
+            <div class="talk-label">Talk · December 2025</div>
+            <div class="talk-title">The Capital Connection</div>
+            <div class="talk-venue">Kula Conclave · Jawahar Kala Kendra, Jaipur</div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Press -->
+    <div class="public-group">
+      <div class="public-head">
+        <div class="label">Press</div>
+        <div class="intro">Coverage from the Godrej Appliances years.</div>
+      </div>
+      <div class="public-body">
+        <div class="filler"></div>
+        <div class="press-list">
+
+          <a class="press-item" href="https://brandequity.economictimes.indiatimes.com/news/business-of-brands/godrej-appliances-wants-to-think-like-a-startup-now/49977448" target="_blank" rel="noopener">
+            <span class="press-source">Brand Equity · ET</span>
+            <span class="press-title">"Godrej Appliances wants to think like a startup now"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+          <a class="press-item" href="https://www.thehindubusinessline.com/info-tech/godrej-innovates-to-make-products-with-ai-and-iot/article25160123.ece" target="_blank" rel="noopener">
+            <span class="press-source">The Hindu BusinessLine</span>
+            <span class="press-title">"Godrej innovates to make products with AI and IoT"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+          <a class="press-item" href="https://economictimes.indiatimes.com/industry/cons-products/durables/for-godrej-future-runs-through-this-innovation-cell/articleshow/49977874.cms" target="_blank" rel="noopener">
+            <span class="press-source">The Economic Times</span>
+            <span class="press-title">"For Godrej, future runs through this innovation cell"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 05 · ABOUT ========== -->
+  <section id="about">
+    <div class="section-marker">
+      <span class="num">०५</span>
+      <span class="label">About</span>
+    </div>
+    <div class="about-body">
+      <figure class="about-portrait">
+        <img src="website-images/about-nishant.jpg" alt="Nishant Bhaskar">
+      </figure>
+      <p>I grew up in a small town, went to a Ramakrishna Mission boarding school, and learned early that the world was mine to figure out.</p>
+      <p>Engineering at Delhi College of Engineering, then strategic design at TU Delft. Delft cracked me open.</p>
+      <p>I've built innovation studios inside conglomerates and a Web3 startup from a Paris apartment. Raised through crypto winters. Shipped products people actually use. Walked away when the chapter was done.</p>
+      <p>Lived in Delft, The Hague, Antwerp, Barcelona, Paris. Back in Mumbai now — with Subhasree and our two kids.</p>
+      <p>I'm drawn to how people live. The next thing I build will probably sit at the edge of culture, capital, and emerging tech.</p>
+      <div class="elsewhere">
+        <div class="label">Elsewhere</div>
+        <div class="links">
+          <a href="https://www.instagram.com/nbhaskar888/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/in/nishantbhaskar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/nbhaskar888" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div>© Nishant Bhaskar · Mumbai</div>
+</footer>
+
+<script>
+  // subtle nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
