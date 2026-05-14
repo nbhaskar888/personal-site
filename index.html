@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishant Bhaskar</title>
+<meta name="description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta name="author" content="Nishant Bhaskar">
+<meta name="theme-color" content="#F5F0E8">
+<link rel="canonical" href="https://nbhas.xyz/">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Open Graph (LinkedIn, Slack, WhatsApp, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nishant Bhaskar">
+<meta property="og:title" content="Nishant Bhaskar">
+<meta property="og:description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta property="og:url" content="https://nbhas.xyz/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://nbhas.xyz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nishant Bhaskar — New ventures. Old questions. A quiet obsession with how people live.">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nishant Bhaskar">
+<meta name="twitter:description" content="New ventures. Old questions. A quiet obsession with how people live.">
+<meta name="twitter:site" content="@nbhaskar888">
+<meta name="twitter:creator" content="@nbhaskar888">
+<meta name="twitter:image" content="https://nbhas.xyz/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F0E8;
+    --surface: #FBF7F1;
+    --surface-alt: #ECE3D6;
+    --text: #2F2925;
+    --text-secondary: #5A514A;
+    --border: #D8CCBE;
+    --clay: #C97B5B;
+    --sage: #A8B39A;
+    --ink: #1B2A3A;
+
+    --max-width: 1200px;
+    --reading-width: 720px;
+
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --deva: 'Noto Sans Devanagari', 'Inter', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(201, 123, 91, 0.15);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ---------- Navigation ---------- */
+
+  nav.top {
+    position: sticky;
+    top: 0;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  nav.top.scrolled {
+    border-bottom-color: var(--border);
+  }
+
+  nav.top .inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav.top .brand {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  nav.top .links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  nav.top .links a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 4px 0;
+  }
+
+  nav.top .links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--clay);
+    transition: width 0.3s ease;
+  }
+
+  nav.top .links a:hover {
+    color: var(--text);
+  }
+
+  nav.top .links a:hover::after {
+    width: 100%;
+  }
+
+  /* ---------- Layout ---------- */
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  section {
+    padding: 120px 0;
+  }
+
+  .section-marker {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .section-marker .num {
+    font-family: var(--deva);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--clay);
+    letter-spacing: 0.05em;
+  }
+
+  .section-marker .label {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Home ---------- */
+
+  section.home {
+    min-height: calc(100vh - 72px);
+    min-height: calc(100dvh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 120px;
+  }
+
+  .home .positioning {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    max-width: 880px;
+    margin: 0 0 80px 0;
+  }
+
+  .home .entries {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .home .entry {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .home .entry .num {
+    font-family: var(--deva);
+    font-size: 13px;
+    color: var(--clay);
+    font-weight: 400;
+  }
+
+  .home .entry:hover {
+    border-bottom-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* ---------- Work ---------- */
+
+  .fragment {
+    padding: 56px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .fragment:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .fragment-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .fragment .era {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding-top: 10px;
+  }
+
+  .fragment .era.now {
+    color: var(--clay);
+  }
+
+  .fragment .title {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .fragment .body {
+    max-width: 640px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .fragment .body p + p {
+    margin-top: 16px;
+  }
+
+  .fragment .takeaway {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text);
+    max-width: 640px;
+    padding-left: 20px;
+    border-left: 2px solid var(--clay);
+    line-height: 1.5;
+  }
+
+  .fragment .images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    max-width: none;
+  }
+
+  /* Modifier: show whole image without cropping (for tiles where content near edges matters) */
+  .work-image--contain {
+    background: var(--surface);
+  }
+
+  .work-image--contain img {
+    object-fit: contain;
+    filter: saturate(0.95);
+  }
+
+  /* Real image container (used in Work fragments) */
+  .work-image {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: var(--surface-alt);
+    position: relative;
+  }
+
+  .work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92) contrast(0.98);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .work-image:hover img {
+    filter: saturate(1.02) contrast(1);
+    transform: scale(1.02);
+  }
+
+  /* Foundations sub-entries */
+  .foundations-grid {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .foundation h4 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+
+  .foundation p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ---------- Explorations ---------- */
+
+  .stream {
+    padding: 72px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .stream:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .stream-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: baseline;
+  }
+
+  .stream .label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .stream-head .intro {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text);
+    max-width: 620px;
+  }
+
+  .stream-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .stream-body .filler { min-height: 1px; }
+
+  /* Places */
+  .places-pretext {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 700px;
+    margin-bottom: 40px;
+  }
+
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+    max-width: 800px;
+  }
+
+  .place figure {
+    margin-bottom: 16px;
+  }
+
+  .place-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .place-note {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .place-note em {
+    color: var(--clay);
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Kitchen header image */
+  .kitchen-header {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
+  .kitchen-body,
+  .practice-body,
+  .stages-body {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 620px;
+    margin-bottom: 24px;
+  }
+
+  .kitchen-body:last-of-type {
+    margin-bottom: 36px;
+  }
+
+  .kitchen-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+  }
+
+  /* ---------- Video tile (YouTube thumbnail + play button) ---------- */
+
+  .video-tile {
+    display: block;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .video-tile .video-thumb {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: var(--surface-alt);
+  }
+
+  .video-tile .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.88) brightness(0.88);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .video-tile .video-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(47,41,37,0) 40%, rgba(47,41,37,0.35) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .video-tile .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(251, 247, 241, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .video-tile .play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 16px solid var(--clay);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-left: 4px;
+  }
+
+  .video-tile:hover .video-thumb img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .video-tile:hover .play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(251, 247, 241, 1);
+  }
+
+  .video-tile .video-caption {
+    margin-top: 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* ---------- In Public section ---------- */
+
+  .public-group {
+    padding: 56px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .public-group:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .public-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+    align-items: baseline;
+  }
+
+  .public-head .label {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .public-head .intro {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 620px;
+    line-height: 1.5;
+  }
+
+  .public-body {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .talks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: none;
+  }
+
+  .talk {
+    display: block;
+    color: inherit;
+  }
+
+  .talk-thumb {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--surface-alt);
+    position: relative;
+  }
+
+  .talk-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.88) brightness(0.88);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .talk-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(47,41,37,0) 40%, rgba(47,41,37,0.3) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .talk-thumb .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(251, 247, 241, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .talk-thumb .play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 13px solid var(--clay);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left: 3px;
+  }
+
+  .talk:hover .talk-thumb img {
+    filter: saturate(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .talk:hover .talk-thumb .play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(251, 247, 241, 1);
+  }
+
+  .talk-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .talk-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  .talk-venue {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Press list */
+  .press-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+  }
+
+  .press-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 210px 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    color: inherit;
+  }
+
+  .press-item:last-child {
+    border-bottom: none;
+  }
+
+  .press-source {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .press-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .press-arrow {
+    color: var(--clay);
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .press-item:hover .press-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  .press-item:hover .press-title {
+    color: var(--ink);
+  }
+
+  /* ---------- About ---------- */
+
+  .about-body {
+    max-width: var(--reading-width);
+  }
+
+  .about-body p {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .about-body p.small {
+    font-size: 20px;
+  }
+
+  .about-portrait {
+    float: right;
+    width: 200px;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    margin: 4px 0 24px 40px;
+    shape-outside: margin-box;
+  }
+
+  .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.92);
+  }
+
+  .elsewhere {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .elsewhere .label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .elsewhere .links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .elsewhere a {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--ink);
+    position: relative;
+    padding-bottom: 3px;
+  }
+
+  .elsewhere a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.3;
+    transition: opacity 0.2s ease;
+  }
+
+  .elsewhere a:hover::after {
+    opacity: 1;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer.site {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* ---------- Responsive ---------- */
+
+  /* =================================================================
+     RESPONSIVE
+     Breakpoints:
+       ≤ 960px  tablet / narrow laptop
+       ≤ 600px  phone (portrait)
+       ≤ 400px  small phone
+     ================================================================= */
+
+  @media (max-width: 960px) {
+    main { padding: 0 28px; }
+    nav.top .inner { padding: 14px 24px; }
+    section { padding: 80px 0; }
+    .section-marker { margin-bottom: 48px; }
+
+    /* Two-column "label | content" layouts collapse to stacked */
+    .fragment-grid,
+    .stream-head,
+    .stream-body,
+    .public-head,
+    .public-body {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .fragment .era { padding-top: 0; }
+    .fragment .title { font-size: 26px; }
+
+    /* Image grids (work + talks) go 2-wide */
+    .fragment .images,
+    .talks-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* Press rows stack */
+    .press-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 18px 0;
+    }
+    .press-arrow { display: none; }
+
+    /* Home entries stack */
+    .home .entries {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* About */
+    .about-body p { font-size: 19px; }
+    .about-body p.small { font-size: 17px; }
+    .about-portrait {
+      float: none;
+      width: 160px;
+      margin: 0 0 24px 0;
+    }
+
+    /* Nav (brand + 4 links) compresses */
+    nav.top .links { gap: 16px; }
+    nav.top .links a { font-size: 13px; padding: 8px 0; }
+    nav.top .brand { font-size: 22px; }
+
+    footer.site { padding: 32px 28px; }
+  }
+
+  @media (max-width: 600px) {
+    html { scroll-padding-top: 56px; }
+    main { padding: 0 20px; }
+    nav.top .inner { padding: 12px 20px; }
+    section { padding: 60px 0; }
+    .section-marker { margin-bottom: 32px; gap: 12px; }
+
+    /* Single column for most grids */
+    .fragment .images,
+    .talks-grid,
+    .places-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    /* Type scale */
+    .fragment .title { font-size: 22px; }
+    .fragment .body { font-size: 15px; }
+    .fragment .takeaway { font-size: 15px; padding-left: 14px; }
+    .foundation h4 { font-size: 17px; }
+
+    .home .positioning {
+      font-size: clamp(26px, 7vw, 36px);
+      margin-bottom: 56px;
+    }
+
+    /* Stream / public group padding */
+    .stream,
+    .public-group {
+      padding: 52px 0;
+    }
+
+    /* Talks */
+    .talk-title { font-size: 16px; }
+    .talk-venue { font-size: 12px; }
+
+    /* Press */
+    .press-title { font-size: 16px; line-height: 1.35; }
+    .press-source { font-size: 10px; }
+
+    /* About */
+    .about-portrait { width: 140px; }
+    .about-body p { font-size: 17px; }
+    .about-body p.small { font-size: 15px; }
+
+    /* Kitchen — narrower header */
+    .kitchen-header { aspect-ratio: 3/2; }
+
+
+    /* Nav at phone */
+    nav.top .links { gap: 12px; }
+    nav.top .links a { font-size: 12px; padding: 8px 0; }
+    nav.top .brand { font-size: 18px; }
+
+    footer.site {
+      padding: 24px 20px;
+      font-size: 12px;
+    }
+  }
+
+  /* Small phone — tighten nav so the 4 links + brand still fit */
+  @media (max-width: 400px) {
+    html { scroll-padding-top: 48px; }
+    nav.top .brand { font-size: 15px; }
+    nav.top .links { gap: 10px; }
+    nav.top .links a { font-size: 11px; padding: 6px 0; }
+    nav.top .inner { padding: 10px 16px; }
+    main { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" id="nav">
+  <div class="inner">
+    <a href="#home" class="brand">Nishant Bhaskar</a>
+    <ul class="links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#explorations">Explorations</a></li>
+      <li><a href="#in-public">In Public</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========== 01 · HOME ========== -->
+  <section class="home" id="home">
+    <div class="section-marker">
+      <span class="num">०१</span>
+      <span class="label">Home</span>
+    </div>
+    <h1 class="positioning">New ventures. Old questions. A quiet obsession with how people live.</h1>
+    <div class="entries">
+      <a href="#work" class="entry"><span class="num">०२</span> Work</a>
+      <a href="#explorations" class="entry"><span class="num">०३</span> Explorations</a>
+      <a href="#in-public" class="entry"><span class="num">०४</span> In Public</a>
+      <a href="#about" class="entry"><span class="num">०५</span> About</a>
+    </div>
+  </section>
+
+  <!-- ========== 02 · WORK ========== -->
+  <section id="work">
+    <div class="section-marker">
+      <span class="num">०२</span>
+      <span class="label">Work</span>
+    </div>
+
+    <!-- Now -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era now">Now · 2025 →</div>
+        <div>
+          <h3 class="title">Godrej Enterprises — New Ventures + Investments</h3>
+          <div class="body">
+            <p>Back inside a conglomerate, at a different altitude. Group-level work: evaluating new businesses, incubating ventures, forging partnerships. A music venture and a fashion venture in motion (under wraps). The wider culture space, on the radar.</p>
+          </div>
+          <p class="takeaway">Same company, different altitude.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advised -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Advised · 2024</div>
+        <div>
+          <h3 class="title">A year of useful detours</h3>
+          <div class="body">
+            <p>Built a full India investment thesis for a VC fund — five emerging shifts, a hypothetical $100M portfolio to make the bets concrete. Token design for Nakamoto Hub, a Bitcoin-secured settlement platform for financial institutions.</p>
+            <p>And Mandala — a blockchain platform for tokenising e-waste. Explored, not pursued. The gestation felt too long for the season I was in.</p>
+          </div>
+          <p class="takeaway">The work was exploratory. The learning was concrete.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founded -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Founded · 2021 – 2023</div>
+        <div>
+          <h3 class="title">Lomads</h3>
+          <div class="body">
+            <p>Community infrastructure for artists and creators. Started Web2, pivoted to Web3 as the wave hit. Built from Paris. Raised through the Terra-Luna and FTX collapses. Got into Outlier Ventures. Onboarded 60+ orgs across six networks in six months. Handed over to Blockstart Investments.</p>
+          </div>
+          <p class="takeaway">Plug into high-signal people. Scope and ship. Sell the vision. Walk the line between it and market reality. That's the whole game.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/lomads-treasury.png" alt="Lomads treasury interface" loading="lazy" decoding="async"></div>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=tsIj8Ukt_sE" target="_blank" rel="noopener" aria-label="Watch the Lomads product demo on YouTube">
+              <div class="video-thumb">
+                <img src="website-images/video-lomads-demo.jpg" alt="Lomads product demo" loading="lazy" decoding="async">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">Product demo</div>
+            </a>
+            <div class="work-image work-image--contain"><img src="website-images/lomads-community.png" alt="Lomads community event" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Built -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Built · 2016 – 2019</div>
+        <div>
+          <h3 class="title">Godrej Appliances — Innovation from scratch</h3>
+          <div class="body">
+            <p>Head of Innovation. Set up the function, hired the team, built the methods. Four connected kitchen products — voice control, companion app — in 18 months. $80M+ in projected revenue. $6M secured. Four patents filed. Also ran the group-level IoT platform, with Wipro, TechM, and Capgemini in the room.</p>
+          </div>
+          <p class="takeaway">The real work wasn't selling ideas. It was helping the organisation recognise itself in the future.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/nutricubator.jpg" alt="Nutricubator fermentation device" loading="lazy" decoding="async"></div>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=vhWiJ0TIWts" target="_blank" rel="noopener" aria-label="The studio and lab where the team worked">
+              <div class="video-thumb">
+                <img src="website-images/video-godrej-studio.jpg" alt="The Godrej Appliances innovation studio and lab" loading="lazy" decoding="async">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">The studio and lab where the team worked</div>
+            </a>
+            <a class="video-tile" href="https://www.youtube.com/watch?v=E7i20kFnOp0" target="_blank" rel="noopener" aria-label="Watch the Godrej Appliances hackathon video">
+              <div class="video-thumb">
+                <img src="website-images/video-godrej-hackathon.jpg" alt="Hackathon organised at Godrej Appliances" loading="lazy" decoding="async">
+                <span class="play" aria-hidden="true"></span>
+              </div>
+              <div class="video-caption">A hackathon we ran with Maker&rsquo;s Asylum</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consulted -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Consulted · 2014</div>
+        <div>
+          <h3 class="title">Claro Partners — Barcelona</h3>
+          <div class="body">
+            <p>Reframed P&amp;G's mass fragrance opportunity — from demographics to emotions, unmet needs, and changing lifestyles. Put together an open-source template for building IoT products people might actually want. Framed the proposal that won Claro's largest project to date — Fiat Chrysler's connected car future.</p>
+          </div>
+          <p class="takeaway">Opportunities are always earlier and stranger than people expect.</p>
+          <div class="images">
+            <div class="work-image"><img src="website-images/fiat-cars-hero.png" alt="Cars are not the centre of our lives — Fiat Chrysler project" loading="lazy" decoding="async"></div>
+            <div class="work-image"><img src="website-images/pg-benefit-spaces.png" alt="P&amp;G fragrance benefit spaces" loading="lazy" decoding="async"></div>
+            <div class="work-image"><img src="website-images/fiat-phases.png" alt="Fiat Chrysler connected car project phases" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foundations -->
+    <div class="fragment">
+      <div class="fragment-grid">
+        <div class="era">Foundations · 2008 – 2013</div>
+        <div>
+          <h3 class="title">Three places, three things that still run underneath everything</h3>
+          <div class="foundations-grid">
+            <div class="foundation">
+              <h4>Maruti Suzuki — Delhi</h4>
+              <p>First job. Graduate Engineer Trainee, then Assistant Manager in R&amp;D. The Japanese shop-floor discipline landed early — managers on the floor, egalitarian teams, 5S not as a poster, but as a working philosophy. Watched how a large company's functions actually sync. That clarity around operational detail has never left.</p>
+            </div>
+            <div class="foundation">
+              <h4>Thales — Paris</h4>
+              <p>Strategic Designer at their fledgling Design Centre, secured via cold email. My boss Didier spent hours walking me through design thinking and the real mechanics of changing a 70,000-person company. Shadowed meetings, ran workshops. First real schooling in translating between innovation and scale.</p>
+            </div>
+            <div class="foundation">
+              <h4>Board of Innovation — Antwerp</h4>
+              <p>Internship. Given a free hand to analyse new venture possibilities for Sappi — the global woodfibre giant looking to diversify using their existing assets. Framed the opportunities, presented to Sappi management. Watched BoI run venture-building for other clients at the same time. A masterclass in opportunity identification before I knew the phrase.</p>
+            </div>
+          </div>
+          <p class="takeaway">Operational discipline from Japan. Design methods from France. Venture thinking from Belgium. The stack I still run on.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 03 · EXPLORATIONS ========== -->
+  <section id="explorations">
+    <div class="section-marker">
+      <span class="num">०३</span>
+      <span class="label">Explorations</span>
+    </div>
+
+    <!-- Places -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Places</div>
+        <div class="intro">Each place gives me something and stays with me.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+        <div class="places-pretext">I've been deliberate about not letting any single heritage become the default lens. The more different the context, the more it shakes loose what I think I know. Here's a sampling.</div>
+        <div class="places-grid">
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-nagorno.jpg" alt="At the tomato seller's stall, Nagorno-Karabakh" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Stepanakert, Nagorno-Karabakh</div>
+            <div class="place-note">A territory that no longer exists. A place frozen in time. Stayed with an elderly couple — metal bed, Soviet-era refrigerator, untouched since the 70s. Set out for a ghost town with a few equally nutty travellers — police turned us back. Drank strong local spirits with a soldier and a tomato seller anyway, strangers who became friends for an afternoon.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-china.jpg" alt="Zhongshan, China" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Zhongshan, China</div>
+            <div class="place-note">The scale hits you first — malls, apartment complexes, factories, infrastructure, all immaculate and enormous. But enmeshed in that is a culture that doesn't announce itself. I was there sourcing prototypes. The people I worked with knew things I didn't — not theoretically, but through repetition, volume, and years of making things for the world.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-auroville.jpg" alt="Auroville — sound healing session" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Auroville, India</div>
+            <div class="place-note">An entire town built from values rather than economics. The place has a real intensity: mud roads, no loud signboards, event schedules you only know if you're plugged in. Sustainable architecture, excellent food options, sound healing, spas, artisan-led workshops, small manufacturing facilities — a serious experiment running through everything. The intensity is almost cult-like, and I mean that as a compliment. I've been twice.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-carpathians.jpg" alt="The Carpathians, Ukraine" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">The Carpathians, Ukraine</div>
+            <div class="place-note">I never imagined I'd be in the Carpathians, volunteering for an ecstatic dance festival before anything existed. Just mountains, pine trees, silence, tents, and stacks of beams waiting to become yurts, domes, kitchens, and gathering spaces. We dug the first holes, foraged mushrooms, drank tea from wild herbs, and talked through what the place could become.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-kyoto.jpg" alt="Kyoto — temple dragon dance" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Kyoto, Japan</div>
+            <div class="place-note">An evening walk along the Philosopher's Path, then Yamazaki single malt at sundown. Kiyomizu-dera. Fushimi Inari-taisha. Everything in Kyoto feels considered — like the city made a decision about what matters and quietly removed the rest.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-sf.jpg" alt="San Francisco, USA" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">San Francisco, USA</div>
+            <div class="place-note">A founder conversation in Lafayette Park, an event at the Presidio, investor meetings, a leisurely walk by the Embarcadero — San Francisco makes ambition feel strangely ordinary. The setting helps: hills, sea, shifting light, and a certain openness that makes the city feel both intense and calm.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-istanbul.jpg" alt="Istanbul — the Bosphorus at sunset" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Istanbul, Turkey</div>
+            <div class="place-note">Istanbul feels layered from the first hour — Galata Tower, the Grand Bazaar, Hürrem Sultan Hammam, mezes, stories, the Bosphorus cutting between continents. History there doesn't sit in the background. It presses in.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-georgia.jpg" alt="Svaneti — with a host family" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Svaneti, Georgia</div>
+            <div class="place-note">Four days trekking the mountains, stopping in villages, eating whatever the hosts put on the table — grown on those pristine slopes. A kid at one of the guesthouses who showed us magic tricks. An Israeli brother and sister talking about their military service over dinner. Oh, the characters we met along the way.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-indonesia.jpg" alt="Wooden hut and natural pool, Ubud" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Ubud, Bali</div>
+            <div class="place-note">Stayed in a wooden hut at a Russian-run spa retreat in the jungle above Ubud. Days on a scooty through rice terraces and village roads. Evenings, the place ran its own programme: tea, bonfire, ecstatic dance, cacao, sauna, flower-petal pools.</div>
+          </div>
+
+          <div class="place">
+            <figure><div class="work-image"><img src="website-images/place-menorca.jpg" alt="Menorca, 2014" loading="lazy" decoding="async"></div></figure>
+            <div class="place-title">Menorca, Spain</div>
+            <div class="place-note">Walked the island end to end. Slept by the sea, stared at the stars, snorkelled when the coast allowed. No agenda — just movement and stillness in turns.</div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stages -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Stages</div>
+        <div class="intro">Daunting and full of possibility.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+          <p class="stages-body">Wrote and acted in plays from school days through the engineering years and the first job. Tried improv. The high came from the creation as much as the performance.</p>
+          <p class="stages-body">Now mostly in the audience. Theatre that's serious, political, or literary — G5A, Prithvi, NCPA. Comedy with teeth. Live music in smaller rooms — fifty to three hundred people, nice and groovy.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kitchen -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Kitchen</div>
+        <div class="intro">First principles, not rules.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+          <div class="kitchen-header">
+            <img src="website-images/kitchen-fermentation.jpg" alt="Fermentation workshop" loading="lazy" decoding="async">
+          </div>
+          <p class="kitchen-body">I don't follow recipes so much as reason through them — mutton in many variations, ramen built from whatever's in the kitchen, baking and grilling, kept simple and done well. Dishes I understand, not dishes I've perfected by repetition.</p>
+          <p class="kitchen-body">The eating works the same way. I order the thing I don't recognise. Curiosity first, always. But the loyalties run deep too — litti chokha non-negotiable in Patna, Hyderabadi mutton biryani, a good sandwich (that takes me to Antwerp), momos done right.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice -->
+    <div class="stream">
+      <div class="stream-head">
+        <div class="label">Practice</div>
+        <div class="intro">The slow side. Daily attention to living systems.</div>
+      </div>
+      <div class="stream-body">
+        <div class="filler"></div>
+        <div>
+          <p class="practice-body">Fermentation is where it goes deepest. It started professionally — my team at Godrej Appliances was building a fermentation device, I got curious, then went deep. Kanji, kombucha, kefir, ginger bug, sauerkraut, jalapeños in brine. The kefir's been continuous for nearly a year. Every few days: sieve the grains, clean the vessel, start the next batch. Same rhythm with the kombucha SCOBY when I had it.</p>
+          <p class="practice-body">The garden runs the same logic, made spatial. Brahmi, tulsi, neem, mint, rosemary, New Zealand spinach.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 04 · IN PUBLIC ========== -->
+  <section id="in-public">
+    <div class="section-marker">
+      <span class="num">०४</span>
+      <span class="label">In Public</span>
+    </div>
+
+    <!-- Talks & Appearances -->
+    <div class="public-group">
+      <div class="public-head">
+        <div class="label">Talks</div>
+        <div class="intro">Stages, conversations, and places where the work has shown up.</div>
+      </div>
+      <div class="public-body">
+        <div class="filler"></div>
+        <div class="talks-grid">
+
+          <a class="talk" href="https://www.youtube.com/watch?v=4iJ2E3LS7F4" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-brussels.jpg" alt="" loading="lazy" decoding="async">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Talk · June 2022</div>
+            <div class="talk-title">Brussels Blockchain Week</div>
+            <div class="talk-venue">Brussels</div>
+          </a>
+
+          <a class="talk" href="https://www.youtube.com/watch?v=qheE1hqOCvI" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-nft-london.jpg" alt="" loading="lazy" decoding="async">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Talk · November 2022</div>
+            <div class="talk-title">NFT London</div>
+            <div class="talk-venue">London</div>
+          </a>
+
+          <a class="talk" href="https://medium.com/beautiful-business-in-web3/the-end-of-hierarchy-daos-eaf9cb88089" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-hierarchy.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="talk-label">Essay &amp; Audio · October 2022</div>
+            <div class="talk-title">The End of Hierarchy: DAOs</div>
+            <div class="talk-venue">House of Beautiful Business</div>
+          </a>
+
+          <a class="talk" href="https://www.youtube.com/watch?v=h81RBoThu8Q" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-uplifters.jpg" alt="" loading="lazy" decoding="async">
+              <span class="play" aria-hidden="true"></span>
+            </div>
+            <div class="talk-label">Podcast · October 2022</div>
+            <div class="talk-title">The Uplifters</div>
+            <div class="talk-venue">—</div>
+          </a>
+
+          <a class="talk" href="#" target="_blank" rel="noopener">
+            <div class="talk-thumb">
+              <img src="website-images/talk-kula.jpg" alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="talk-label">Talk · December 2025</div>
+            <div class="talk-title">The Capital Connection</div>
+            <div class="talk-venue">Kula Conclave · Jawahar Kala Kendra, Jaipur</div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Press -->
+    <div class="public-group">
+      <div class="public-head">
+        <div class="label">Press</div>
+        <div class="intro">Coverage from the Godrej Appliances years.</div>
+      </div>
+      <div class="public-body">
+        <div class="filler"></div>
+        <div class="press-list">
+
+          <a class="press-item" href="https://brandequity.economictimes.indiatimes.com/news/business-of-brands/godrej-appliances-wants-to-think-like-a-startup-now/49977448" target="_blank" rel="noopener">
+            <span class="press-source">Brand Equity · ET</span>
+            <span class="press-title">"Godrej Appliances wants to think like a startup now"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+          <a class="press-item" href="https://www.thehindubusinessline.com/info-tech/godrej-innovates-to-make-products-with-ai-and-iot/article25160123.ece" target="_blank" rel="noopener">
+            <span class="press-source">The Hindu BusinessLine</span>
+            <span class="press-title">"Godrej innovates to make products with AI and IoT"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+          <a class="press-item" href="https://economictimes.indiatimes.com/industry/cons-products/durables/for-godrej-future-runs-through-this-innovation-cell/articleshow/49977874.cms" target="_blank" rel="noopener">
+            <span class="press-source">The Economic Times</span>
+            <span class="press-title">"For Godrej, future runs through this innovation cell"</span>
+            <span class="press-arrow">→</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== 05 · ABOUT ========== -->
+  <section id="about">
+    <div class="section-marker">
+      <span class="num">०५</span>
+      <span class="label">About</span>
+    </div>
+    <div class="about-body">
+      <figure class="about-portrait">
+        <img src="website-images/about-nishant.jpg" alt="Nishant Bhaskar" loading="lazy" decoding="async">
+      </figure>
+      <p>I grew up in a small town, went to a Ramakrishna Mission boarding school, and learned early that the world was mine to figure out.</p>
+      <p>Engineering at Delhi College of Engineering, then strategic design at TU Delft. Delft cracked something open.</p>
+      <p>I've built innovation studios inside conglomerates and a Web3 startup from a Paris apartment. Raised through crypto winters. Shipped products people actually used. Walked away when the chapter was done.</p>
+      <p>Lived in Delft, The Hague, Antwerp, Barcelona, Paris. Back in Mumbai now — with Subhasree and our two kids.</p>
+      <p>Most days now: kefir grains kept alive, herbs on the verandah, two small humans, food cooked slow.</p>
+      <p>I'm drawn to how people live — their rituals, systems, aspirations, and contradictions. The next thing I build will probably sit somewhere between culture, capital, and emerging technology.</p>
+      <div class="elsewhere">
+        <div class="label">Elsewhere</div>
+        <div class="links">
+          <a href="https://www.instagram.com/nbhaskar888/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/in/nishantbhaskar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/nbhaskar888" target="_blank" rel="noopener">X</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div>© Nishant Bhaskar · Mumbai</div>
+</footer>
+
+<script>
+  // subtle nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
