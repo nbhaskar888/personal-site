@@ -20,7 +20,7 @@
 <style>
   :root{
     --bg:#0e0d0b; --panel:#171512; --ink:#ece7dd; --muted:#a89f8f; --line:#2c2823;
-    --c1:#c98a2e; --c2:#3ecfae; --c3:#5b8def;
+    --c1:#c98a2e; --c2:#3ecfae; --c3:#5b8def; --c4:#d4703a; --c5:#4fa882;
     --serif:Georgia,'Times New Roman',serif; --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -48,7 +48,6 @@
   main{padding-bottom:8px}
   section{border-top:1px solid var(--line);padding:52px 0 8px;margin-top:8px}
 
-  .lede{font-size:19px;color:#d6cfc2;max-width:720px;margin-bottom:34px}
 
   /* ---------- cards ---------- */
   .card{
@@ -58,6 +57,8 @@
   .accent-1{border-left-color:var(--c1)}
   .accent-2{border-left-color:var(--c2)}
   .accent-3{border-left-color:var(--c3)}
+  .accent-4{border-left-color:var(--c4)}
+  .accent-5{border-left-color:var(--c5)}
 
   .card .kicker{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
   .card h3{font-size:25px;font-weight:400;line-height:1.3;margin-bottom:5px;letter-spacing:-.005em}
@@ -72,6 +73,8 @@
   .accent-1 .go{color:#e0a94e}
   .accent-2 .go{color:#5fdcc0}
   .accent-3 .go{color:#8badf5}
+  .accent-4 .go{color:#e8895a}
+  .accent-5 .go{color:#6fc4a1}
   .card .go:hover{border-bottom-color:currentColor}
 
   /* ---------- footer ---------- */
@@ -83,7 +86,6 @@
     header.hero{padding:44px 0 34px}
     .hero .sub{font-size:16px}
     section{padding:40px 0 8px}
-    .lede{font-size:17.5px;margin-bottom:26px}
     .card{padding:22px 20px;margin-bottom:18px}
     .card h3{font-size:22px}
     .card p{font-size:16px}
@@ -115,14 +117,12 @@
 <main class="wrap">
 
   <section>
-    <p class="lede">Less argument than wandering — a way to circle a question and see what surfaces.</p>
-
     <article class="card accent-1">
       <p class="kicker">Long read</p>
       <h3>Tribes of Sound</h3>
       <p class="deck">A cultural anthropology of popular music, 1950s–today</p>
       <p>Seventy years of popular music read as a story about people rather than records. Each era gets its tribe, its rituals, and the moral panic that arrived with the new sound — the panic being the interesting part, since it's how a society admits something real is changing. Underneath runs a second thread: how we physically listen, from the family radio everyone sat around to the earbud fitted to one person alone.</p>
-      <a class="go" href="https://nbhaskar888.github.io/music-eras/" target="_blank" rel="noopener">Read Tribes of Sound ↗</a>
+      <a class="go" href="/music/tribes-of-sound">Read Tribes of Sound →</a>
     </article>
 
     <article class="card accent-2">
@@ -130,7 +130,7 @@
       <h3>Finding the Artist</h3>
       <p class="deck">Voice, instinct, and what's already there</p>
       <p>Ten artists, two questions: what's already there, and how close should the artist feel? James Blake making the production carry part of the feeling. Sufjan Stevens trusting a detail too private to generalise. AURORA letting the body find the song before the plan does. Not a set of models to copy — a way of noticing what an artist already has and hasn't smoothed out yet.</p>
-      <a class="go" href="https://nbhaskar888.github.io/Inspiration-Board-01/" target="_blank" rel="noopener">Open the board ↗</a>
+      <a class="go" href="/music/finding-the-artist">Open the board →</a>
     </article>
 
     <article class="card accent-3">
@@ -138,7 +138,23 @@
       <h3>Taking the Artist into the World</h3>
       <p class="deck">Audience, visual language, and the life that forms around the songs</p>
       <p>What happens after the song is finished. Eight artists, three questions — how an audience gets in, what world the song belongs to, and what kind of career the work can survive. Drake and Prateek Kuhad as opposite answers on access. FKA twigs on what clothes do to a body. Avicii on the gap between a song that scales and a person who has to keep carrying it.</p>
-      <a class="go" href="https://nbhaskar888.github.io/Inspiration-Board-02/" target="_blank" rel="noopener">Open the board ↗</a>
+      <a class="go" href="/music/taking-the-artist-into-the-world">Open the board →</a>
+    </article>
+
+    <article class="card accent-4">
+      <p class="kicker">Operating manual · 01</p>
+      <h3>The Terrain</h3>
+      <p class="deck">The Indian indie ecosystem — who does what, and what it costs</p>
+      <p>How the system actually works, mapped for someone who has to operate inside it. What a manager is for and where agencies fit. Three ways to structure a project, and what each one costs. Rights, admin, deal hygiene — and ownership as the thing you protect when everything else is negotiable.</p>
+      <a class="go" href="/music/the-terrain">Read The Terrain →</a>
+    </article>
+
+    <article class="card accent-5">
+      <p class="kicker">Operating manual · 02</p>
+      <h3>The Engine</h3>
+      <p class="deck">Releases, content, and the road out</p>
+      <p>The companion piece: an operating rhythm for eighteen months. Nine songs in twelve. What the first 180 days have to accomplish. How content, live shows and collaboration compound instead of competing for the same attention. The live ladder in India first, then the route out.</p>
+      <a class="go" href="/music/the-engine">Read The Engine →</a>
     </article>
   </section>
 

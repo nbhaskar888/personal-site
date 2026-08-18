@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tribes of Sound — A Cultural Anthropology of Popular Music, 1950s–Today</title>
+<style>
+  :root{
+    --bg:#0e0d0b; --panel:#171512; --ink:#ece7dd; --muted:#a89f8f; --line:#2c2823;
+    --serif:Georgia,'Times New Roman',serif; --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.65;-webkit-text-size-adjust:100%}
+  section.era,.arc{scroll-margin-top:58px}
+  a{color:inherit}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  header.hero{padding:90px 0 50px;text-align:center;background:radial-gradient(ellipse at 50% -20%,#2a2115 0%,var(--bg) 70%)}
+  .hero .kicker{font-family:var(--sans);letter-spacing:.25em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+  .hero h1{font-size:clamp(34px,6vw,60px);font-weight:400;margin:14px 0 10px;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic}
+  .hero .sub{color:var(--muted);max-width:640px;margin:0 auto;font-size:17px}
+
+  nav.timeline{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.timeline .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav.timeline .wrap::-webkit-scrollbar{display:none}
+  nav.timeline a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-decoration:none;color:var(--muted);
+    padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;transition:all .2s}
+  nav.timeline a:hover{color:var(--ink);border-color:var(--muted)}
+  nav.timeline a.active{color:#0e0d0b;background:var(--ink);border-color:var(--ink);font-weight:700}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+  .intro{padding:56px 0 8px}
+  .intro p{max-width:720px;margin:0 auto 18px;font-size:17px;color:#d6cfc2}
+  .intro p strong{color:var(--ink)}
+
+  section.era{padding:72px 0 60px;border-top:1px solid var(--line);margin-top:56px}
+  .era-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:6px}
+  .era-years{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;padding:5px 12px;border-radius:4px;color:#0e0d0b}
+  .era h2{font-size:clamp(26px,4vw,38px);font-weight:400}
+  .era .tagline{font-style:italic;color:var(--muted);font-size:17px;margin-bottom:28px}
+
+  .block{margin:26px 0}
+  .block h3{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+  .block p{color:#d6cfc2;max-width:760px}
+  .block p+p{margin-top:12px}
+
+  .anthro{border-left:3px solid;padding:16px 22px;margin:30px 0;background:var(--panel);border-radius:0 8px 8px 0}
+  .anthro h3{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+  .anthro p{color:#d6cfc2;font-style:italic}
+
+  .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:30px}
+  .video{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .video .frame{display:block;position:relative;padding-top:56.25%;background:#000;cursor:pointer}
+  .video .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .2s}
+  .video .frame:hover img{opacity:1}
+  .video .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:42px;
+    background:rgba(210,30,30,.88);border:1px solid rgba(255,255,255,.4);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;pointer-events:none;transition:transform .2s}
+  .video .frame:hover .play{transform:translate(-50%,-50%) scale(1.08)}
+  .video .cap{padding:12px 14px;font-family:var(--sans);font-size:13px;color:var(--muted)}
+  .video .cap strong{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+  .video .cap .ytlink{display:inline-block;margin-top:7px;font-size:12px;color:#c9bfa9;text-decoration:none;border-bottom:1px dotted #6b6355}
+  .video .cap .ytlink:hover{color:var(--ink)}
+
+  .further{margin-top:26px;font-family:var(--sans);font-size:13px;color:var(--muted)}
+  .further a{color:#c9bfa9}
+
+  /* era palettes */
+  #e50s .era-years{background:#e4483e}  #e50s h3,#e50s .anthro{border-color:#e4483e}  #e50s h3{color:#ff8a80}
+  #e60s .era-years{background:#f6a821}  #e60s h3,#e60s .anthro{border-color:#f6a821}  #e60s h3{color:#ffc866}
+  #e70s .era-years{background:#c98a2e}  #e70s h3,#e70s .anthro{border-color:#c98a2e}  #e70s h3{color:#e6b566}
+  #e80s .era-years{background:#ff4fa3}  #e80s h3,#e80s .anthro{border-color:#ff4fa3}  #e80s h3{color:#ff8ac2}
+  #e90s .era-years{background:#8aa64f}  #e90s h3,#e90s .anthro{border-color:#8aa64f}  #e90s h3{color:#b5cc7f}
+  #e00s .era-years{background:#4fa0d8}  #e00s h3,#e00s .anthro{border-color:#4fa0d8}  #e00s h3{color:#8ac4ea}
+  #e10s .era-years{background:#9b7fe8}  #e10s h3,#e10s .anthro{border-color:#9b7fe8}  #e10s h3{color:#bda9f5}
+  #e20s .era-years{background:#3ecfae}  #e20s h3,#e20s .anthro{border-color:#3ecfae}  #e20s h3{color:#7fe2c9}
+
+  .arc{padding:80px 0;border-top:1px solid var(--line);margin-top:70px}
+  .arc h2{font-size:30px;font-weight:400;margin-bottom:20px}
+  .arc p{max-width:740px;color:#d6cfc2;margin-bottom:16px}
+
+  /* ===== Long Arc infographic ===== */
+  .ribbons{margin:38px 0 10px;font-family:var(--sans)}
+  .ribbons .rib-scroll{overflow-x:auto;padding-bottom:6px}
+  .rib-grid{display:grid;grid-template-columns:110px repeat(8,minmax(96px,1fr));gap:4px;min-width:920px}
+  .rib-grid .rowlab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;padding-right:8px}
+  .rib-cell{border-radius:6px;padding:8px 8px;font-size:11.5px;line-height:1.35;color:#0e0d0b;font-weight:600}
+  .rib-cell small{display:block;font-weight:400;opacity:.75;font-size:10px;letter-spacing:.06em}
+  .rib-head{background:none!important;color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.12em;text-align:center;padding:4px 0}
+  .c50{background:#e4483e}.c60{background:#f6a821}.c70{background:#c98a2e}.c80{background:#ff4fa3}
+  .c90{background:#8aa64f}.c00{background:#4fa0d8}.c10{background:#9b7fe8}.c20{background:#3ecfae}
+  .rib-dim{filter:saturate(.55) brightness(.92)}
+
+  .tl{margin:44px 0 10px;position:relative;padding-left:26px;border-left:2px solid var(--line);font-family:var(--sans)}
+  .tl-item{position:relative;padding:0 0 22px 14px;max-width:680px}
+  .tl-item::before{content:"";position:absolute;left:-34px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--muted);border:3px solid var(--bg)}
+  .tl-item .yr{font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--ink)}
+  .tl-item .ev{font-size:13.5px;color:#d6cfc2;margin-top:2px;line-height:1.5}
+  .tl-item .ev em{color:var(--muted)}
+  .tl-item.t50::before{background:#e4483e}.tl-item.t60::before{background:#f6a821}
+  .tl-item.t70::before{background:#c98a2e}.tl-item.t80::before{background:#ff4fa3}
+  .tl-item.t90::before{background:#8aa64f}.tl-item.t00::before{background:#4fa0d8}
+  .tl-item.t10::before{background:#9b7fe8}.tl-item.t20::before{background:#3ecfae}
+  .arc .figcap{font-family:var(--sans);font-size:12px;color:var(--muted);margin:8px 0 34px}
+
+  /* mobile rendering of the era grid: stacked cards */
+  .rib-mobile{display:none}
+
+  .colophon{max-width:700px;margin:52px auto 0;padding:16px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px;text-align:center}
+  .colophon .by{font-family:var(--sans);font-size:13.5px;color:#d6cfc2;line-height:1.55}
+  footer{padding:34px 0 60px;color:var(--muted);font-family:var(--sans);font-size:12.5px;text-align:center}
+
+  /* ===== Responsive ===== */
+  @media (max-width:719px){
+    .rib-scroll{display:none}
+    .rib-mobile{display:grid;gap:10px}
+    .rm-card{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ec,#a89f8f);border-radius:8px;padding:12px 14px}
+    .rm-era{font-weight:700;color:var(--ec,#a89f8f);font-size:12px;letter-spacing:.18em;margin-bottom:7px}
+    .rm-row{font-size:13px;color:#d6cfc2;padding:3px 0;line-height:1.5;display:flex;gap:10px;align-items:baseline}
+    .rm-row span{flex:0 0 78px;color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.12em}
+    .figcap-desktop{display:none}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 18px}
+    header.hero{padding:54px 0 36px}
+    .hero .sub{font-size:15.5px}
+    nav.timeline .wrap{padding:9px 14px;gap:5px}
+    nav.timeline a{padding:5px 11px;font-size:12px}
+    .intro{padding:38px 0 4px}
+    .intro p{font-size:15.5px}
+    section.era{padding:46px 0 42px;margin-top:34px}
+    .era-head{gap:12px}
+    .tagline{font-size:15.5px}
+    .block{margin:22px 0}
+    .block p{font-size:15.5px}
+    .anthro{padding:14px 16px;margin:24px 0}
+    .videos{grid-template-columns:1fr;gap:16px}
+    .video .cap{font-size:12.5px}
+    .video .cap .ytlink{padding:6px 2px;font-size:12.5px}
+    .further a{display:inline-block;padding:3px 0}
+    .arc{padding:54px 0}
+    .arc p{font-size:15.5px}
+    .tl{padding-left:18px;margin-top:34px}
+    .tl-item{padding:0 0 20px 10px}
+    .tl-item::before{left:-27px;width:10px;height:10px}
+    .tl-item .ev{font-size:13px}
+  }
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  .backnav{padding:20px 0 0}
+  .backnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted);text-decoration:none;display:inline-block;padding:6px 2px;transition:color .18s ease}
+  .backnav a:hover{color:var(--ink)}
+  @media print{.backnav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap backnav"><a href="/music">← On Music</a></div>
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">A Cultural Anthropology</div>
+    <h1>Tribes of <em>Sound</em></h1>
+    <p class="sub">Think of this less as music history and more as a story about people — seventy years of who we wanted to be. Every era has its tribe, its role models, its sound... and the moral panic that came with it.</p>
+  </div>
+</header>
+
+<nav class="timeline">
+  <div class="wrap">
+    <a href="#e50s">'50s</a><a href="#e60s">'60s</a><a href="#e70s">'70s</a><a href="#e80s">'80s</a>
+    <a href="#e90s">'90s</a><a href="#e00s">'00s</a><a href="#e10s">'10s</a><a href="#e20s">'20s</a><a href="#arc">The Long Arc</a>
+  </div>
+</nav>
+
+<div class="intro wrap">
+  <p><strong>Before we begin:</strong> music has always done three quiet jobs in our lives. It tells us <strong>who we are</strong> (which tribe am I?), it gives us <strong>rituals</strong> (the dance, the concert, listening together), and it fights our <strong>battles</strong> (kids vs. parents, race, class, gender). Every era's "sound" is what those struggles sounded like out loud — and whenever a new sound arrives, someone panics. The panic is worth watching: it's how a society admits that something real is changing.</p>
+  <p>And here's a thread worth following all the way through: <strong>how we physically listen</strong>. The family radio everyone sat around → the record player in a teenager's bedroom → the Walkman that let you carry solitude in your pocket → the earbud and the algorithm, a soundtrack fitted to you alone. Music went from something a household did together to something a person wears.</p>
+  <p style="font-size:15.5px;color:var(--muted)">One thing to hold lightly: this is mainly a story of Anglo-American popular music and the industries built around it — and of that centre slowly loosening its grip. It's <em>a</em> way of reading seventy years, not the only one. The eras are our invention — real music overlapped, contradicted itself, and never changed on schedule. The neat lines are here to make the story easier to follow, not because history was ever that tidy.</p>
+</div>
+
+<!-- ============ 1950s ============ -->
+<section class="era wrap" id="e50s">
+  <div class="era-head"><span class="era-years">1954–1963</span><h2>The Invention of the Teenager</h2></div>
+  <p class="tagline">Rock 'n' roll — the first music owned by the young, and the first great racial crossover.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>Post-war affluence gave American adolescents three unprecedented things: pocket money, leisure time, and bedrooms with record players. Before this, "youth" was largely a waiting room for adulthood; you dressed like your father and listened to his crooners. The teenager didn't suddenly appear in 1954 — but as a market, a style and an identity the category was becoming distinct, and rock 'n' roll was its loudest announcement. Crucially, the sound was born of collision — Black rhythm and blues and gospel meeting country and boogie-woogie — carried to white teenagers by radio DJs like Alan Freed in a still-segregated America. Rock 'n' roll did not end segregation: Black artists were paid less, promoted less, and out-charted by white singers covering their own songs. But it built shared listening spaces that the wider society was refusing to permit anywhere else — and by the early '60s its first explosion was cooling into girl groups, Motown, and surf pop: the raw material the British Invasion was about to sell back to America.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Elvis Presley — a white Southern truck driver singing Black music with open sexuality — was the era's scandal and archetype: the rebel whose body itself (those hips, eventually filmed from the waist up on TV) was the transgression. Chuck Berry wrote the teenager's mythology: cars, school bells, girls, escape. Little Richard made flamboyance a superpower; Buddy Holly, in his glasses, proved ordinary-looking kids could do it too. James Dean and Marlon Brando were the visual role models; rock 'n' roll was their soundtrack. The archetype: <em>the rebel</em>.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Twelve-bar blues sped up and electrified: backbeat drums (the "big beat" preachers denounced), boogie piano, twanging electric guitar, vocals that hiccuped and shouted rather than crooned. Songs were 2–3 minutes — the length of a 45rpm single, the format teenagers could afford. The simplicity was partly an illusion — Berry and his peers were virtuosos of deep traditions — but the music <em>sounded</em> reproducible, and that sound was the recruitment poster: a generation of listeners decided they could surely do this too.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>Every element of the moral panic — juvenile delinquency, sexual corruption, race-mixing — was accurate as description and wrong as prophecy. The panic is the tell: rock 'n' roll really was transferring cultural authority from parents to peers, from pulpit to jukebox. The teenager became a permanent tribe, renewed every generation since.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=aNYWl13IWhY" target="_blank" rel="noopener" data-embed="aNYWl13IWhY">
+        <img loading="lazy" src="https://i.ytimg.com/vi/aNYWl13IWhY/hqdefault.jpg" alt="Elvis Presley - Hound Dog on The Ed Sullivan Show, 1956"><span class="play">▶</span></a>
+      <p class="cap"><strong>Elvis Presley — Hound Dog (The Ed Sullivan Show, 1956)</strong>The scandal of 1956 on national TV — the hip-swiveling that soon had CBS filming him from the waist up. Watch the crowd as much as the singer: a tribe discovering itself.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=aNYWl13IWhY" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=uFeZ_x--aRg" target="_blank" rel="noopener" data-embed="uFeZ_x--aRg">
+        <img loading="lazy" src="https://i.ytimg.com/vi/uFeZ_x--aRg/hqdefault.jpg" alt="Chuck Berry - Johnny B. Goode"><span class="play">▶</span></a>
+      <p class="cap"><strong>Chuck Berry — Johnny B. Goode (1958)</strong>The teenager's founding myth — a poor country boy who could "play a guitar just like a-ringin' a bell." The riff every band since has learned first.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=uFeZ_x--aRg" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=-E5nfOxqJnc" target="_blank" rel="noopener" data-embed="-E5nfOxqJnc">
+        <img loading="lazy" src="https://i.ytimg.com/vi/-E5nfOxqJnc/hqdefault.jpg" alt="Little Richard - Long Tall Sally, from Don't Knock the Rock (1956)"><span class="play">▶</span></a>
+      <p class="cap"><strong>Little Richard — Long Tall Sally (from <em>Don't Knock the Rock</em>, 1956)</strong>Flamboyance as superpower, on film: pompadour, makeup, a leg on the piano — and a tempo chosen, legend says, so Pat Boone's polite white covers couldn't keep up. The clip preserves what records couldn't. (Archival upload; use the link if playback is blocked.)
+      <a class="ytlink" href="https://www.youtube.com/watch?v=-E5nfOxqJnc" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Rock_and_roll" target="_blank" rel="noopener">Rock and roll</a> · <a href="https://en.wikipedia.org/wiki/Little_Richard" target="_blank" rel="noopener">Little Richard</a> · <a href="https://en.wikipedia.org/wiki/Alan_Freed" target="_blank" rel="noopener">Alan Freed &amp; the payola era</a></p>
+</section>
+
+<!-- ============ 1960s ============ -->
+<section class="era wrap" id="e60s">
+  <div class="era-head"><span class="era-years">1963–1970</span><h2>The Counterculture</h2></div>
+  <p class="tagline">Music becomes a worldview: the album as scripture, the festival as pilgrimage.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>Civil rights, Vietnam, the pill, LSD, and an enormous baby-boom cohort hitting adolescence simultaneously. Music stopped being entertainment and became the counterculture's binding medium — the way a generation recognized itself and coordinated its rejection of the "straight" world. Beatlemania (1964) showed the tribe its own scale; Woodstock (1969) was the tribe physically assembling, roughly 400,000 strong, to prove it existed.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>The Beatles modeled evolution itself — from matching suits to mustaches and mysticism in five years, teaching fans that identity could be serially reinvented. Bob Dylan made the songwriter a prophet; going electric at Newport in 1965 was received by parts of the folk audience as a broken covenant — a schism, in the religious sense. Aretha Franklin turned gospel authority into secular demand: "Respect" became a civil-rights and feminist anthem without altering its single demand. Hendrix, Janis Joplin, and the Stones modeled ecstatic excess. The archetype shifts: <em>from rebel to prophet</em>.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>The single stayed commercially central, but the album picked up new prestige as a complete artistic statement (<em>Sgt. Pepper</em>, 1967) — music you sat down and <em>listened through</em>, often communally, often altered. The studio became an instrument: multitracking, feedback, tape loops, sitars. Motown ran a parallel revolution — Black pop engineered with factory precision for the crossover charts. Lyrics grew ambitious: politics, transcendence, alienation. Amplification got loud enough that the concert became a physical, enveloping experience.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>The '60s invented the idea that your record collection was your value system — that taste was ethics. "What music are you into?" became a genuine identity question, and remained one for fifty years. Note also the ritual innovation: the rock festival is a pilgrimage structure — journey, hardship, communitas, return — mapped almost perfectly onto ancient templates. But that same scale made the counterculture commercially legible: the movement that imagined itself outside the system was already becoming an industry, and its apparent unity was about to come apart.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=A_MjCqQoLLA" target="_blank" rel="noopener" data-embed="A_MjCqQoLLA">
+        <img loading="lazy" src="https://i.ytimg.com/vi/A_MjCqQoLLA/hqdefault.jpg" alt="The Beatles - Hey Jude"><span class="play">▶</span></a>
+      <p class="cap"><strong>The Beatles — Hey Jude (1968)</strong>The communal singalong as sacrament — watch the studio audience absorbed into the "na-na-na" chorus.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=A_MjCqQoLLA" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=IwOfCgkyEj0" target="_blank" rel="noopener" data-embed="IwOfCgkyEj0">
+        <img loading="lazy" src="https://i.ytimg.com/vi/IwOfCgkyEj0/hqdefault.jpg" alt="Bob Dylan - Like a Rolling Stone"><span class="play">▶</span></a>
+      <p class="cap"><strong>Bob Dylan — Like a Rolling Stone (1965)</strong>Six minutes of sneering free verse that broke the 3-minute pop rule. He played it electric at Newport that summer — and parts of the folk audience booed their own prophet (<a href="https://www.youtube.com/watch?v=a6Kv0vF41Bc" target="_blank" rel="noopener" style="color:#c9bfa9">Newport footage ↗</a>).
+      <a class="ytlink" href="https://www.youtube.com/watch?v=IwOfCgkyEj0" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=JzqGZjFnYnA" target="_blank" rel="noopener" data-embed="JzqGZjFnYnA">
+        <img loading="lazy" src="https://i.ytimg.com/vi/JzqGZjFnYnA/hqdefault.jpg" alt="Aretha Franklin - Respect"><span class="play">▶</span></a>
+      <p class="cap"><strong>Aretha Franklin — Respect (1967)</strong>A demand, not a request — gospel power crossing into the civil-rights and feminist mainstream. Listen for the call-and-response with her sisters: church architecture inside a pop single.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=JzqGZjFnYnA" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=nMREjRFJkfM" target="_blank" rel="noopener" data-embed="nMREjRFJkfM">
+        <img loading="lazy" src="https://i.ytimg.com/vi/nMREjRFJkfM/hqdefault.jpg" alt="The Who - My Generation"><span class="play">▶</span></a>
+      <p class="cap"><strong>The Who — My Generation (1965)</strong>The teenager's declaration of war — "hope I die before I get old" — delivered in a stammer said to mimic a mod on amphetamines. Generational identity as open combat.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=nMREjRFJkfM" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Counterculture_of_the_1960s" target="_blank" rel="noopener">1960s counterculture</a> · <a href="https://en.wikipedia.org/wiki/Woodstock" target="_blank" rel="noopener">Woodstock</a> · <a href="https://en.wikipedia.org/wiki/Motown" target="_blank" rel="noopener">Motown</a></p>
+</section>
+
+<!-- ============ 1970s ============ -->
+<section class="era wrap" id="e70s">
+  <div class="era-head"><span class="era-years">1970–1979</span><h2>Fragmentation: Excess and Revolt</h2></div>
+  <p class="tagline">The one big tribe splinters — stadium gods, disco bodies, punk refusals.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>The counterculture had never been as unified as memory makes it seem — and by the 1970s, amid recession and oil shocks, its divisions were impossible to miss. The music audience settled into distinct tribes, each with its own dress code, drugs, venues, and enemies. Rock became an industry of stadium-scale spectacle. Disco rose from Black, Latino, and gay urban nightlife. Punk erupted from British dole queues and New York squats. Reggae carried post-colonial consciousness worldwide. For the first time, the question wasn't whether you were into music, but <em>which</em> music — and choosing was choosing a class and sexual politics.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Three incompatible archetypes coexisted. The <em>rock god</em> (Led Zeppelin, Freddie Mercury, Bowie's alien personas): virtuosic, theatrical, untouchable — aspiration through excess. The <em>dancer</em> (Donna Summer, the Bee Gees' Saturday-night everyman): disco's role model wasn't the star on stage but the transformed self on the floor. And the <em>anti-star</em> (Johnny Rotten, The Ramones): punk's radical proposition that skill itself was a lie told by the establishment — three chords, form a band. Bob Marley, meanwhile, became one of the first truly global popular-music icons from the post-colonial world.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Maximalism and minimalism at war. Rock swelled into multi-part suites, concept albums, and guitar heroics ("Bohemian Rhapsody" is opera, ballad, and metal in six minutes). Disco engineered the beat for the body: four-on-the-floor kick, strings, sixteenth-note hi-hats, extended 12-inch mixes made for DJs, not radio. Punk stripped everything to two-minute buzzsaw bursts, deliberately amateurish, vocals sneered. Funk (Stevie Wonder, Parliament) put the groove — the bassline — at the center. The synthesizer arrived at decade's end, hinting at everything to come.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>The 1979 "Disco Demolition Night" — a rock-radio crowd blowing up disco records in a Chicago stadium — is the decade in one image — and it's hard to separate from the racial, sexual, and class anxieties that had gathered around disco. And note punk's paradox, visible in every scene since: a movement founded on anti-fashion instantly produced the era's strictest dress code. Rejecting the tribe is itself a tribal act.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank" rel="noopener" data-embed="fJ9rUzIMcZQ">
+        <img loading="lazy" src="https://i.ytimg.com/vi/fJ9rUzIMcZQ/hqdefault.jpg" alt="Queen - Bohemian Rhapsody"><span class="play">▶</span></a>
+      <p class="cap"><strong>Queen — Bohemian Rhapsody (1975)</strong>Rock as cathedral-scale spectacle — and, via its proto-music-video, an accidental preview of the MTV age.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=I_izvAbhExY" target="_blank" rel="noopener" data-embed="I_izvAbhExY">
+        <img loading="lazy" src="https://i.ytimg.com/vi/I_izvAbhExY/hqdefault.jpg" alt="Bee Gees - Stayin' Alive"><span class="play">▶</span></a>
+      <p class="cap"><strong>Bee Gees — Stayin' Alive (1977)</strong>Disco's everyman strut: the working week survived through Saturday-night transformation.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=I_izvAbhExY" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=vPZydAotVOY" target="_blank" rel="noopener" data-embed="vPZydAotVOY">
+        <img loading="lazy" src="https://i.ytimg.com/vi/vPZydAotVOY/hqdefault.jpg" alt="Bob Marley and The Wailers - War / No More Trouble, Live at the Rainbow 1977"><span class="play">▶</span></a>
+      <p class="cap"><strong>Bob Marley &amp; The Wailers — War / No More Trouble (Live at the Rainbow, 1977)</strong>Singer, preacher and political figure become difficult to separate; the crowd joins a performance that feels closer to collective testimony than entertainment.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=vPZydAotVOY" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=yqrAPOZxgzU" target="_blank" rel="noopener" data-embed="yqrAPOZxgzU">
+        <img loading="lazy" src="https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg" alt="Sex Pistols - God Save The Queen"><span class="play">▶</span></a>
+      <p class="cap"><strong>Sex Pistols — God Save The Queen (1977)</strong>Released for the Silver Jubilee, banned by the BBC, still hit #2. "No future" as a chart position.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=yqrAPOZxgzU" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=na8xgu-KLAk" target="_blank" rel="noopener" data-embed="na8xgu-KLAk">
+        <img loading="lazy" src="https://i.ytimg.com/vi/na8xgu-KLAk/hqdefault.jpg" alt="David Bowie - Ziggy Stardust"><span class="play">▶</span></a>
+      <p class="cap"><strong>David Bowie — Ziggy Stardust (1972)</strong>The rock god made explicit as fiction: Bowie plays an invented alien star, then killed him off on stage. Identity as costume — the era's archetype at its most self-aware.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=na8xgu-KLAk" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=WGU_4-5RaxU" target="_blank" rel="noopener" data-embed="WGU_4-5RaxU">
+        <img loading="lazy" src="https://i.ytimg.com/vi/WGU_4-5RaxU/hqdefault.jpg" alt="Blondie - Heart Of Glass"><span class="play">▶</span></a>
+      <p class="cap"><strong>Blondie — Heart Of Glass (1979)</strong>Punk crosses the disco floor: CBGB credibility over a four-on-the-floor beat. The scene called it treason; the record proved the tribal borders were porous all along.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=WGU_4-5RaxU" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Disco_Demolition_Night" target="_blank" rel="noopener">Disco Demolition Night</a> · <a href="https://en.wikipedia.org/wiki/Punk_subculture" target="_blank" rel="noopener">Punk subculture</a> · <a href="https://en.wikipedia.org/wiki/Bob_Marley" target="_blank" rel="noopener">Bob Marley</a></p>
+</section>
+
+<!-- ============ 1980s ============ -->
+<section class="era wrap" id="e80s">
+  <div class="era-head"><span class="era-years">1981–1991</span><h2>The Video Star</h2></div>
+  <p class="tagline">MTV makes music something you watch — and the star becomes a total image.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>MTV launched in 1981 ("Video Killed the Radio Star," pointedly, was its first clip) and rewired what a pop star was: now you needed a look, a dance, a narrative — a brand. Reagan-Thatcher materialism set the tone; pop celebrated wealth and surface with a straight face the '60s would have found obscene. The CD arrived in 1982–83 and made music a premium product again. Live Aid (1985) showed pop's new planetary reach — one of the largest simultaneous broadcast audiences ever assembled. And in the Bronx, a parallel culture — hip-hop — had been building its four elements (DJing, MCing, breaking, graffiti) largely outside the industry's view, until it kicked the door in.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Michael Jackson was the era's total artwork: song, dance, video, costume fused into one persona — the first star engineered for the video age, and the biggest the industry ever produced. Madonna modeled something anthropologically new: <em>serial reinvention as a career strategy</em>, sexuality controlled and owned by the woman performing it — every teenage girl's negotiation with image, a decade before social media made everyone do it. Prince modeled gender fluidity as virtuosity. Run-DMC and Public Enemy made the street reporter a star. The archetype: <em>the icon</em> — a self as designed object.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>The decade sounds synthetic and enormous: drum machines (the gated-reverb snare that stamps nearly every 1985 record), synthesizers replacing string sections, digital sheen. Pop's craft peaked — <em>Thriller</em> was engineered song by song for perfection. Hair metal supplied spectacle; hip-hop supplied the future: sampling turned the record collection itself into an instrument, and the drum machine's boom-bap became the heartbeat of the next forty years. The music video imposed its own grammar — songs now needed visual hooks, not just melodic ones.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>MTV re-centralized youth culture into one shared feed — arguably the last time (until TikTok) that "everyone" saw the same thing at the same time. The panics updated accordingly: Tipper Gore's PMRC hearings (1985) fought lyrics with warning stickers, which naturally became purchase guides. And note what sampling really was: an oral culture's answer to copyright — ancestral quotation treated by law as theft.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=sOnqjkJTMaA" target="_blank" rel="noopener" data-embed="sOnqjkJTMaA">
+        <img loading="lazy" src="https://i.ytimg.com/vi/sOnqjkJTMaA/hqdefault.jpg" alt="Michael Jackson - Thriller"><span class="play">▶</span></a>
+      <p class="cap"><strong>Michael Jackson — Thriller (1983)</strong>The ~14-minute video that turned a song into cinema and the pop star into a global total-artwork.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=sOnqjkJTMaA" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=79fzeNUqQbQ" target="_blank" rel="noopener" data-embed="79fzeNUqQbQ">
+        <img loading="lazy" src="https://i.ytimg.com/vi/79fzeNUqQbQ/hqdefault.jpg" alt="Madonna - Like A Prayer"><span class="play">▶</span></a>
+      <p class="cap"><strong>Madonna — Like A Prayer (1989)</strong>Sacred and profane collided; Pepsi pulled its Madonna campaign amid the outcry. Provocation as a business model, perfected.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=79fzeNUqQbQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=UG3VcCAlUgE" target="_blank" rel="noopener" data-embed="UG3VcCAlUgE">
+        <img loading="lazy" src="https://i.ytimg.com/vi/UG3VcCAlUgE/hqdefault.jpg" alt="Prince and the Revolution - When Doves Cry"><span class="play">▶</span></a>
+      <p class="cap"><strong>Prince — When Doves Cry (1984)</strong>Gender ambiguity, desire, choreography and virtuosity held inside one self-authored image — the icon as a designed but unstable object.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=UG3VcCAlUgE" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=4B_UYYPb-Gk" target="_blank" rel="noopener" data-embed="4B_UYYPb-Gk">
+        <img loading="lazy" src="https://i.ytimg.com/vi/4B_UYYPb-Gk/hqdefault.jpg" alt="RUN DMC and Aerosmith - Walk This Way"><span class="play">▶</span></a>
+      <p class="cap"><strong>Run-DMC ft. Aerosmith — Walk This Way (1986)</strong>Hip-hop literally breaking through the wall to rock's audience — the crossover staged as a music video.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=4B_UYYPb-Gk" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=OMOGaugKpzs" target="_blank" rel="noopener" data-embed="OMOGaugKpzs">
+        <img loading="lazy" src="https://i.ytimg.com/vi/OMOGaugKpzs/hqdefault.jpg" alt="The Police - Every Breath You Take"><span class="play">▶</span></a>
+      <p class="cap"><strong>The Police — Every Breath You Take (1983)</strong>A stalker's litany universally misheard as a love song — and, in Godley &amp; Creme's stark black-and-white film, proof of the era's new rule: an art video could carry a single as far as the song itself.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=OMOGaugKpzs" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=0UIB9Y4OFPs" target="_blank" rel="noopener" data-embed="0UIB9Y4OFPs">
+        <img loading="lazy" src="https://i.ytimg.com/vi/0UIB9Y4OFPs/hqdefault.jpg" alt="Def Leppard - Pour Some Sugar On Me"><span class="play">▶</span></a>
+      <p class="cap"><strong>Def Leppard — Pour Some Sugar On Me (1987)</strong>Hair metal's apex: a year in the studio with producer Mutt Lange layering vocals like a pop record. Rock rebuilt as engineered MTV spectacle.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=0UIB9Y4OFPs" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/MTV" target="_blank" rel="noopener">MTV</a> · <a href="https://en.wikipedia.org/wiki/Parents_Music_Resource_Center" target="_blank" rel="noopener">The PMRC hearings</a> · <a href="https://en.wikipedia.org/wiki/Hip_hop" target="_blank" rel="noopener">Hip-hop's four elements</a></p>
+</section>
+
+<!-- ============ 1990s ============ -->
+<section class="era wrap" id="e90s">
+  <div class="era-head"><span class="era-years">1991–1999</span><h2>The Authenticity Wars</h2></div>
+  <p class="tagline">"Real" becomes the supreme value — grunge's refusal, hip-hop's testimony, and pop's shameless factory.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>The CD boom made labels richer than they would ever be again, and youth culture organized itself around one question: <em>who's faking it?</em> Grunge was a revolt against '80s artifice — success itself treated as contamination (Kurt Cobain's fatal contradiction: an anti-star who became the biggest star alive). Gangsta rap moved hip-hop from party to testimony; Chuck D famously called rap "the Black CNN," and the Tupac/Biggie deaths (1996–97) showed the stakes were not theatrical. Britain answered with Britpop, whose defining event was a class war disguised as a chart race: in August 1995, Blur (art-school, ironic, southern) and Oasis (working-class, sincere, northern) released singles in the same week, and the nation kept score on the evening news. Rave culture built chemical communion in warehouses. And at decade's end, the Spice Girls and boy bands proved the "manufactured" pop machine could simply ignore the entire authenticity debate and win.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Kurt Cobain: the reluctant prophet, modeling ironic distance from fame itself — a role model whose message was "don't have role models." Dr. Dre and Snoop: unbothered, cinematic, local — Compton rendered so vividly that suburbs worldwide adopted its slang, walk, and wardrobe. Tupac: the martyr-poet. Mariah, Whitney, Céline: vocal power as spectacle. The Spice Girls: friendship-as-brand, "Girl Power" — empowerment packaged for eight-year-olds, and the first pop tribe recruited in primary school. The archetypes split: <em>the martyr and the hustler</em>.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Grunge: detuned guitars, quiet-verse/loud-chorus dynamics, vocals that went from murmur to scream — production deliberately rough as a statement. G-funk: slow, bass-heavy, synth whines over Parliament-Funkadelic DNA — menace made luxurious. R&amp;B got sleek (new jack swing, TLC, Destiny's Child incubating). Electronic music matured into jungle, trip-hop, house — the DJ becoming an artist in their own right. Pop-punk and nu-metal brewed in the mall. Radio formats, record shops, and MTV still kept scenes relatively separate: you could belong hard to one tribe without hearing all the others every day.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>"Authenticity" is always a performance code, not a fact — grunge's thrift-store flannel was as strict a costume as glam's spandex. The '90s matter because the code became explicit: MTV Unplugged existed to let stars <em>prove</em> realness, acoustically. When Napster arrived in 1999, it wasn't just an economic event — it dissolved the scarcity that had made the record collection an identity badge. Records had signalled devotion because they cost money, took up space, and took effort to find. Once music could be copied at scale, <em>ownership</em> could no longer carry that meaning. The tribes were about to lose their borders.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=hTWKbfoikeg" target="_blank" rel="noopener" data-embed="hTWKbfoikeg">
+        <img loading="lazy" src="https://i.ytimg.com/vi/hTWKbfoikeg/hqdefault.jpg" alt="Nirvana - Smells Like Teen Spirit"><span class="play">▶</span></a>
+      <p class="cap"><strong>Nirvana — Smells Like Teen Spirit (1991)</strong>A high-school pep rally curdling into riot: the '80s dream demolished in five minutes. <em>Nevermind</em> knocked Michael Jackson off the album chart's #1 in January 1992.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=hTWKbfoikeg" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=8GliyDgAGQI" target="_blank" rel="noopener" data-embed="8GliyDgAGQI">
+        <img loading="lazy" src="https://i.ytimg.com/vi/8GliyDgAGQI/hqdefault.jpg" alt="Dr. Dre - Nuthin' But A G Thang"><span class="play">▶</span></a>
+      <p class="cap"><strong>Dr. Dre ft. Snoop Dogg — Nuthin' But A "G" Thang (1992)</strong>G-funk's languid menace: Compton's everyday rendered so magnetically that the world moved in.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=8GliyDgAGQI" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=FrLequ6dUdM" target="_blank" rel="noopener" data-embed="FrLequ6dUdM">
+        <img loading="lazy" src="https://i.ytimg.com/vi/FrLequ6dUdM/hqdefault.jpg" alt="TLC - No Scrubs"><span class="play">▶</span></a>
+      <p class="cap"><strong>TLC — No Scrubs (1999)</strong>Futuristic styling and a crisp statement of standards: late-1990s R&amp;B looks sleek, self-possessed and built for the video age.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=FrLequ6dUdM" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=gJLIiF15wjQ" target="_blank" rel="noopener" data-embed="gJLIiF15wjQ">
+        <img loading="lazy" src="https://i.ytimg.com/vi/gJLIiF15wjQ/hqdefault.jpg" alt="Spice Girls - Wannabe"><span class="play">▶</span></a>
+      <p class="cap"><strong>Spice Girls — Wannabe (1996)</strong>The pop factory's answer to the authenticity wars: don't argue, conquer. Girl Power as the first pre-teen tribal recruitment drive.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=gJLIiF15wjQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=wmin5WkOuPw" target="_blank" rel="noopener" data-embed="wmin5WkOuPw">
+        <img loading="lazy" src="https://i.ytimg.com/vi/wmin5WkOuPw/hqdefault.jpg" alt="The Prodigy - Firestarter"><span class="play">▶</span></a>
+      <p class="cap"><strong>The Prodigy — Firestarter (1996)</strong>Rave culture turns confrontational: electronic music, punk posture and a face made for moral panic.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=wmin5WkOuPw" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=fregObNcHC8" target="_blank" rel="noopener" data-embed="fregObNcHC8">
+        <img loading="lazy" src="https://i.ytimg.com/vi/fregObNcHC8/hqdefault.jpg" alt="Nirvana - The Man Who Sold The World (MTV Unplugged)"><span class="play">▶</span></a>
+      <p class="cap"><strong>Nirvana — The Man Who Sold The World (MTV Unplugged, 1993)</strong>The authenticity ritual perfected: Cobain covering Bowie, acoustically, five months before his death. The martyr and the invented god, in one performance.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=fregObNcHC8" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=yuTMWgOduFM" target="_blank" rel="noopener" data-embed="yuTMWgOduFM">
+        <img loading="lazy" src="https://i.ytimg.com/vi/yuTMWgOduFM/hqdefault.jpg" alt="Pulp - Common People"><span class="play">▶</span></a>
+      <p class="cap"><strong>Pulp — Common People (1995)</strong>Britpop's sharpest class critique: a rich art student slumming it, dissected over six minutes of rising synth fury. "Everybody hates a tourist."
+      <a class="ytlink" href="https://www.youtube.com/watch?v=yuTMWgOduFM" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Grunge" target="_blank" rel="noopener">Grunge</a> · <a href="https://en.wikipedia.org/wiki/Gangsta_rap" target="_blank" rel="noopener">Gangsta rap</a> · <a href="https://en.wikipedia.org/wiki/Britpop" target="_blank" rel="noopener">Britpop</a> · <a href="https://en.wikipedia.org/wiki/Rave" target="_blank" rel="noopener">Rave culture</a></p>
+</section>
+
+<!-- ============ 2000s ============ -->
+<section class="era wrap" id="e00s">
+  <div class="era-head"><span class="era-years">1999–2008</span><h2>The Download Self</h2></div>
+  <p class="tagline">The collection dissolves into the playlist; hip-hop becomes pop's operating system.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>Napster (1999), then the iPod (2001): "1,000 songs in your pocket." Music went from an object you saved for to a file you hoarded by the gigabyte — and the white earbuds became the decade's icon: everyone visibly soundtracking their own life, together but sealed off. The album lost its primacy to the shuffle; genre walls thinned because your library no longer had shelves. Reality TV (American Idol, 2002) made stardom itself a spectator sport and a vote. Meanwhile hip-hop became pop's default language — its slang, its fashion, its business model (the artist as mogul: Jay-Z's empire, 50 Cent's Vitamin Water stake) — no longer one genre among genres; the consumption charts would take another decade to catch up.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Britney Spears: the teen-pop machine's perfect product — and, by 2007, an early defining example of a star's distress being consumed in real time by the new paparazzi-internet complex. Eminem: white working-class rage given a technician's precision, the decade's genuine moral panic. Beyoncé: the work-ethic superstar, transitioning from group product to self-owned institution. Kanye West: the producer-auteur who made interiority — doubt, ego, grief — hip-hop's subject. The archetype: <em>the brand</em> — and its shadow, the celebrity as public sacrifice.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Producers became the stars of the sound: Timbaland's stuttering syncopation, The Neptunes' spacey minimalism, Max Martin's Swedish hook science. Auto-Tune arrived as correction and became an aesthetic (T-Pain) — the decade's most honest sound: the human voice openly machine-assisted. R&amp;B and pop fused; ringtone rap optimized the hook for a tiny phone speaker — an early rehearsal for platform-shaped songwriting; indie rock lived a parallel life on MySpace and music blogs, the first scenes born entirely online. Arctic Monkeys were the proof: carried by fan-shared demos (and relentless gigging), theirs became the fastest-selling debut album in British chart history (2006) — the audience formed before the industry arrived. The gatekeepers hadn't disappeared; they just no longer had to come first.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>As music became cheaper, more abundant, and easier to copy, taste didn't stop signalling identity — it changed surfaces. The record shelf gave way to the MySpace profile, the shared playlist, the music blog, the visible white earbuds: what mattered was no longer what you owned but what you discovered, circulated, and publicly aligned yourself with. Scarcity migrated toward wristbands, merch, and presence — but the era's own move was subtler. The 2000s are the bridge from "I own this music" to "I found this first," on the way to the next decade's "I was there": possession giving way to participation.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=LOZuxwVk7TU" target="_blank" rel="noopener" data-embed="LOZuxwVk7TU">
+        <img loading="lazy" src="https://i.ytimg.com/vi/LOZuxwVk7TU/hqdefault.jpg" alt="Britney Spears - Toxic"><span class="play">▶</span></a>
+      <p class="cap"><strong>Britney Spears — Toxic (2003)</strong>High-gloss pop as total construction: song, choreography, costume, editing and celebrity image moving as one machine.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=LOZuxwVk7TU" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=7YuAzR2XVAM" target="_blank" rel="noopener" data-embed="7YuAzR2XVAM">
+        <img loading="lazy" src="https://i.ytimg.com/vi/7YuAzR2XVAM/hqdefault.jpg" alt="Eminem - Lose Yourself"><span class="play">▶</span></a>
+      <p class="cap"><strong>Eminem — Lose Yourself (2002)</strong>The hustler's gospel: opportunity as a moral test. The first rap song to win the Oscar for Best Original Song.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=7YuAzR2XVAM" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=PWgvGjAhvIw" target="_blank" rel="noopener" data-embed="PWgvGjAhvIw">
+        <img loading="lazy" src="https://i.ytimg.com/vi/PWgvGjAhvIw/hqdefault.jpg" alt="Outkast - Hey Ya!"><span class="play">▶</span></a>
+      <p class="cap"><strong>OutKast — Hey Ya! (2003)</strong>The download era's genre collapse in one song — funk, pop, rock, hip-hop, unclassifiable and unavoidable.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=PWgvGjAhvIw" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=dBrRBZy8OTs" target="_blank" rel="noopener" data-embed="dBrRBZy8OTs">
+        <img loading="lazy" src="https://i.ytimg.com/vi/dBrRBZy8OTs/hqdefault.jpg" alt="T-Pain ft. Yung Joc - Buy U a Drank"><span class="play">▶</span></a>
+      <p class="cap"><strong>T-Pain ft. Yung Joc — Buy U a Drank (Shawty Snappin’) (2007)</strong>Auto-Tune stops pretending to be invisible. The machine-shaped voice becomes sensual, expressive and instantly identifiable.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=dBrRBZy8OTs" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=pK7egZaT3hs" target="_blank" rel="noopener" data-embed="pK7egZaT3hs">
+        <img loading="lazy" src="https://i.ytimg.com/vi/pK7egZaT3hs/hqdefault.jpg" alt="Arctic Monkeys - I Bet You Look Good On The Dancefloor"><span class="play">▶</span></a>
+      <p class="cap"><strong>Arctic Monkeys — I Bet You Look Good On The Dancefloor (2005)</strong>The first major band broken by the internet: fan-shared MySpace demos made theirs the fastest-selling debut album in British chart history. The audience formed before the industry arrived — gatekeepers no longer had to come first.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=pK7egZaT3hs" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=4m1EFMoRFvY" target="_blank" rel="noopener" data-embed="4m1EFMoRFvY">
+        <img loading="lazy" src="https://i.ytimg.com/vi/4m1EFMoRFvY/hqdefault.jpg" alt="Beyoncé - Single Ladies"><span class="play">▶</span></a>
+      <p class="cap"><strong>Beyoncé — Single Ladies (2008)</strong>One take, three dancers — and one of the first videos whose real life was as an internet dance meme. The viral era begins.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=4m1EFMoRFvY" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Napster" target="_blank" rel="noopener">Napster</a> · <a href="https://en.wikipedia.org/wiki/IPod" target="_blank" rel="noopener">The iPod</a> · <a href="https://en.wikipedia.org/wiki/Auto-Tune" target="_blank" rel="noopener">Auto-Tune</a></p>
+</section>
+
+<!-- ============ 2010s ============ -->
+<section class="era wrap" id="e10s">
+  <div class="era-head"><span class="era-years">2008–2019</span><h2>The Algorithm Era</h2></div>
+  <p class="tagline">Streaming makes all music ambient; the artist becomes a 24/7 persona; the feed replaces the tribe.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>Spotify plus the smartphone put every song ever recorded one thumb-tap away, and the playlist — often machine-generated, mood-named ("Chill Vibes") — replaced both the album and the radio DJ. Music increasingly functioned as atmosphere: soundtracks for studying, gym, commute. Social media collapsed the distance between star and fan into a perpetual intimate broadcast; fandoms (Beliebers, the BeyHive, Swifties) organized online into standing armies with their own vocabulary and enforcement. EDM festivals became the ritual economy's cathedrals. By 2017, hip-hop/R&amp;B had overtaken rock as America's most-consumed genre — the fifty-year-old "mainstream" changed hands.</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>Taylor Swift: the confessional entrepreneur — parasocial intimacy ("she's my friend who writes about my life") fused with total strategic control, later including war over her own masters. Drake: the streaming-native star, emotionally porous, genre-fluid, meme-fluent — engineered for the feed. Kanye and Beyoncé turned the release itself into an event (the surprise drop, the visual album). Kendrick Lamar restored the prophet role: <em>To Pimp a Butterfly</em> became the Black Lives Matter era's soundtrack, and <em>DAMN.</em> won a Pulitzer. Billie Eilish, whisper-singing from a bedroom studio with her brother, modeled the new path: intimacy at scale, no label machine required to start. The archetype: <em>the persona</em> — a continuous, interactive self.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Streaming didn't dictate one form, but it created incentives: intros often shortened (a stream typically counts as a play only after 30 seconds, so nothing wants to risk an early skip), choruses moved forward, songs got shorter on average, and some albums grew longer (more tracks = more streams). The global default sound became hip-hop-derived: trap hi-hats, 808 bass, melodic rapping/sung-rap blur. EDM's drop replaced the guitar solo as the ecstatic peak. Whisper-close vocals (Eilish, Lana Del Rey) suited earbuds — music mixed for a single listener's skull. Genre stayed meaningful, but "mood" and "vibe" became a parallel taxonomy running alongside it. Rock, dethroned as the mainstream, survived in two telling forms: the bedroom auteur (Tame Impala — one man, Kevin Parker, playing everything, psychedelia rebuilt for festival stages) and the playlist-engineered arena hybrid (Imagine Dragons — rock's most-streamed act, built as much for ads, trailers, and stadium PAs as for any subculture). Rock became a texture; it stopped being a tribe.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>The algorithm inverted the discovery ritual. For sixty years, finding music took effort — the crate-dig, the mixtape, the older sibling — and effort created meaning and tribal membership. Now music finds you, fitted to your data. The result: taste fragments into millions of private profiles, the monoculture star becomes nearly impossible to mint, and the tribes reorganize not around genres but around <em>artists</em> — the fandom as the new subculture, complete with rites, hierarchies, and holy wars fought in comment sections.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=rYEDA3JcQqw" target="_blank" rel="noopener" data-embed="rYEDA3JcQqw">
+        <img loading="lazy" src="https://i.ytimg.com/vi/rYEDA3JcQqw/hqdefault.jpg" alt="Adele - Rolling in the Deep"><span class="play">▶</span></a>
+      <p class="cap"><strong>Adele — Rolling in the Deep (2010)</strong>The counter-trend that proves the rule: analog soul and a colossal voice, selling physical albums in the streaming age.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=rYEDA3JcQqw" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=IcrbM1l_BoI" target="_blank" rel="noopener" data-embed="IcrbM1l_BoI">
+        <img loading="lazy" src="https://i.ytimg.com/vi/IcrbM1l_BoI/hqdefault.jpg" alt="Avicii - Wake Me Up"><span class="play">▶</span></a>
+      <p class="cap"><strong>Avicii — Wake Me Up (2013)</strong>Acoustic storytelling and festival release doing two different emotional jobs — the private verse opening out into a crowd-sized drop.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=IcrbM1l_BoI" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=e-ORhEE9VVg" target="_blank" rel="noopener" data-embed="e-ORhEE9VVg">
+        <img loading="lazy" src="https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg" alt="Taylor Swift - Blank Space"><span class="play">▶</span></a>
+      <p class="cap"><strong>Taylor Swift — Blank Space (2014)</strong>The persona playing its own media caricature — self-awareness as the new authenticity.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=e-ORhEE9VVg" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=uxpDa-c-4Mc" target="_blank" rel="noopener" data-embed="uxpDa-c-4Mc">
+        <img loading="lazy" src="https://i.ytimg.com/vi/uxpDa-c-4Mc/hqdefault.jpg" alt="Drake - Hotline Bling"><span class="play">▶</span></a>
+      <p class="cap"><strong>Drake — Hotline Bling (2015)</strong>Loose dancing, coloured rooms, detachable gestures — the video leaves the audience room to imitate, crop and recirculate the star.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=uxpDa-c-4Mc" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=tvTRZJ-4EyI" target="_blank" rel="noopener" data-embed="tvTRZJ-4EyI">
+        <img loading="lazy" src="https://i.ytimg.com/vi/tvTRZJ-4EyI/hqdefault.jpg" alt="Kendrick Lamar - HUMBLE."><span class="play">▶</span></a>
+      <p class="cap"><strong>Kendrick Lamar — HUMBLE. (2017)</strong>The prophet archetype returns: religious iconography, street testimony, and craft dense enough that the album won a Pulitzer.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=tvTRZJ-4EyI" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=DyDfgMOUjCI" target="_blank" rel="noopener" data-embed="DyDfgMOUjCI">
+        <img loading="lazy" src="https://i.ytimg.com/vi/DyDfgMOUjCI/hqdefault.jpg" alt="Billie Eilish - bad guy"><span class="play">▶</span></a>
+      <p class="cap"><strong>Billie Eilish — bad guy (2019)</strong>Bedroom-scale strangeness becomes mass pop without losing its oddness: close vocals, deadpan performance and an image language that feels self-authored.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=DyDfgMOUjCI" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/Spotify" target="_blank" rel="noopener">Spotify</a> · <a href="https://en.wikipedia.org/wiki/Fandom" target="_blank" rel="noopener">Fandom</a> · <a href="https://en.wikipedia.org/wiki/Trap_music" target="_blank" rel="noopener">Trap</a></p>
+</section>
+
+<!-- ============ 2020s ============ -->
+<section class="era wrap" id="e20s">
+  <div class="era-head"><span class="era-years">2019–today</span><h2>Fragmented Abundance</h2></div>
+  <p class="tagline">TikTok as hitmaker, the superfan as economy, nostalgia on loop — and machine-made music arriving at mass scale.</p>
+
+  <div class="block"><h3>The World</h3>
+    <p>TikTok became the new MTV — except more radical: where MTV broadcast a canon chosen by gatekeepers, TikTok atomizes songs into reusable parts, a few repeatable seconds at a time, and lets fans, labels, and an opaque recommendation engine compete over what each fragment means. A "hook" might be a dance, a joke, or a sped-up remix made by a stranger — and a forty-year-old song resurfaces as easily as a new one. The pandemic paused live music, and its return revealed what streaming abundance had done: presence became the premium good. Taylor Swift's Eras Tour (2023–24) was a genuine mass pilgrimage — friendship bracelets as ritual tokens, local economies measurably moved. Nostalgia runs on loop (Kate Bush topping charts in 2022 via <em>Stranger Things</em>; vinyl outselling CDs again as a devotion object, not a playback format). And AI generation arrived at industrial scale: by mid-2026, fully AI-generated tracks had passed half of all daily new uploads at peak on at least one major streaming service, while still drawing only a low single-digit share of what people actually play. Synthetic <em>supply</em> is growing far faster than human <em>attachment</em> — which forces the oldest question in a new form: what is a musician <em>for</em>?</p>
+  </div>
+
+  <div class="block"><h3>The New Archetype</h3>
+    <p>The role models are now plural by design. Taylor Swift: the institution — an artist functioning as an economy and a belief system. Bad Bunny, the K-pop groups, and Rema (from the Anglo-American vantage point): proof the center no longer requires English, or permission from the old Anglo-American middle. Afrobeats, reggaetón, and K-pop travel as themselves rather than by disguising where they come from. Olivia Rodrigo: the TikTok-native breakout, grief posted and streamed in real time. Lil Nas X: stardom engineered from memes upward — openly, cheerfully artificial, and beloved <em>for</em> it. Beyond stars: the bedroom producer, the fan-editor, the playlist curator — audiences increasingly model themselves on other audience members. The archetype: <em>the operator</em> — whoever best plays the system, artist or fan. Its artist-face is the <em>networked auteur</em>: making the work while also directing the memes, lore, versions, and circulation around it.</p>
+  </div>
+
+  <div class="block"><h3>The Sound</h3>
+    <p>Genre stopped binding listeners — any library is omnivorous now — even as it kept structuring markets and communities: Afrobeats, K-pop, and música mexicana travel precisely <em>because</em> they remain recognizable worlds, while country-rap and hyperpop splice freely inside the Anglo mainstream. Much of pop is built TikTok-first — front-loaded hooks, quotable lines, official sped-up "versions" — though the pressure is not a law: plenty of the era's biggest records are slow, long, or went viral years after release. Production is bedroom-default at the point of entry (a laptop is a studio), even if the biggest pop is still finished by teams. The defining texture is <em>everything at once</em>: any era, any geography, any tempo, retrievable and remixable instantly. Måneskin are the case in miniature — Italian glam-rockers who won Eurovision in 2021, then went global with "Beggin'," their own 2017 recording of a 1967 Four Seasons song, revived by TikTok four years after they cut it. An old form and an old song, both pulled back into the present by the feed. And the AI voice-clone scandals ("Fake Drake," 2023) mark the true frontier — not sound detached from the body, which recording did a century ago, but the voice detached from identity and consent: songs a singer never sang, in a voice everyone recognizes.</p>
+  </div>
+
+  <div class="anthro"><h3>Why This Matters</h3>
+    <p>The story has come full circle. In 1956, scarcity was the record and abundance was the crowd; today, recorded sound is infinite and the scarce goods are presence, provenance, and belonging — hence the pilgrimage economics of tours, vinyl as relic, and superfans paying for nearness rather than access. If AI can generate competent music endlessly, then "made by this human, who I believe, who was <em>there</em>" becomes popular music's last unforgeable claim — which is, anthropologically, exactly where music began: a body, a voice, a gathered tribe.</p>
+  </div>
+
+  <div class="videos">
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=r7qovpFAGrQ" target="_blank" rel="noopener" data-embed="r7qovpFAGrQ">
+        <img loading="lazy" src="https://i.ytimg.com/vi/r7qovpFAGrQ/hqdefault.jpg" alt="Lil Nas X - Old Town Road"><span class="play">▶</span></a>
+      <p class="cap"><strong>Lil Nas X ft. Billy Ray Cyrus — Old Town Road (2019)</strong>The meme-to-monoculture pipeline: a $30 beat, a TikTok joke, a genre-policing controversy, and the longest-running #1 in Billboard Hot 100 history (19 weeks).
+      <a class="ytlink" href="https://www.youtube.com/watch?v=r7qovpFAGrQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=ZmDBbnmKpqQ" target="_blank" rel="noopener" data-embed="ZmDBbnmKpqQ">
+        <img loading="lazy" src="https://i.ytimg.com/vi/ZmDBbnmKpqQ/hqdefault.jpg" alt="Olivia Rodrigo - drivers license"><span class="play">▶</span></a>
+      <p class="cap"><strong>Olivia Rodrigo — drivers license (2021)</strong>Gen-Z heartbreak released into the feed and metabolized as a collective event in days — the TikTok-native star arrives.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=ZmDBbnmKpqQ" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=gwMa6gpoE9I" target="_blank" rel="noopener" data-embed="gwMa6gpoE9I">
+        <img loading="lazy" src="https://i.ytimg.com/vi/gwMa6gpoE9I/hqdefault.jpg" alt="BTS - ON, Kinetic Manifesto Film"><span class="play">▶</span></a>
+      <p class="cap"><strong>BTS — ON: Kinetic Manifesto Film (2020)</strong>Fandom as organized distribution: choreography built to be studied, reproduced, and circulated — and around it, an army running translations, edits, and streaming campaigns. Global crossing without surrendering the Korean-language core.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=gwMa6gpoE9I" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=Cr8K88UcO0s" target="_blank" rel="noopener" data-embed="Cr8K88UcO0s">
+        <img loading="lazy" src="https://i.ytimg.com/vi/Cr8K88UcO0s/hqdefault.jpg" alt="Bad Bunny - Tití Me Preguntó"><span class="play">▶</span></a>
+      <p class="cap"><strong>Bad Bunny — Tití Me Preguntó (2022)</strong>The de-centering, demonstrated: dembow, trap, and bachata switched between without apology, Puerto Rican language and humor exported untranslated. Global reach with zero concessions to the old Anglo center.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=Cr8K88UcO0s" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=CQLsdm1ZYAw" target="_blank" rel="noopener" data-embed="CQLsdm1ZYAw">
+        <img loading="lazy" src="https://i.ytimg.com/vi/CQLsdm1ZYAw/hqdefault.jpg" alt="Rema - Calm Down"><span class="play">▶</span></a>
+      <p class="cap"><strong>Rema — Calm Down (2022, original version)</strong>Afrobeats becomes global pop from inside its own rhythmic and visual world, rather than by disguising where it comes from.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=CQLsdm1ZYAw" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=wp43OdtAAkM" target="_blank" rel="noopener" data-embed="wp43OdtAAkM">
+        <img loading="lazy" src="https://i.ytimg.com/vi/wp43OdtAAkM/hqdefault.jpg" alt="Kate Bush - Running Up That Hill"><span class="play">▶</span></a>
+      <p class="cap"><strong>Kate Bush — Running Up That Hill (1985; resurgence in 2022)</strong>A 1985 song re-enters the present through television, streaming and fan circulation; the catalogue no longer stays in its decade.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=wp43OdtAAkM" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+    <div class="video">
+      <a class="frame" href="https://www.youtube.com/watch?v=xB-RZqcoIgo" target="_blank" rel="noopener" data-embed="xB-RZqcoIgo">
+        <img loading="lazy" src="https://i.ytimg.com/vi/xB-RZqcoIgo/hqdefault.jpg" alt="Taylor Swift - Cruel Summer, live from The Eras Tour"><span class="play">▶</span></a>
+      <p class="cap"><strong>Taylor Swift — Cruel Summer (Live from <em>The Eras Tour</em>)</strong>Watch the crowd as much as the star: tens of thousands of people know their part in a ritual that makes physical presence feel scarce and valuable.
+      <a class="ytlink" href="https://www.youtube.com/watch?v=xB-RZqcoIgo" target="_blank" rel="noopener">Watch on YouTube ↗</a></p></div>
+  </div>
+  <p class="further">Go deeper: <a href="https://en.wikipedia.org/wiki/The_Eras_Tour" target="_blank" rel="noopener">The Eras Tour</a> · <a href="https://en.wikipedia.org/wiki/Heart_on_My_Sleeve_(ghostwriter977_song)" target="_blank" rel="noopener">"Heart on My Sleeve" — the AI Drake song</a> · <a href="https://en.wikipedia.org/wiki/Music_and_artificial_intelligence" target="_blank" rel="noopener">AI and music</a> · <a href="https://en.wikipedia.org/wiki/Vinyl_revival" target="_blank" rel="noopener">Vinyl revival</a></p>
+</section>
+
+<!-- ============ Synthesis ============ -->
+<section class="arc wrap" id="arc">
+  <h2>The Long Arc</h2>
+
+  <p><strong>Three slow variables, one per row:</strong> the dominant cultural protagonist, the reigning interface, and the scarce good. Read any column top-to-bottom for an era's governing — not sole — cultural logic: every decade also contained its countercurrents. And note the scope: this is a stylised history of Anglo-American pop, and of its gradual loss of the centre.</p>
+
+  <div class="ribbons">
+    <div class="rib-scroll">
+      <div class="rib-grid">
+        <div class="rowlab"></div>
+        <div class="rib-cell rib-head">'54–63</div><div class="rib-cell rib-head">'63–70</div><div class="rib-cell rib-head">'70–79</div><div class="rib-cell rib-head">'81–91</div>
+        <div class="rib-cell rib-head">'91–99</div><div class="rib-cell rib-head">'99–08</div><div class="rib-cell rib-head">'08–19</div><div class="rib-cell rib-head">'19–now</div>
+
+        <div class="rowlab">Cultural protagonist</div>
+        <div class="rib-cell c50">The Rebel<small>Elvis, Chuck Berry</small></div>
+        <div class="rib-cell c60">Prophet &amp; the Band<small>Dylan / the Beatles</small></div>
+        <div class="rib-cell c70">Rock God / Anti-Star<small>Mercury / Rotten</small></div>
+        <div class="rib-cell c80">The Icon<small>MJ, Madonna</small></div>
+        <div class="rib-cell c90">Martyr / Hustler<small>Cobain / Dr. Dre</small></div>
+        <div class="rib-cell c00">The Brand<small>Beyoncé, Jay-Z</small></div>
+        <div class="rib-cell c10">The Persona<small>Swift, Drake</small></div>
+        <div class="rib-cell c20">Networked Operator<small>Lil Nas X / the fandom</small></div>
+
+        <div class="rowlab">Dominant interface</div>
+        <div class="rib-cell c50 rib-dim">Bedroom 45s<small>radio goes teen</small></div>
+        <div class="rib-cell c60 rib-dim">LP on the stereo<small>communal, attentive</small></div>
+        <div class="rib-cell c70 rib-dim">LP, FM, club &amp; stadium<small>music as places to be</small></div>
+        <div class="rib-cell c80 rib-dim">Cassette, Walkman + MTV<small>private ears, one shared feed</small></div>
+        <div class="rib-cell c90 rib-dim">CD + MTV<small>tribe-siloed scenes</small></div>
+        <div class="rib-cell c00 rib-dim">iPod earbuds<small>the shuffle self</small></div>
+        <div class="rib-cell c10 rib-dim">Streaming + phone<small>the algorithmic feed</small></div>
+        <div class="rib-cell c20 rib-dim">Feed → stream<small>discovered in fragments, heard on demand</small></div>
+
+        <div class="rowlab">What is scarce</div>
+        <div class="rib-cell c50 rib-dim">The object<small>recorded music must be bought</small></div>
+        <div class="rib-cell c60 rib-dim">The scene<small>being where it happens</small></div>
+        <div class="rib-cell c70 rib-dim">The subculture<small>insider knowledge</small></div>
+        <div class="rib-cell c80 rib-dim">Visibility<small>image, budget, rotation</small></div>
+        <div class="rib-cell c90 rib-dim">Credibility<small>proving you mean it</small></div>
+        <div class="rib-cell c00 rib-dim">Navigation &amp; legitimacy<small>making abundance usable</small></div>
+        <div class="rib-cell c10 rib-dim">Attention<small>everything available</small></div>
+        <div class="rib-cell c20 rib-dim">Presence, provenance &amp; belonging<small>being there, human-made, one of us</small></div>
+      </div>
+    </div>
+
+    <div class="rib-mobile">
+      <div class="rm-card" style="--ec:#e4483e"><div class="rm-era">'54–63 — INVENTION OF THE TEENAGER</div>
+        <div class="rm-row"><span>Protagonist</span>The Rebel — Elvis, Chuck Berry</div>
+        <div class="rm-row"><span>Interface</span>Bedroom 45s; radio goes teen</div>
+        <div class="rm-row"><span>Scarce</span>The object — recorded music must be bought</div></div>
+      <div class="rm-card" style="--ec:#f6a821"><div class="rm-era">'63–70 — COUNTERCULTURE</div>
+        <div class="rm-row"><span>Protagonist</span>Prophet &amp; the Band — Dylan / the Beatles</div>
+        <div class="rm-row"><span>Interface</span>LP on the stereo; communal, attentive</div>
+        <div class="rm-row"><span>Scarce</span>The scene — being where it happens</div></div>
+      <div class="rm-card" style="--ec:#c98a2e"><div class="rm-era">'70–79 — EXCESS &amp; REVOLT</div>
+        <div class="rm-row"><span>Protagonist</span>Rock God / Anti-Star — Mercury / Rotten</div>
+        <div class="rm-row"><span>Interface</span>LP, FM, club &amp; stadium; music as places to be</div>
+        <div class="rm-row"><span>Scarce</span>The subculture — insider knowledge</div></div>
+      <div class="rm-card" style="--ec:#ff4fa3"><div class="rm-era">'81–91 — THE VIDEO STAR</div>
+        <div class="rm-row"><span>Protagonist</span>The Icon — MJ, Madonna</div>
+        <div class="rm-row"><span>Interface</span>Cassette, Walkman + MTV; private ears, one shared feed</div>
+        <div class="rm-row"><span>Scarce</span>Visibility — image, budget, rotation</div></div>
+      <div class="rm-card" style="--ec:#8aa64f"><div class="rm-era">'91–99 — AUTHENTICITY WARS</div>
+        <div class="rm-row"><span>Protagonist</span>Authentic &amp; Hustler — Cobain / Dre</div>
+        <div class="rm-row"><span>Interface</span>CD + MTV; tribe-siloed scenes</div>
+        <div class="rm-row"><span>Scarce</span>Credibility — proving you mean it</div></div>
+      <div class="rm-card" style="--ec:#4fa0d8"><div class="rm-era">'99–08 — THE DOWNLOAD SELF</div>
+        <div class="rm-row"><span>Protagonist</span>The Brand — Beyoncé, Jay-Z</div>
+        <div class="rm-row"><span>Interface</span>iPod earbuds; the shuffle self</div>
+        <div class="rm-row"><span>Scarce</span>Navigation &amp; legitimacy — making abundance usable</div></div>
+      <div class="rm-card" style="--ec:#9b7fe8"><div class="rm-era">'08–19 — THE ALGORITHM ERA</div>
+        <div class="rm-row"><span>Protagonist</span>The Persona — Swift, Drake</div>
+        <div class="rm-row"><span>Interface</span>Streaming + phone; the algorithmic feed</div>
+        <div class="rm-row"><span>Scarce</span>Attention — everything available</div></div>
+      <div class="rm-card" style="--ec:#3ecfae"><div class="rm-era">'19–NOW — FRAGMENTED ABUNDANCE</div>
+        <div class="rm-row"><span>Protagonist</span>Networked Operator — Lil Nas X / the fandom</div>
+        <div class="rm-row"><span>Interface</span>Feed → stream; discovered in fragments, heard on demand</div>
+        <div class="rm-row"><span>Scarce</span>Presence, provenance &amp; belonging — being there, human-made, one of us</div></div>
+    </div>
+
+    <p class="figcap"><span class="figcap-desktop">Scroll sideways if the grid is cut off. </span>Colors match the era sections above. The bottom row in one arrow: <strong>object → access → identity → visibility → credibility → navigation → attention → human meaning</strong>.</p>
+  </div>
+
+  <p><strong>If the grid is the map, these are the ten moments the ground actually moved:</strong></p>
+
+  <div class="tl">
+    <div class="tl-item t50"><span class="yr">1954–56</span><div class="ev">A truck driver walks into Sun Studio; two years later his hips are a national emergency. <em>The teenager becomes a tribe.</em></div></div>
+    <div class="tl-item t60"><span class="yr">1965</span><div class="ev">Dylan plugs in at Newport, and parts of the folk audience boo their own prophet. <em>An authenticity war breaks into public view.</em></div></div>
+    <div class="tl-item t60"><span class="yr">1969</span><div class="ev">Four hundred thousand people find each other at Woodstock. <em>The festival-pilgrimage is born.</em></div></div>
+    <div class="tl-item t70"><span class="yr">1977–79</span><div class="ev">Punk and disco peak within the same few years — then the Walkman arrives while a rock crowd blows up disco records in a Chicago stadium. <em>The tribes go to war; listening goes private.</em></div></div>
+    <div class="tl-item t80"><span class="yr">1981–83</span><div class="ev">MTV, the CD, and <em>Thriller</em> arrive almost together. <em>Music becomes something you watch.</em></div></div>
+    <div class="tl-item t90"><span class="yr">1991–92</span><div class="ev"><em>Nevermind</em> climbs from underground signal to the top of the US album chart, displacing Michael Jackson. <em>"Selling out" becomes the deadliest sin.</em></div></div>
+    <div class="tl-item t00"><span class="yr">1999–2003</span><div class="ev">Napster, then the iPod, then the 99¢ song. <em>Scarcity weakens; the album begins to unbundle.</em></div></div>
+    <div class="tl-item t10"><span class="yr">2008–15</span><div class="ev">Spotify launches, and within a few years streaming becomes a central source of recorded-music income. <em>Ownership gives way to access.</em></div></div>
+    <div class="tl-item t10"><span class="yr">2017–19</span><div class="ev">Hip-hop and R&amp;B become America’s most-consumed genre grouping; "Old Town Road" rides TikTok to the longest #1 run ever. <em>The margins are the center; the crowd is the new MTV.</em></div></div>
+    <div class="tl-item t20"><span class="yr">2023–26</span><div class="ev">"Fake Drake" clones a voice, the Eras Tour becomes a pilgrimage, and rights holders answer generative AI at once with lawsuits, licensing deals, and new AI-labelling standards. <em>Machine abundance on one side, human presence on the other.</em></div></div>
+  </div>
+
+  <p><strong>Start with the protagonists.</strong> Read the top row of the grid from left to right and one thing changes steadily: how much of fame's machinery the audience gets to see. Elvis and Dylan were believed outright. Bowie and Madonna exposed the construction and made it part of the craft. By the '90s everyone could see the machine, so "realness" became the rarest thing an artist could own — some died of that contradiction, others shrugged and got rich. Taylor Swift turned the self-awareness into material ("Blank Space" is a star narrating her own manufacture), and today's audience, fully briefed, often works the levers itself — though plenty of artists were playing with masks long before the pattern says they should have.</p>
+  <p><strong>Then look at how listening moved from the room into the head:</strong> family radio → bedroom record player → Walkman → earbuds → the feed. The lovely paradox is that the more solitary everyday listening became, the more intense the communal forms grew — festivals, stadium pilgrimages, fandom armies. Once togetherness stopped being how music was ordinarily heard, it became the thing people would pay most for. The tribe didn't disappear. It moved online and started booking stadiums.</p>
+  <p><strong>Moral panics tell their own story too.</strong> They often point to a real transfer of power: Elvis's hips meant parents were losing influence to peers; warning stickers meant moral guardians were losing to a market that promptly resold the warning as advertising; today's AI anxiety is humans negotiating with systems. The panics are usually right about what is changing and wrong about where it will lead — which is why it's worth noticing what a decade panics about in its music.</p>
+  <p><strong>And beneath all of it is scarcity.</strong> Again and again, value moved toward whatever couldn't be copied — the bottom row of the grid, and the arrow beneath it, tell that story in eight words. Which may be why, seventy years after Memphis, the most valuable thing in music still looks like the oldest thing in music: a human being, physically present, singing to a crowd that believes them.</p>
+
+  <p style="color:var(--muted);margin-top:22px">One last thing: no era was ever this tidy. For every artist who fits the pattern, plenty more were happily ignoring it.</p>
+</section>
+
+<div class="wrap">
+  <div class="colophon">
+    <p class="by">Compiled and edited by Nishant Bhaskar. Drafted with AI assistance; the selection, structure, and judgment calls are mine.</p>
+  </div>
+</div>
+
+<footer>
+  July 2026 · Spanning the 1950s to today, with an early focus on Britain and the US and a broader, more global perspective in recent years.
+</footer>
+
+<script>
+  // Thumbnails open the video on YouTube in a new tab (the anchors' own href).
+  // In-page embedding is deliberately not used: YouTube's player refuses to load
+  // from a local file:// page (Error 153), so a direct link is the reliable route.
+
+  // Highlight the era you're currently reading in the sticky nav.
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.timeline a[href^="#"]'));
+    var map = {};
+    links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var link = map[en.target.id];
+          if (link){
+            link.classList.add('active');
+            link.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+          }
+        }
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    sections.forEach(function(s){ obs.observe(s); });
+  })();
+</script>
+
+</body>
+</html>

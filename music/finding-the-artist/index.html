@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board One—Finding the Artist</title>
+<style>
+  :root{
+    --bg:#0e0d0b; --panel:#171512; --ink:#ece7dd; --muted:#a89f8f; --line:#2c2823;
+    --c1:#c07f0e; --c2:#3ecfae; --c3:#d23a86;
+    --serif:Georgia,'Times New Roman',serif; --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.68;-webkit-text-size-adjust:100%}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  section.ch,#forward{scroll-margin-top:58px}
+
+  header.hero{padding:88px 0 46px;text-align:center;background:radial-gradient(ellipse at 50% -20%,#241d10 0%,var(--bg) 70%)}
+  .hero .kicker{font-family:var(--sans);letter-spacing:.25em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+  .hero h1{font-size:clamp(32px,6vw,54px);font-weight:400;margin:14px 0 12px;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic}
+  .hero .sub{color:var(--muted);max-width:600px;margin:0 auto;font-size:17px;font-style:italic}
+
+  nav.chnav{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.chnav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav.chnav .wrap::-webkit-scrollbar{display:none}
+  nav.chnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-decoration:none;color:var(--muted);
+    padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;transition:all .2s}
+  nav.chnav a:hover{color:var(--ink);border-color:var(--muted)}
+  nav.chnav a.active{color:#0e0d0b;background:var(--ink);border-color:var(--ink);font-weight:700}
+
+  .intro{padding:54px 0 8px}
+  .intro p{max-width:720px;margin:0 auto 18px;font-size:17px;color:#d6cfc2}
+  .intro p.lead-out{font-style:italic;color:var(--ink)}
+  .intro p strong{color:var(--ink)}
+
+  section.ch{padding:66px 0 54px;border-top:1px solid var(--line);margin-top:50px}
+  .ch-head .num{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.22em;padding:5px 12px;border-radius:4px;color:#0e0d0b;display:inline-block}
+  .ch-head h2{font-size:clamp(24px,4vw,34px);font-weight:400;margin:12px 0 4px}
+  .ch-intro{color:#d6cfc2;max-width:740px;margin:14px 0 8px}
+  .ch-intro+.ch-intro{margin-top:0}
+
+  .model{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:0 12px 12px 0;padding:22px 24px;margin:28px 0}
+  .model h3{font-family:var(--sans);font-size:19px;margin-bottom:3px}
+  .model .move{font-style:italic;font-size:16px;display:block;margin-bottom:14px}
+  .model p.study{color:#d6cfc2;font-size:15.5px;max-width:720px}
+  .model p.study+p.study{margin-top:11px}
+
+  .mrow{display:grid;grid-template-columns:1fr 322px;gap:30px;align-items:start;margin-top:20px}
+  .mrow .start{order:1;margin-top:0;max-width:440px}
+  .mrow .clip{order:2}
+  .clip{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#000}
+  .clip .pframe{display:block;position:relative;padding-top:56.25%;background:#000;cursor:pointer}
+  .clip .pframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .2s}
+  .clip .pframe:hover img{opacity:1}
+  .clip .pb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:38px;
+    background:rgba(210,30,30,.88);border:1px solid rgba(255,255,255,.4);border-radius:9px;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;pointer-events:none;transition:transform .2s}
+  .clip .pframe:hover .pb{transform:translate(-50%,-50%) scale(1.08)}
+  .clip .cl{font-family:var(--sans);font-size:14px;color:var(--muted);padding:9px 13px;line-height:1.5;background:var(--panel)}
+  .clip .cl b{color:var(--ink)}
+  .clip .cl a{color:#c9bfa9;text-decoration:none;border-bottom:1px dotted #6b6355}
+  .start{font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--muted);margin-top:12px}
+  .start b{color:#c9bfa9;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:8px}
+  .start a{color:#e7dfce;text-decoration:none;border-bottom:1px dotted #6b6355}
+  .start a:hover{color:#fff;border-bottom-color:#c9bfa9}
+  .start .then{display:block;margin-top:10px;color:#a89f8f}
+  .start .then .tl{color:#c9bfa9;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;margin-right:7px}
+
+  .aside{background:transparent;border:1px dashed #3a352d;border-radius:12px;padding:20px 24px;margin:28px 0;max-width:790px}
+  .aside .alabel{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:9px}
+  .aside h3{font-family:var(--sans);font-size:17px;margin-bottom:12px;color:var(--ink);font-weight:600}
+  .aside p{color:#c8c1b4;font-size:15px;max-width:720px}
+  .aside p+p{margin-top:10px}
+  .aside .start{margin-top:13px}
+
+  #c1 .num{background:var(--c1)} #c1 .model{border-left-color:var(--c1)} #c1 .move{color:#ffc866}
+  #c2 .num{background:var(--c2)} #c2 .model{border-left-color:var(--c2)} #c2 .move{color:#7fe2c9}
+  #c3 .num{background:var(--c3)} #c3 .model{border-left-color:var(--c3)} #c3 .move{color:#ff8ac2}
+
+  #forward{padding:76px 0 30px;border-top:1px solid var(--line);margin-top:60px}
+  #forward h2{font-size:28px;font-weight:400;margin-bottom:20px}
+  #forward p{max-width:740px;color:#d6cfc2;margin-bottom:15px}
+  #forward .roll{max-width:740px;margin:0 0 18px;padding-left:0;list-style:none}
+  #forward .roll li{color:#d6cfc2;padding:5px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  #forward .roll li:last-child{border-bottom:0}
+  #forward .roll b{color:var(--ink);font-family:var(--sans);font-size:13px}
+  .practice{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-top:26px;max-width:740px}
+  .practice b{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+  .practice p{font-size:16px;margin-bottom:0;color:var(--ink)}
+
+  .colophon{max-width:700px;margin:52px auto 0;padding:16px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px;text-align:center}
+  .colophon .by{font-family:var(--sans);font-size:13.5px;color:#d6cfc2;line-height:1.55}
+  footer{padding:34px 0 60px;color:var(--muted);font-family:var(--sans);font-size:12.5px;text-align:center}
+
+  @media(max-width:720px){
+    .mrow{grid-template-columns:1fr;gap:16px}
+    .mrow .start{max-width:none}
+    .wrap{padding:0 18px}
+    header.hero{padding:56px 0 34px}
+    section.ch{padding:46px 0 40px;margin-top:34px}
+    .model{padding:16px 16px}
+    .model p.study{font-size:15px}
+    .aside{padding:16px}
+    .aside p{font-size:15px}
+  }
+  @media print{
+    body{background:#fff;color:#1a1712}
+    .clip,.pframe{display:none}
+    .mrow{display:block}
+    .mrow .start{max-width:none}
+    nav.chnav{display:none}
+    .model,.practice,.aside{break-inside:avoid;border-color:#bbb}
+  }
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  .backnav{padding:20px 0 0}
+  .backnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted);text-decoration:none;display:inline-block;padding:6px 2px;transition:color .18s ease}
+  .backnav a:hover{color:var(--ink)}
+  @media print{.backnav{display:none}}
+</style>
+</head>
+<body id="top">
+<div class="wrap backnav"><a href="/music">← On Music</a></div>
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Board One</div>
+    <h1>Finding the <em>Artist</em></h1>
+    <p class="sub">Voice, instinct, performance, and what remains when the references fall away</p>
+  </div>
+</header>
+
+<nav class="chnav">
+  <div class="wrap">
+    <a href="#c1">01 · What's already there</a>
+    <a href="#c2">02 · How close</a>
+    <a href="#forward">Carrying forward</a>
+  </div>
+</nav>
+
+<div class="intro wrap">
+  <p>References are useful when an artist is still taking shape. They show that there are more ways to make a song, inhabit a stage or build an identity than the obvious ones.</p>
+  <p>They can also become a problem.</p>
+  <p>Spend long enough looking at accomplished artists and it becomes easy to see only finished systems: the production language, the clothes, the videos, the gestures that now appear inevitable. What disappears from view is the uncertainty that came before them—the experiments that led nowhere, the qualities someone may once have advised them to correct, the accidents that slowly became signatures.</p>
+  <p>So this is not a board about finding the right model. None of these artists offers that.</p>
+  <p>They are here because each made something personal more visible. James Blake found ways to make hesitation part of the production. Sufjan Stevens trusted the small, private detail rather than replacing it with a larger statement about emotion. Bon Iver changed almost everything without losing the emotional centre of the work. Isak Danielson stayed with emotional directness instead of disguising it as something cooler. Olivia Rodrigo let one writing voice hold together quiet ballads and louder rock songs. AURORA allowed the feeling to move beyond the voice and through the whole body.</p>
+  <p>Many artists arrive somewhere recognisable. The more interesting question is not whether they change, but how they find the thread—some by paying closer attention to what was already there, others only by making enough work for the pattern to show. Both routes appear on this board.</p>
+</div>
+
+<!-- ============ 01 ============ -->
+<section class="ch wrap" id="c1">
+  <div class="ch-head">
+    <span class="num">SECTION 01</span>
+    <h2>What is already there?</h2>
+  </div>
+  <p class="ch-intro">A signature is often discussed as though it must be designed: choose a sound, establish a look, repeat both until people remember them.</p>
+  <p class="ch-intro">Sometimes that works. But the more durable signatures often appear to have started elsewhere. They grow around a quality that was already present—the way somebody experiences vulnerability, the contradictions in a voice, an instinct for leaving things unresolved—and become clearer as the artist stops trying to correct it.</p>
+
+  <div class="model">
+    <h3>James Blake</h3>
+    <span class="move">When the production carries part of the feeling</span>
+    <p class="study">People often describe James Blake through his materials: sub-bass, silence, spare piano, processed vocals and gospel harmony passing through electronics.</p>
+    <p class="study">Those things are recognisable, but they are not especially meaningful on their own. Plenty of people can use the same tools without making music that feels anything like his.</p>
+    <p class="study">What matters is the emotional job they are doing.</p>
+    <p class="study">In his cover of Feist's "Limit to Your Love," the bass does not simply make the track larger. It changes the physical pressure of the song. The room suddenly seems less stable. On "Retrograde," the layers of voice feel like a private thought slowly gathering enough force to become a declaration. Elsewhere, a vocal is distorted until it sounds less like an effect and more like someone struggling to remain intact.</p>
+    <p class="study">The production is not illustrating a feeling that has already been fully expressed by the lyric. It is completing it.</p>
+    <p class="study">That is worth keeping in mind when a song begins in a more traditional singer-songwriter form. A voice and a set of chords may contain the composition, but they do not necessarily contain the entire emotional experience. Arrangement, silence, distance and texture can reveal things the singer would sound awkward explaining directly.</p>
+    <p class="study">There is no need to make the production complicated. Blake's work is often powerful because he knows when a single change is enough.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=pjsr9Sq6-F8" target="_blank" rel="noopener" data-embed="pjsr9Sq6-F8"><img loading="lazy" src="https://i.ytimg.com/vi/pjsr9Sq6-F8/hqdefault.jpg" alt="James Blake making a curry for The FADER"><span class="pb">▶</span></a><div class="cl"><b>Off duty</b>—Blake attempts a curry, with mixed results. Nothing to analyse; just good company. <a href="https://www.youtube.com/watch?v=pjsr9Sq6-F8" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=Uu6_hAxvsLc" target="_blank" rel="noopener">Limit to Your Love</a>, <a href="https://www.youtube.com/watch?v=4texipD7faM" target="_blank" rel="noopener">Retrograde</a> and <a href="https://www.youtube.com/watch?v=sAJgs1P-uUE" target="_blank" rel="noopener">I Need a Forest Fire</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Sufjan Stevens</h3>
+    <span class="move">Trusting the detail that seems too private</span>
+    <p class="study"><em>Carrie &amp; Lowell</em> is rooted in an intensely particular life: Sufjan Stevens's complicated relationship with his mother, her death, his childhood visits to Oregon, and the mixture of love, absence, anger and guilt that followed.</p>
+    <p class="study">The songs do not try to turn that history into a general statement about grief. They remain full of names, places and small memories—a swimming lesson, a hospital room, a childhood landscape, an imagined conversation with his mother. The record becomes widely recognisable not despite those details, but partly through them.</p>
+    <p class="study">That is one of the stranger things about personal songwriting. A broad line about loss may be understandable to everyone, yet belong fully to no one. A precise memory from somebody else's life can make a listener recall an entirely different memory from their own.</p>
+    <p class="study">The detail gives the feeling a physical place to stand.</p>
+    <p class="study">This does not mean that every lyric should reveal the most private fact available. Specificity is not the same as disclosure. A songwriter can invent, combine events, change circumstances or leave entire parts of a story outside the song. What matters is that the language feels observed rather than supplied from a store of familiar emotional phrases.</p>
+    <p class="study">The writing is also powerful because it does not tidy the relationship after the fact—love and resentment remain beside each other—but even that truth reaches the listener through the particular: a swimming lesson, a room, an object, rather than a statement about grief.</p>
+    <p class="study">This may be especially useful when a lyric reaches for a large idea—loneliness, hope, regret, belonging. Before adding another line about the feeling itself, it may be worth asking what actually happened in the room. What was somebody wearing? What was left unsaid? Which ordinary object has remained attached to the memory?</p>
+    <p class="study">The detail does not need to explain the feeling. It may simply allow the feeling to exist without being announced.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=9FX34TjJe-c" target="_blank" rel="noopener" data-embed="9FX34TjJe-c"><img loading="lazy" src="https://i.ytimg.com/vi/9FX34TjJe-c/hqdefault.jpg" alt="Sufjan Stevens - Carrie &amp; Lowell Live (Official Film)"><span class="pb">▶</span></a><div class="cl"><b>Live in full</b>—the <em>Carrie &amp; Lowell</em> songs performed, with Sufjan talking to the room between them. <a href="https://www.youtube.com/watch?v=9FX34TjJe-c" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=JTeKpWp8Psw" target="_blank" rel="noopener">Fourth of July</a>, <a href="https://www.youtube.com/watch?v=lJJT00wqlOo" target="_blank" rel="noopener">Should Have Known Better</a> and <a href="https://www.youtube.com/watch?v=adKEqin5SoI" target="_blank" rel="noopener">The Only Thing</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Bon Iver</h3>
+    <span class="move">Changing the vocabulary without losing the person</span>
+    <p class="study">The early mythology around Bon Iver is almost too neat: Justin Vernon retreats to a cabin, records <em>For Emma, Forever Ago</em>, and emerges with an intimate folk record shaped by heartbreak and isolation.</p>
+    <p class="study">What happened afterwards is more interesting.</p>
+    <p class="study">By <em>22, A Million</em>, much of the familiar furniture had gone. Acoustic intimacy gave way to fractured electronics, samples, symbols, altered voices and songs that sometimes seem to be breaking apart while they play. It could easily have felt like a different project altogether.</p>
+    <p class="study">Yet the person inside the music remained locatable.</p>
+    <p class="study">The same uncertainty is there. So is the reaching quality in Vernon's voice—the sense that the song is trying to cross a distance it cannot quite measure. The technology changes how that feeling is expressed, but it does not replace it.</p>
+    <p class="study">This is a more helpful way to think about reinvention than planning a series of dramatic "eras." A new direction has weight when the old language no longer seems capable of containing what the artist wants to say. Change for its own sake tends to feel like styling. Change driven by necessity feels different, even when the audience cannot explain why.</p>
+    <p class="study">The part that survives may not be an instrument, genre or colour palette. It may be a certain emotional tension that keeps returning no matter what surrounds it.</p>
+    <p class="study">Finding that anchor can take time. It may only become obvious after the artist has already changed several times.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=3fX1CNH3hKM" target="_blank" rel="noopener" data-embed="3fX1CNH3hKM"><img loading="lazy" src="https://i.ytimg.com/vi/3fX1CNH3hKM/hqdefault.jpg" alt="Bon Iver making-of documentary"><span class="pb">▶</span></a><div class="cl"><b>Inside the process</b>—Justin Vernon and the band building a song from the ground up. <a href="https://www.youtube.com/watch?v=3fX1CNH3hKM" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=TWcyIpul8OE" target="_blank" rel="noopener">Holocene</a>, <a href="https://www.youtube.com/watch?v=P_Fx1yq3A8M" target="_blank" rel="noopener">715 - CR∑∑KS</a> and <a href="https://www.youtube.com/watch?v=6C5sB6AqJkM" target="_blank" rel="noopener">33 'GOD'</a>.</p>
+    </div>
+  </div>
+
+
+  <div class="model">
+    <h3>Damiano David</h3>
+    <span class="move">When reinvention means taking something off</span>
+    <p class="study">Damiano David's solo work is interesting partly because it does not feel like a simple attempt to build a new identity after Måneskin. It appears to begin with the recognition that the earlier rock-star version of himself had become difficult to keep inhabiting.</p>
+    <p class="study">"Silverlines," produced by Labrinth, removes much of the swagger associated with that image. There is no defining guitar riff. The song begins with sparse piano, atmospheric electronics and a voice that sounds unusually exposed. As the arrangement grows, layered voices and large, echoing spaces give the song an almost spiritual scale.</p>
+    <p class="study">"Silverlines" was the first solo song Damiano released, but he described it as the emotional end of the journey—the point at which some peace has already been found. When FUNNY little FEARS arrived, the song appeared near the end of the album. It is rather like opening a film with the final scene and then returning to show how the character arrived there.</p>
+    <p class="study">The case suggests that reinvention does not always involve inventing a more striking persona. Sometimes it begins by removing the version of the artist that has become compulsory.</p>
+    <p class="study">The risk, of course, is that personal recovery becomes another polished narrative. What makes the case worth watching is the change in presence: Damiano appears less interested in proving that he can command a room and more willing to be seen without the familiar armour.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=yGdzU0fKlU0" target="_blank" rel="noopener" data-embed="yGdzU0fKlU0"><img loading="lazy" src="https://i.ytimg.com/vi/yGdzU0fKlU0/hqdefault.jpg" alt="Damiano David interview"><span class="pb">▶</span></a><div class="cl"><b>In conversation</b>—Damiano on the solo album, working with Labrinth, and stepping out from the band. <a href="https://www.youtube.com/watch?v=yGdzU0fKlU0" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=btSgDtXYpzc" target="_blank" rel="noopener">Silverlines</a>, <a href="https://www.youtube.com/watch?v=Z4-g8UXa944" target="_blank" rel="noopener">Born With a Broken Heart</a> and <a href="https://www.youtube.com/playlist?list=PL9tY0BWXOZFvGxDiozHnqHSp82xY3RIOq" target="_blank" rel="noopener">FUNNY little FEARS</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>070 Shake</h3>
+    <span class="move">Leaving the contradictions intact</span>
+    <p class="study">070 Shake's music is difficult to file cleanly. It moves between rap, electronic music, atmospheric pop, rock scale and something more cinematic. Her voice can sound forceful and wounded within the same line.</p>
+    <p class="study">That contradiction is central to the appeal.</p>
+    <p class="study">There is often a temptation, particularly with a developing artist, to decide which version is the real one. Is the voice soft or commanding? Is the music intimate or theatrical? Should the visual identity feel masculine, delicate, futuristic, romantic?</p>
+    <p class="study">Shake's work suggests that the friction may be more interesting than the answer.</p>
+    <p class="study">Even when the production grows enormous, the songs retain the feeling of a private crisis. The scale does not turn her into an invincible figure. It gives the vulnerability a larger space in which to move.</p>
+    <p class="study">This kind of coherence does not come from using the same sonic device repeatedly. It comes from carrying a recognisable emotional atmosphere into different settings. The artist remains legible even when the genre changes.</p>
+    <p class="study">The useful thought may simply be that not every contradiction needs to be solved before the work begins. A contained personality can make expansive music. Gentleness can coexist with drama. An awkward or hesitant presence may become more compelling, not less, when the world around it becomes bolder.</p>
+    <p class="study">Deciding too early which version is the real one is often what makes it generic.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=OQcB653oXLI" target="_blank" rel="noopener" data-embed="OQcB653oXLI"><img loading="lazy" src="https://i.ytimg.com/vi/OQcB653oXLI/hqdefault.jpg" alt="070 Shake interview"><span class="pb">▶</span></a><div class="cl"><b>In her words</b>—things to know about 070 Shake, and where the music comes from. <a href="https://www.youtube.com/watch?v=OQcB653oXLI" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=X0t8zeEiqEY" target="_blank" rel="noopener">Guilty Conscience</a>, <a href="https://www.youtube.com/watch?v=qEfYSU689mw" target="_blank" rel="noopener">Skin and Bones</a> and <a href="https://www.youtube.com/watch?v=saIN0h_r7ws" target="_blank" rel="noopener">Neo Surf</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Isak Danielson</h3>
+    <span class="move">Not stepping away from the feeling</span>
+    <p class="study">Isak Danielson's songs often work within a fairly recognisable emotional space: exposed vocals, slow-building arrangements, piano or strings, and choruses that arrive with very little protective distance between the singer and the feeling.</p>
+    <p class="study">There is nothing especially fashionable about the approach. He is not constantly changing genres, hiding the emotion behind irony or trying to make vulnerability look effortless. The songs tend to say what they mean, sometimes with a degree of earnestness that another artist might feel compelled to dilute.</p>
+    <p class="study">Earnest music becomes awkward when the performer seems slightly embarrassed by it—when the arrangement reaches for emotional release but the voice remains guarded, or when a lyric confesses something and then quickly retreats into vagueness. Danielson rarely gives himself that escape route. The song goes where it has said it is going.</p>
+    <p class="study">His example is useful because emerging artists are often encouraged to display range before they have established depth. Every new release needs a different influence, mood or visual treatment. Danielson suggests another path: remain with a particular emotional territory long enough to understand its finer distinctions.</p>
+    <p class="study">Consistency need not mean repeating the same song. Within his work, sorrow can feel resigned, desperate, romantic, angry or strangely comforting. The lane remains recognisable, but the experience within it changes.</p>
+    <p class="study">This may matter if emotional directness is already present in the writing. The question is not whether the music needs to become more dramatic. It may simply be whether the feeling is being carried through completely—or softened at the final moment because complete sincerity feels risky.</p>
+    <p class="study">Some artists become distinctive through surprise. Others become distinctive because the listener learns that they will not flinch.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=fB0lAbdWx7k" target="_blank" rel="noopener" data-embed="fB0lAbdWx7k"><img loading="lazy" src="https://i.ytimg.com/vi/fB0lAbdWx7k/hqdefault.jpg" alt="Isak Danielson interview"><span class="pb">▶</span></a><div class="cl"><b>In conversation</b>—Isak Danielson on patience, emotional directness and staying with the feeling. <a href="https://www.youtube.com/watch?v=fB0lAbdWx7k" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=YZdyIgst-S4" target="_blank" rel="noopener">Always</a>, <a href="https://www.youtube.com/watch?v=zIXnT0s0f3s" target="_blank" rel="noopener">Power</a> and <a href="https://www.youtube.com/watch?v=LBxA8q8TGBA" target="_blank" rel="noopener">Broken</a>.</p>
+    </div>
+  </div>
+
+  <div class="aside">
+    <span class="alabel">Another path</span>
+    <h3>Tyler, the Creator—when curiosity becomes the signature</h3>
+    <p>Artists are often told to settle on a sound quickly. Tyler's work suggests a different route. Following one curiosity after another can look scattered in the moment; the coherence tends to become clear only in retrospect.</p>
+    <p>This cuts against most of what is on this board. Many of these artists became more themselves by attending to something already present. Tyler suggests that for some, the self becomes audible only through motion.</p>
+    <p class="start"><b>To hear it</b><a href="https://www.youtube.com/watch?v=EZE62LpaqHg" target="_blank" rel="noopener">See You Again</a>, <a href="https://www.youtube.com/watch?v=t-E2gm0a_N0" target="_blank" rel="noopener">EARFQUAKE</a>, <a href="https://www.youtube.com/watch?v=NJea386275c" target="_blank" rel="noopener">WUSYANAME</a> and <a href="https://www.youtube.com/watch?v=Qer3lwd5hyA" target="_blank" rel="noopener">NOID</a>. Notice how much the language shifts, and how identifiable the mind behind it stays.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="ch wrap" id="c2">
+  <div class="ch-head">
+    <span class="num">SECTION 02</span>
+    <h2>How close should the artist feel?</h2>
+  </div>
+  <p class="ch-intro">Intimacy is not one sound.</p>
+  <p class="ch-intro">Closeness can be created in several ways. The xx make the space between two voices feel charged. Billie Eilish uses the recorded distance of the voice itself. Olivia Rodrigo creates intimacy through a conversational writing voice that remains recognisable across quiet ballads and louder rock songs. With AURORA, the feeling moves beyond the voice and through the whole body.</p>
+  <p class="ch-intro">The real choice is not between quiet and loud, or polished and raw. It is about the relationship the work creates between the artist and the person receiving it.</p>
+
+  <div class="model">
+    <h3>The xx</h3>
+    <span class="move">Making the space between people audible</span>
+    <p class="study">The xx became known for minimalism: a clean guitar line, a bass pulse, restrained beats and two voices that rarely appear to be fighting for the centre.</p>
+    <p class="study">But calling it minimalism does not quite explain why it works.</p>
+    <p class="study">The empty space is not simply a tasteful absence of sound. It tells us something about the relationship between Romy Madley Croft and Oliver Sim. Their voices approach one another carefully. At times they seem intimate; at others, separated by things neither is ready to say.</p>
+    <p class="study">Because the arrangement leaves so much room, small events matter. A second voice entering can change the emotional balance of the song. A guitar phrase that would disappear inside a fuller production can hold the listener's attention for several bars.</p>
+    <p class="study">This restraint was partly practical—the band wanted to make music it could reproduce live—but it gradually became a recognisable way of seeing. That is different from deciding that minimalism will be the brand.</p>
+    <p class="study">The xx are a reminder that space can carry information. It may suggest trust, loneliness, hesitation or desire. It can allow the listener to enter rather than presenting a finished wall of feeling.</p>
+    <p class="study">The more useful question for an arrangement is therefore not simply, "What can be removed?" It is, "What becomes visible once it has been removed?"</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=3-03z36Is6M" target="_blank" rel="noopener" data-embed="3-03z36Is6M"><img loading="lazy" src="https://i.ytimg.com/vi/3-03z36Is6M/hqdefault.jpg" alt="The xx - NPR Music Tiny Desk Concert"><span class="pb">▶</span></a><div class="cl"><b>Up close</b>—a Tiny Desk set: two voices a few feet apart, nothing to hide behind, the space between them audible. <a href="https://www.youtube.com/watch?v=3-03z36Is6M" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=xMV6l2y67rk" target="_blank" rel="noopener">Intro</a>, <a href="https://www.youtube.com/watch?v=Pib8eYDSFEI" target="_blank" rel="noopener">Crystalised</a> and <a href="https://www.youtube.com/watch?v=_nW5AF0m9Zw" target="_blank" rel="noopener">Angels</a>.<span class="then"><span class="tl">Then explore</span><a href="https://songexploder.net/the-xx" target="_blank" rel="noopener">Song Exploder</a>—Romy, Oliver and Jamie take "Crystalised" apart, piece by piece.</span></p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Billie Eilish</h3>
+    <span class="move">Deciding where the listener stands</span>
+    <p class="study">The bedroom origin story around Billie Eilish and Finneas has been told so often that it can obscure the more useful part of their method.</p>
+    <p class="study">The important thing was not merely that the songs were made at home. It was what that closeness allowed them to imagine.</p>
+    <p class="study">Eilish's vocals often place the listener at an unusually short distance from the singer. Breath, consonants and small changes in pressure remain audible. The voice can feel as though it is arriving from inside the listener's head rather than from the far side of a room.</p>
+    <p class="study">That closeness changes what a performance can do. It does not need to demonstrate power in the conventional sense. A small sound becomes consequential because of where it has been placed.</p>
+    <p class="study">Finneas's productions often protect that imagined distance even when the songs become more dramatic. The arrangements can expand, but the vocal does not automatically turn into an arena performance. The person remains near.</p>
+    <p class="study">This does not lead to a rule that one should sing quietly or make bedroom pop. The more useful decision comes before either of those things: <em>Where is the listener supposed to be?</em> Across a table? At the back of a venue? Inside a private memory? Close enough to feel slightly uncomfortable?</p>
+    <p class="study">Once that is clear, choices about the vocal, camera, room and arrangement may become easier.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=kpx2-EMfdbg" target="_blank" rel="noopener" data-embed="kpx2-EMfdbg"><img loading="lazy" src="https://i.ytimg.com/vi/kpx2-EMfdbg/hqdefault.jpg" alt="Billie Eilish and Finneas interview"><span class="pb">▶</span></a><div class="cl"><b>Inside the writing</b>—Billie and Finneas break down how the sound was built, up close. <a href="https://www.youtube.com/watch?v=kpx2-EMfdbg" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=pbMwTqkKSps" target="_blank" rel="noopener">when the party's over</a>, <a href="https://www.youtube.com/watch?v=HUHC9tYz8ik" target="_blank" rel="noopener">bury a friend</a> and <a href="https://www.youtube.com/watch?v=l08Zw-RY__Q" target="_blank" rel="noopener">Wildflower</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Olivia Rodrigo</h3>
+    <span class="move">When the writing itself holds the identity together</span>
+    <p class="study">Olivia Rodrigo's music moves between two fairly different registers.</p>
+    <p class="study">There are exposed piano ballads such as "drivers license" and "vampire," and there are restless, guitar-led songs such as "brutal," "good 4 u" and "ballad of a homeschooled girl."</p>
+    <p class="study">The shift does not make her difficult to recognise because much of the identity sits in the writing.</p>
+    <p class="study">Her lyrics sound as though they were written while the experience was still unfolding, before everything had been understood or arranged into a clean conclusion. The details are specific, the voice is conversational, and it reads like the same person speaking whether the song is barely there or at full volume.</p>
+    <p class="study">That voice is what carries across the two registers. In the ballads it is brought close to the thought; in the rock songs the same person gets louder, funnier and more physical—hurt, accusatory, embarrassed by her own reaction and slightly amused by it, sometimes within one song.</p>
+    <p class="study">The songs do not need to sound alike because the same person is audibly inside them. A quiet piano confession and a distorted, sneering chorus can belong to one artist as long as the writing keeps its own way of seeing.</p>
+    <p class="study">That may be useful where an artist's work naturally moves between restraint and release. Coherence does not always come from choosing one production language. It can come from a recognisable way of noticing, speaking and reacting.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=MlcTLEF5210" target="_blank" rel="noopener" data-embed="MlcTLEF5210"><img loading="lazy" src="https://i.ytimg.com/vi/MlcTLEF5210/hqdefault.jpg" alt="Olivia Rodrigo interview"><span class="pb">▶</span></a><div class="cl"><b>Inside the writing</b>—Olivia Rodrigo on how a song comes together, line by line. <a href="https://www.youtube.com/watch?v=MlcTLEF5210" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=ZmDBbnmKpqQ" target="_blank" rel="noopener">drivers license</a>, <a href="https://www.youtube.com/watch?v=RlPNh_PBZb4" target="_blank" rel="noopener">vampire</a>, <a href="https://www.youtube.com/watch?v=OGUy2UmRxJ0" target="_blank" rel="noopener">brutal</a> and <a href="https://www.youtube.com/watch?v=obSpLSnJ-wI" target="_blank" rel="noopener">ballad of a homeschooled girl</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>AURORA</h3>
+    <span class="move">Allowing the body to know more than the plan</span>
+    <p class="study">AURORA's performances are immediately recognisable, partly because of the way she moves. Her hands trace shapes, her face changes quickly, and her body often seems to be responding to something within the music that the audience cannot see.</p>
+    <p class="study">It would be easy to turn those gestures into an aesthetic reference. That would miss what makes them convincing.</p>
+    <p class="study">She does not appear to be decorating the song with movement. The body seems involved in discovering the song again. A phrase passes through the shoulders; a rhythm changes her posture; a feeling becomes credible because she has allowed it to occupy more than the voice.</p>
+    <p class="study">There is also an unusual absence of self-consciousness in the movement. A gesture tends to arrive before the second-guessing does, and because the feeling has already passed through the body, it reads as true rather than presented. Wonder, anger, innocence and moral seriousness can all occupy her physically without first being managed.</p>
+    <p class="study">This may be particularly relevant to music that contains tenderness or hope. Those emotions are sometimes performed cautiously because the artist is afraid of appearing sentimental—and the caution then becomes more noticeable than the feeling. A body already inside the song has less room to hedge.</p>
+    <p class="study">The experiment is not to imitate AURORA's gestures or her natural imagery. It is to see what happens when a song is rehearsed as a physical experience rather than only a vocal one. The body may reveal where the singer is still holding back.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=4vdBorK67tk" target="_blank" rel="noopener" data-embed="4vdBorK67tk"><img loading="lazy" src="https://i.ytimg.com/vi/4vdBorK67tk/hqdefault.jpg" alt="AURORA - Nothing is Eternal, a short documentary filmed in Bergen"><span class="pb">▶</span></a><div class="cl"><b>Where it comes from</b>—eleven minutes in Bergen, on the childhood world behind the music. <a href="https://www.youtube.com/watch?v=4vdBorK67tk" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=d_HlPboLRL8" target="_blank" rel="noopener">Runaway</a>, <a href="https://www.youtube.com/watch?v=MUIIkBZVzTU" target="_blank" rel="noopener">The Seed</a> and <a href="https://www.youtube.com/watch?v=K17df81RL9Y" target="_blank" rel="noopener">Cure for Me</a>.<span class="then"><span class="tl">Then explore</span><a href="https://songexploder.net/aurora" target="_blank" rel="noopener">Song Exploder</a>—how "Runaway" grew from demo to finished record.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARRYING FORWARD ============ -->
+<section id="forward" class="wrap">
+  <h2>What may be worth carrying forward</h2>
+  <p>These artists do not point towards one kind of identity, or one route to it.</p>
+  <ul class="roll">
+    <li><b>James Blake</b> makes feeling audible through production.</li>
+    <li><b>Sufjan Stevens</b> lets a precise memory carry more weight than a general declaration.</li>
+    <li><b>Bon Iver</b> changes the musical language while protecting something recognisable underneath it.</li>
+    <li><b>Damiano David</b> shows that reinvention can begin by removing an identity that has become restrictive.</li>
+    <li><b>070 Shake</b> allows instability to remain part of the voice.</li>
+    <li><b>Isak Danielson</b> stays with emotional directness without apologising for it.</li>
+    <li><b>The xx</b> use absence to reveal a relationship.</li>
+    <li><b>Billie Eilish</b> understands how close a recorded voice can feel.</li>
+    <li><b>Olivia Rodrigo</b> lets the writing hold together music that moves between restraint and release.</li>
+    <li>With <b>AURORA</b>, the feeling does not stop at the voice; it moves through the whole body.</li>
+  </ul>
+  <p>What seems to connect these artists is that they did not smooth out every uncertainty too early.</p>
+  <p>A restrained voice, an awkward presence, a mix of registers, or a visual world that feels slightly out of step can all look like problems at first. Some may need work. Others may be the beginning of the identity.</p>
+  <p>It may be more useful to look back at what keeps returning in the work without being planned: a certain tenderness, distance in the voice, or tension between reserve and imagination.</p>
+  <p>The order does not seem to be fixed. For some it begins with attention—staying with something quiet until it becomes unmistakable. For others it begins in motion—making enough work, following whatever keeps pulling forward, and recognising the shape only afterwards. Either way, what accumulates is less a planned identity than a body of choices that slowly begin to sound like one person.</p>
+  <p>There may be no need to name it yet.</p>
+</section>
+
+<div class="wrap">
+  <div class="colophon">
+    <p class="by">Compiled and edited by Nishant Bhaskar. Drafted with AI assistance; the selection, structure, and judgment calls are mine.</p>
+  </div>
+</div>
+
+<footer>
+  Board One · Finding the Artist · July 2026 · Ten artists, two questions.
+</footer>
+
+<script>
+  // Thumbnails open the video on YouTube in a new tab (the anchors' own href).
+  // In-page embedding is not used: YouTube's player refuses to load from a
+  // local file:// page (Error 153), so a direct link is the reliable route.
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.chnav a[href^="#"]'));
+    var map = {}; links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var link = map[en.target.id];
+          if (link){ link.classList.add('active'); link.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'}); }
+        }
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    sections.forEach(function(s){ obs.observe(s); });
+  })();
+</script>
+
+</body>
+</html>

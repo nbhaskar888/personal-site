@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Two—Taking the Artist into the World</title>
+<style>
+  :root{
+    --bg:#0b0c11; --panel:#14151c; --ink:#e9eaf0; --muted:#9a9db2; --line:#262a36;
+    --c1:#5b8def; --c2:#a679e0; --c3:#d99a2b;
+    --serif:Georgia,'Times New Roman',serif; --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.68;-webkit-text-size-adjust:100%}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  section.ch,#forward{scroll-margin-top:58px}
+
+  header.hero{padding:88px 0 46px;text-align:center;background:radial-gradient(ellipse at 50% -20%,#171a2e 0%,var(--bg) 70%)}
+  .hero .kicker{font-family:var(--sans);letter-spacing:.25em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+  .hero h1{font-size:clamp(32px,6vw,54px);font-weight:400;margin:14px 0 12px;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic}
+  .hero .sub{color:var(--muted);max-width:620px;margin:0 auto;font-size:17px;font-style:italic}
+
+  nav.chnav{position:sticky;top:0;z-index:50;background:rgba(11,12,17,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.chnav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav.chnav .wrap::-webkit-scrollbar{display:none}
+  nav.chnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-decoration:none;color:var(--muted);
+    padding:6px 13px;border:1px solid var(--line);border-radius:999px;white-space:nowrap;transition:all .2s}
+  nav.chnav a:hover{color:var(--ink);border-color:var(--muted)}
+  nav.chnav a.active{color:#0b0c11;background:var(--ink);border-color:var(--ink);font-weight:700}
+
+  .intro{padding:54px 0 8px}
+  .intro p{max-width:720px;margin:0 auto 18px;font-size:17px;color:#ccd0dd}
+  .intro p.q-list{font-style:italic;color:var(--ink)}
+  .intro p strong{color:var(--ink)}
+
+  section.ch{padding:66px 0 54px;border-top:1px solid var(--line);margin-top:50px}
+  .ch-head .num{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.22em;padding:5px 12px;border-radius:4px;color:#0b0c11;display:inline-block}
+  .ch-head h2{font-size:clamp(24px,4vw,34px);font-weight:400;margin:12px 0 4px}
+  .ch-intro{color:#ccd0dd;max-width:740px;margin:14px 0 8px}
+  .ch-intro+.ch-intro{margin-top:0}
+
+  .model{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:0 12px 12px 0;padding:22px 24px;margin:28px 0}
+  .model h3{font-family:var(--sans);font-size:19px;margin-bottom:3px}
+  .model .move{font-style:italic;font-size:16px;display:block;margin-bottom:14px}
+  .model p.study{color:#ccd0dd;font-size:15.5px;max-width:720px}
+  .model p.study+p.study{margin-top:11px}
+
+  .mrow{display:grid;grid-template-columns:1fr 322px;gap:30px;align-items:start;margin-top:20px}
+  .mrow .start{order:1;margin-top:0;max-width:440px}
+  .mrow .clip{order:2}
+  .clip{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#000}
+  .clip .pframe{display:block;position:relative;padding-top:56.25%;background:#000;cursor:pointer}
+  .clip .pframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .2s}
+  .clip .pframe:hover img{opacity:1}
+  .clip .pb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:38px;
+    background:rgba(210,30,30,.88);border:1px solid rgba(255,255,255,.4);border-radius:9px;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;pointer-events:none;transition:transform .2s}
+  .clip .pframe:hover .pb{transform:translate(-50%,-50%) scale(1.08)}
+  .clip .cl{font-family:var(--sans);font-size:14px;color:var(--muted);padding:9px 13px;line-height:1.5;background:var(--panel)}
+  .clip .cl b{color:var(--ink)}
+  .clip .cl a{color:#aeb4cc;text-decoration:none;border-bottom:1px dotted #4a4e5e}
+  .start{font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--muted);margin-top:12px}
+  .start b{color:#aeb4cc;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:8px}
+  .start a{color:#dfe2ee;text-decoration:none;border-bottom:1px dotted #4a4e5e}
+  .start a:hover{color:#fff;border-bottom-color:#aeb4cc}
+  .start .then{display:block;margin-top:10px;color:#9a9db2}
+  .start .then .tl{color:#aeb4cc;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;margin-right:7px}
+
+  .closer{margin:36px 0 4px;padding:18px 22px;background:#12141c;border:1px solid var(--line);border-radius:12px;max-width:760px}
+  .closer h4{font-family:var(--serif);font-style:italic;font-size:18px;font-weight:400;margin-bottom:10px}
+  .closer p{color:#ccd0dd;font-size:15px}
+  .closer p+p{margin-top:9px}
+
+  #c1 .num{background:var(--c1)} #c1 .model{border-left-color:var(--c1)} #c1 .move,#c1 .closer h4{color:#9db8f5}
+  #c2 .num{background:var(--c2)} #c2 .model{border-left-color:var(--c2)} #c2 .move,#c2 .closer h4{color:#c7a6f2}
+  #c3 .num{background:var(--c3)} #c3 .model{border-left-color:var(--c3)} #c3 .move,#c3 .closer h4{color:#f0c25a}
+
+  #forward{padding:76px 0 30px;border-top:1px solid var(--line);margin-top:60px}
+  #forward h2{font-size:28px;font-weight:400;margin-bottom:20px}
+  #forward p{max-width:740px;color:#ccd0dd;margin-bottom:15px}
+
+  .colophon{max-width:700px;margin:52px auto 0;padding:16px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px;text-align:center}
+  .colophon .by{font-family:var(--sans);font-size:13.5px;color:#ccd0dd;line-height:1.55}
+  footer{padding:34px 0 60px;color:var(--muted);font-family:var(--sans);font-size:12.5px;text-align:center}
+
+  @media(max-width:720px){
+    .mrow{grid-template-columns:1fr;gap:16px}
+    .mrow .start{max-width:none}
+    .wrap{padding:0 18px}
+    header.hero{padding:56px 0 34px}
+    section.ch{padding:46px 0 40px;margin-top:34px}
+    .model{padding:16px 16px}
+    .model p.study{font-size:15px}
+    .closer{padding:16px;margin:26px 0 4px}
+  }
+  @media print{
+    body{background:#fff;color:#1a1712}
+    .clip,.pframe{display:none}
+    .mrow{display:block}
+    .mrow .start{max-width:none}
+    nav.chnav{display:none}
+    .model,.closer{break-inside:avoid;border-color:#bbb}
+  }
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  .backnav{padding:20px 0 0}
+  .backnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--muted);text-decoration:none;display:inline-block;padding:6px 2px;transition:color .18s ease}
+  .backnav a:hover{color:var(--ink)}
+  @media print{.backnav{display:none}}
+</style>
+</head>
+<body id="top">
+<div class="wrap backnav"><a href="/music">← On Music</a></div>
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Board Two</div>
+    <h1>Taking the Artist into the <em>World</em></h1>
+    <p class="sub">Audience, visual language, and the life that forms around the songs</p>
+  </div>
+</header>
+
+<nav class="chnav">
+  <div class="wrap">
+    <a href="#c1">01 · How audiences enter</a>
+    <a href="#c2">02 · The song's world</a>
+    <a href="#c3">03 · The career</a>
+    <a href="#forward">Carrying forward</a>
+  </div>
+</nav>
+
+<div class="intro wrap">
+  <p>A song can be finished long before anyone knows how it should enter the world.</p>
+  <p>Then another set of questions begins. They are usually filed under promotion, which makes them sound like tidying up after the real work.</p>
+  <p class="q-list">How much of the process should people see? Does the music need explaining, or simply a better door into it? What should the artist wear, show, say or leave alone? How close should the audience be allowed to come?</p>
+  <p>Some of these questions arrive around a release. Others take years to answer. Who controls when the work comes out? Which opportunities help the work grow, and which slowly pull it away from its centre? What kind of career leaves enough energy and curiosity for another record?</p>
+  <p>The artists here have found very different ways through that territory.</p>
+  <p><strong>Letting people in.</strong> Drake shows how an artist's emotional language can travel without being reduced to marketing. Prateek Kuhad allows the songs to move across places without overexplaining where they belong.</p>
+  <p><strong>Building the world.</strong> FKA twigs explores how clothing, movement and image can deepen a feeling. Troye Sivan lets an intimate emotional language become more physical and public. Stromae builds a wider creative grammar around difficult material.</p>
+  <p><strong>Growing the career.</strong> Jessie Ware, Avicii and Peter Cat Recording Co. offer three very different ways of thinking about how a career grows—and what it may ask of the artist in return.</p>
+  <p>None of these paths transfers cleanly. They may still loosen the imagination a little.</p>
+</div>
+
+<!-- ============ 01 ============ -->
+<section class="ch wrap" id="c1">
+  <div class="ch-head">
+    <span class="num">SECTION 01</span>
+    <h2>How does the audience enter?</h2>
+  </div>
+  <p class="ch-intro">There is no single way to bring an audience closer.</p>
+  <p class="ch-intro">Sometimes the invitation comes through openness: an artist allows humour, awkwardness or contradiction to remain visible. Sometimes it comes through restraint, leaving enough space for the songs to travel without explaining every part of the person behind them.</p>
+  <p class="ch-intro">Drake and Prateek Kuhad offer almost opposite versions of this.</p>
+
+  <div class="model">
+    <h3>Drake</h3>
+    <span class="move">When the identity is naturally built to travel</span>
+    <p class="study">Drake's compatibility with internet culture begins inside the songs.</p>
+    <p class="study">"Hotline Bling" turns jealousy, nostalgia and mild emotional pettiness into something warm, catchy and strangely comforting. It sounds relaxed. The narrator is not.</p>
+    <p class="study">The production is sparse: a looping organ, rounded bass, restrained percussion and a voice left almost alone in the middle. The repetition feels like someone returning to the same memory and finding nothing new, but returning anyway.</p>
+    <p class="study">The emotional position is equally unsettled. Drake misses the woman, but he also misses the version of her who needed him. Vulnerability and entitlement sit beside each other without being resolved. He can sound wounded, judgemental, nostalgic and self-important within the same song.</p>
+    <p class="study">This ambiguity is part of the identity. Drake reveals insecurity without entirely surrendering status. The songs feel emotionally open, but the artist remains aware that he is still Drake.</p>
+    <p class="study">That same emotional language travels easily online. Late-night jealousy, bruised pride and romantic nostalgia can live inside a complete song, but they can also survive as one line, one expression or one reaction image.</p>
+    <p class="study">"Hotline Bling" is the clearest example. The video is stylish, but the dancing is loose and awkward enough to imitate. When the internet turned frames from the video into memes, the jokes became part of the song's public life. The images soon began circulating independently of the track.</p>
+    <p class="study">This is more revealing than the advice to manufacture "shareable moments." What naturally travels in the artist's emotional language&mdash;a particular expression, dry humour, an awkward gesture, a phrase people recognise from their own lives?</p>
+    <p class="study">A carefully designed world need not be opened completely. It may simply need one part that the audience is allowed to touch.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=eCQLUIUJHiA" target="_blank" rel="noopener" data-embed="eCQLUIUJHiA"><img loading="lazy" src="https://i.ytimg.com/vi/eCQLUIUJHiA/hqdefault.jpg" alt="Hotline Bling memes and parodies"><span class="pb">▶</span></a><div class="cl"><b>In the culture</b>—the memes and parodies that grew around the "Hotline Bling" video. <a href="https://www.youtube.com/watch?v=eCQLUIUJHiA" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=uxpDa-c-4Mc" target="_blank" rel="noopener">Hotline Bling</a>, <a href="https://www.youtube.com/watch?v=fHR1CZ9x61E" target="_blank" rel="noopener">Passionfruit</a> and <a href="https://www.youtube.com/watch?v=DRS_PpOrUZ4" target="_blank" rel="noopener">In My Feelings</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Prateek Kuhad</h3>
+    <span class="move">Letting the songs travel without explaining too much</span>
+    <p class="study">Prateek Kuhad's music has travelled widely without requiring much explanation around where it belongs.</p>
+    <p class="study">The songs are intimate, restrained and emotionally legible. The writing and arrangements do not insist on performing "Indianness" for an international listener, but neither do they seem anxious about leaving India behind.</p>
+    <p class="study">"cold/mess" appearing on Barack Obama's favourite music list in 2019 became the highly visible moment in that story. By then Kuhad had already been touring internationally and developing an audience through intimate, carefully recorded songwriting.</p>
+    <p class="study">The Obama mention is useful as punctuation, not as an explanation. It did not give the song a global quality. It revealed that the song had already travelled.</p>
+    <p class="study">There is another kind of freedom in not asking every song to explain where it came from.</p>
+    <p class="study">Kuhad has spoken about wanting the focus to remain on the songwriting rather than on the fact that he is Indian. That is not the same as trying to leave India out of the work. His songs move between English and Hindi, and the place and musical culture he came through inevitably form part of what shaped him.</p>
+    <p class="study">But none of those things has to become the subject every time.</p>
+    <p class="study">That becomes especially noticeable when the music travels. Kuhad has spoken about how easily music from India can still be reduced abroad to familiar ideas of Bollywood or Indian classical music. His own catalogue quietly makes that picture harder to maintain. It does not spend much time arguing with the stereotype. It simply exists outside it.</p>
+    <p class="study">Perhaps place can work like that too. It can shape an artist without having to announce itself in every song. Sometimes allowing the work to travel on its own terms says more about where it comes from than explaining the connection in advance.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=_60uK6zldC4" target="_blank" rel="noopener" data-embed="_60uK6zldC4"><img loading="lazy" src="https://i.ytimg.com/vi/_60uK6zldC4/hqdefault.jpg" alt="Prateek Kuhad on his 2019 India tour"><span class="pb">▶</span></a><div class="cl"><b>Stories from the road</b>—Prateek Kuhad on his 2019 India tour and first sold-out show. <a href="https://www.youtube.com/watch?v=_60uK6zldC4" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=Il7Nv270zNk" target="_blank" rel="noopener">cold/mess</a>, <a href="https://www.youtube.com/watch?v=BmUe3-sfr7E" target="_blank" rel="noopener">Kasoor</a> and <a href="https://www.youtube.com/watch?v=U2SVCCENLjE" target="_blank" rel="noopener">Co2</a>.</p>
+    </div>
+  </div>
+
+  <div class="closer">
+    <h4>There is no correct amount of access</h4>
+    <p>Drake leaves one part of his image open for the audience to play with. Prateek Kuhad largely allows the songs to travel without explaining their geography. Both create closeness—one through openness, one through restraint—but they reveal very different things.</p>
+    <p>What creates closeness will differ from artist to artist. For some it may be talking about the craft; for others, humour, performances, references or fragments of everyday life. Some preserve intimacy by saying relatively little. The useful form of access is probably the one that still feels natural after the first campaign is over.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section class="ch wrap" id="c2">
+  <div class="ch-head">
+    <span class="num">SECTION 02</span>
+    <h2>What world does the song belong to?</h2>
+  </div>
+  <p class="ch-intro">Sometimes the song arrives before the rest of the world does.</p>
+  <p class="ch-intro">The feeling may already be clear while everything around it is still uncertain. What should the artist wear? Should the body move or stay still? Does the song belong in a bare room, under dramatic light, among other people, or somewhere stranger?</p>
+  <p class="ch-intro">Images, movement, styling and performance can begin to answer those questions. At their best, they do not decorate the music so much as reveal another part of what was already there.</p>
+  <p class="ch-intro">There is no need for every choice to agree. A world can become lifeless when every image explains the same idea too perfectly.</p>
+
+  <div class="model">
+    <h3>FKA twigs</h3>
+    <span class="move">When clothes become part of the feeling</span>
+    <p class="study">There are FKA twigs images in which the clothes seem almost inseparable from the emotional state of the person wearing them.</p>
+    <p class="study">At different moments, the body can look exposed, protected, severe, fragile, ceremonial or strangely removed from ordinary life. The clothes do not simply tell us what kind of artist we are looking at. They alter the way the body itself is understood.</p>
+    <p class="study">That relationship becomes clearer when the clothes have to move.</p>
+    <p class="study">A costume for Glastonbury was hand-sewn by her mother and built to survive the performance. Twigs has also spoken plainly about a heavily structured Grammy gown that restricted her movement. One look allowed the body to do what the music asked of it; another beautiful object made the body less free.</p>
+    <p class="study">There are smaller histories inside the styling too. A shrug she had owned since she was fourteen later appeared at a Central Saint Martins show. When a bleaching accident burnt her skin before the Mercury Prize, beads were positioned around what had happened rather than pretending it had not.</p>
+    <p class="study">Seen together, these details make the visual world feel less like a sequence of completed images and more like an ongoing conversation between clothes, bodies, accidents, memory and performance.</p>
+    <p class="study">Something similar happens through collaboration. Jesse Kanda, for instance, returns across different periods even as the surface changes dramatically. Over time, collaborators begin to understand how an artist sees. That familiarity can create continuity without requiring the same visual language each time.</p>
+    <p class="study">What becomes interesting after a while is not simply how good the clothes look. It is how differently the person inside them can feel.</p>
+    <p class="study">A piece of clothing can make vulnerability seem almost defiant. Tailoring can make softness more precise. Something delicate can become severe once the body begins to move. A look can hold contradictions that would become clumsy if they had to be explained in words.</p>
+    <p class="study">Perhaps that is one reason styling can matter so much around music. Before it establishes an aesthetic, it can change the emotional temperature of a body.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=df8NZzB3l-o" target="_blank" rel="noopener" data-embed="df8NZzB3l-o"><img loading="lazy" src="https://i.ytimg.com/vi/df8NZzB3l-o/hqdefault.jpg" alt="FKA twigs breaks down 18 looks for British Vogue"><span class="pb">▶</span></a><div class="cl"><b>What the clothes were doing</b>—eighteen looks, and what each one was asked to carry. <a href="https://www.youtube.com/watch?v=df8NZzB3l-o" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=YkLjqFpBh84" target="_blank" rel="noopener">Cellophane</a> and <a href="https://www.youtube.com/watch?v=cNbFc-fa-ww" target="_blank" rel="noopener">Glass &amp; Patron</a>.</p>
+    </div>
+  </div>
+
+  
+
+  
+
+  <div class="model">
+    <h3>Troye Sivan</h3>
+    <span class="move">Letting private feeling become physical</span>
+    <p class="study">There has always been intimacy in Troye Sivan's work. What changes in <em>Something to Give Each Other</em> is how much of that feeling begins to move through the body.</p>
+    <p class="study">"Rush" arrives in sweat, dancing and other people. "Got Me Started" feels lighter on its feet, more playful and flirtatious. "One of Your Girls" is quieter and stranger: glamorous on the surface, but with something less settled underneath.</p>
+    <p class="study">They do not express queerness in exactly the same emotional register.</p>
+    <p class="study">Sometimes it is communal and joyful. Sometimes desire involves performance, fantasy or wanting somebody who may not want you in quite the same way. The specificity remains, but it does not always need to announce itself loudly.</p>
+    <p class="study">Dance became important inside this change.</p>
+    <p class="study">Sivan has described choreography as something that frightened him and that he had wanted to do for a long time. Learning it for "Rush" meant entering a form of expression that had previously felt less available to him.</p>
+    <p class="study">The body begins doing things the earlier work did not ask of it. It moves with other people. It flirts. It exaggerates. It becomes funny, erotic or deliberately composed. Yet the more delicate emotional instincts have not disappeared underneath all that movement.</p>
+    <p class="study">"One of Your Girls" makes this especially visible. The performance is controlled and striking, but the feeling underneath it is not uncomplicated triumph. Desire can make a person powerful and vulnerable at the same time. The visual transformation does not resolve that contradiction. It allows the contradiction to remain visible.</p>
+    <p class="study">"Rush" opens the door in another direction. The feeling leaves the private room altogether and becomes collective: bodies, pleasure, friendship and the permission to enjoy being among other people.</p>
+    <p class="study">The distance between those two songs may be more revealing than either one by itself.</p>
+    <p class="study">An inward-looking artist does not necessarily have to abandon delicacy in order to become more physical. Sometimes movement, styling or performance simply gives a feeling somewhere else to live.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=5-KP4bwS7L0" target="_blank" rel="noopener" data-embed="5-KP4bwS7L0"><img loading="lazy" src="https://i.ytimg.com/vi/5-KP4bwS7L0/hqdefault.jpg" alt="Troye Sivan on One of Your Girls"><span class="pb">▶</span></a><div class="cl"><b>Behind the video</b>—Troye Sivan on the making of "One of Your Girls." <a href="https://www.youtube.com/watch?v=5-KP4bwS7L0" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=ZhGl8McrOHo" target="_blank" rel="noopener">One of Your Girls</a>, <a href="https://www.youtube.com/watch?v=b53QJYP-lqY" target="_blank" rel="noopener">Rush</a> and <a href="https://www.youtube.com/watch?v=WjLcVqjIkLo" target="_blank" rel="noopener">Got Me Started</a>.<span class="then"><span class="tl">Then explore</span><a href="https://songexploder.net/troye-sivan" target="_blank" rel="noopener">Song Exploder</a>&mdash;the writing of "One of Your Girls."</span></p>
+    </div>
+  </div>
+
+  
+
+  
+
+  <div class="model">
+    <h3>Stromae</h3>
+    <span class="move">Design that helps difficult songs travel</span>
+    <p class="study">Stromae's creative universe extends well beyond album artwork and music videos. Mosaert, the creative house built with his collaborators and family, works across music, fashion, audiovisual direction, costumes and stage design. The elements change from project to project, but they retain a shared intelligence: controlled geometry, pattern, choreography, wit and a sense that every public surface has been considered.</p>
+    <p class="study">This coherence could easily become cold. Stromae avoids that partly because the songs contain such recognisable human discomfort: an absent father in "Papaoutai," humiliation and heartbreak in "Formidable," loneliness and suicidal thought in "L'enfer."</p>
+    <p class="study">The design does not make those subjects less serious. It gives the listener another way to approach them.</p>
+    <p class="study">"Formidable" is a good example. The video was filmed in public, with Stromae appearing drunk and emotionally unravelled on a Brussels street. The situation is tightly conceived, but the performance remains uncomfortable and human. The formal idea and the emotional mess do not cancel each other out.</p>
+    <p class="study">That balance is more valuable than simply making everything match.</p>
+    <p class="study">The part that travels is not the scale—the fashion line or permanent creative studio—but the shared grammar.</p>
+    <p class="study">Tailored forms might return while colours change. Movement may remain precise even when the emotional content is unsettled. Humour may keep appearing at the edge of serious situations. Over time, those recurring instincts make the artist's way of seeing recognisable without requiring everything to match.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=YAG6nj7Sff8" target="_blank" rel="noopener" data-embed="YAG6nj7Sff8"><img loading="lazy" src="https://i.ytimg.com/vi/YAG6nj7Sff8/hqdefault.jpg" alt="Stromae - L'enfer live performance"><span class="pb">▶</span></a><div class="cl"><b>Live</b>—"L'enfer" performed, the Mosaert design language in motion. <a href="https://www.youtube.com/watch?v=YAG6nj7Sff8" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To see and hear this in practice</b><a href="https://www.youtube.com/watch?v=oiKj0Z_Xnjc" target="_blank" rel="noopener">Papaoutai</a>, <a href="https://www.youtube.com/watch?v=S_xH7noaqTA" target="_blank" rel="noopener">Formidable</a> and <a href="https://www.youtube.com/watch?v=DO8NSL5Wyeg" target="_blank" rel="noopener">L'enfer</a>.<span class="then"><span class="tl">Then explore</span>the audiovisual world collected under <a href="https://mosaert.com/our-projects/" target="_blank" rel="noopener">Mosaert</a>.</span></p>
+    </div>
+  </div>
+
+  <div class="closer">
+    <h4>Not every release needs a universe</h4>
+    <p>The pressure to "world-build" can become another way of delaying a song. Some music naturally suggests a larger setting. Other songs gain power from remaining close to a face, a room and a particular moment. A visual idea is enough when it helps the feeling arrive. It need not establish an entire mythology.</p>
+    <p>FKA twigs begins with the body: clothes, movement and image carrying the feeling together. Troye Sivan shows how a private emotional language can become more physical and public without losing its delicacy. Stromae builds coherence through a shared creative grammar. And coherence can hold across time as well as across objects—a run of separate releases coming to feel like one continuous stretch.</p>
+    <p>These are different starting points. The right one is the point at which the music becomes clearer, not the one that creates the most impressive presentation.</p>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section class="ch wrap" id="c3">
+  <div class="ch-head">
+    <span class="num">SECTION 03</span>
+    <h2>What kind of career can the work survive?</h2>
+  </div>
+  <p class="ch-intro">A career can grow while becoming harder for the artist to inhabit.</p>
+  <p class="ch-intro">Success brings repetition. A song connects, so more songs are expected to sound like it. A performance works, so the same version of the artist is asked to appear again. Touring, promotion and collaboration expand around the work until the machinery begins deciding what the artist can afford to change.</p>
+  <p class="ch-intro">The question is not simply how to grow. It is what kind of growth leaves the person and the work with somewhere to go next.</p>
+
+  <div class="model">
+    <h3>Jessie Ware</h3>
+    <span class="move">Expanding rather than starting again</span>
+    <p class="study">Jessie Ware's early albums established her as an elegant and restrained singer. The music was often intimate, beautifully made and emotionally controlled.</p>
+    <p class="study">By her third album, <em>Glasshouse</em>, the career had begun to feel strained. Ware has spoken about losing confidence and seeking approval from people whose opinions she did not value.</p>
+    <p class="study">At roughly the same time, <em>Table Manners</em>, the food podcast she hosts with her mother, had revealed another version of her to the public: funny, warm, opinionated, hospitable and unembarrassed by appetite.</p>
+    <p class="study"><em>What's Your Pleasure?</em> brought more of that person into the music. Disco and dance production gave Ware room to be sensual, playful and theatrical without losing the sophistication of the earlier records. She has resisted describing it as a manufactured reinvention, saying it felt more like a return to something comfortable and already hers.</p>
+    <p class="study">What makes the turn especially satisfying is that Ware did not reinvent herself by trying to appear younger or more current. The new work made more room for adulthood: sensuality without coyness, glamour with humour, and a performer increasingly comfortable being camp, extravagant and occasionally ridiculous. She expanded rather than shrank as she got older.</p>
+    <p class="study">That is reassuring, because reinvention is usually presented as a demand to become someone new. Sometimes the artist does not need a new identity—the public work may simply be using too narrow a portion of the existing person.</p>
+    <p class="study">A side project can be revealing here. The thing treated as a distraction—the podcast, the private playlist, the jokes shared with friends—may contain qualities the formal project has excluded in its effort to appear coherent.</p>
+    <p class="study">The shift worked because pleasure was not pasted onto an unrelated personality. It was allowed out of the room in which it had already been living.</p>
+    <p class="study">Not every private quality belongs in public. But when a career feels increasingly airless, it may be worth looking for the part of the person that has been doing all the breathing elsewhere.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=bxV4IT499Fs" target="_blank" rel="noopener" data-embed="bxV4IT499Fs"><img loading="lazy" src="https://i.ytimg.com/vi/bxV4IT499Fs/hqdefault.jpg" alt="Bill Nighy on Table Manners with Jessie and Lennie Ware"><span class="pb">▶</span></a><div class="cl"><b>At the table</b>—<em>Table Manners</em>, the show that quietly reopened her career. This one: Bill Nighy on <em>Love Actually</em>, and why he would rather eat alone. <a href="https://www.youtube.com/watch?v=bxV4IT499Fs" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=DAMM8JVbr8g" target="_blank" rel="noopener">Say You Love Me</a>, <a href="https://www.youtube.com/watch?v=kw56LGfrf4A" target="_blank" rel="noopener">Spotlight</a> and <a href="https://www.youtube.com/watch?v=aD7F6M9fsms" target="_blank" rel="noopener">Free Yourself</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Avicii</h3>
+    <span class="move">The songwriter inside the dance record</span>
+    <p class="study">Avicii came out of electronic dance music, but he approached it with the instincts of a pop or folk songwriter. He cared deeply about tunes: melodies that could be remembered and sung after the production had stopped.</p>
+    <p class="study">His best music often carries two feelings at once. The songs are bright, direct and built for collective release, but there is frequently sadness beneath the uplift. The melodies can sound hopeful and nostalgic in the same moment.</p>
+    <p class="study">"Wake Me Up" makes that structure especially clear. The acoustic sections feel like one person's story. Strummed guitar and Aloe Blacc's weathered voice carry uncertainty, youth and the feeling of not yet knowing where life is going. When the electronic section opens out, that private uncertainty becomes communal.</p>
+    <p class="study">The drop is not only there to make the crowd jump. It carries the feeling forward after the words stop.</p>
+    <p class="study">This is why the folk and electronic elements do not feel like a novelty stitched together for attention. They are doing different emotional jobs. The verse says, <em>I do not know where I am going.</em> The instrumental response says, <em>keep moving anyway.</em></p>
+    <p class="study">When Avicii introduced this direction at the 2013 Ultra Music Festival, parts of the dance audience resisted it. The later success of "Wake Me Up" is often turned into a simple lesson about ignoring critics. The more interesting point is that the crossover already made sense inside his deeper instincts.</p>
+    <p class="study">His career carries a harder question too. The extraordinary success of the music came with an exhausting touring life, alongside serious physical illness and anxiety. He stopped touring in 2016, although he continued making music. It would be wrong to reduce his later death to one explanation, or to turn his life into a neat warning about the industry.</p>
+    <p class="study">But his story makes the gap between visible success and a liveable career difficult to ignore.</p>
+    <p class="study">Growth is not only a question of how large the audience can become. It also changes what the artist will be asked to repeat once the music connects. A song may scale almost infinitely. The person who has to keep carrying it cannot.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=qmq7UzSfr-U" target="_blank" rel="noopener" data-embed="qmq7UzSfr-U"><img loading="lazy" src="https://i.ytimg.com/vi/qmq7UzSfr-U/hqdefault.jpg" alt="The Making of Wake Me Up by Avicii"><span class="pb">▶</span></a><div class="cl"><b>The making of</b>—Avicii builds "Wake Me Up," folk songwriting meeting the festival drop. <a href="https://www.youtube.com/watch?v=qmq7UzSfr-U" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=wDuoOapZ9Z0" target="_blank" rel="noopener">Levels</a>, <a href="https://www.youtube.com/watch?v=IcrbM1l_BoI" target="_blank" rel="noopener">Wake Me Up</a>, <a href="https://www.youtube.com/watch?v=6Cp6mKbRTQY" target="_blank" rel="noopener">Hey Brother</a> and <a href="https://www.youtube.com/watch?v=WRz2MxhAdJo" target="_blank" rel="noopener">Without You</a>.</p>
+    </div>
+  </div>
+
+  <div class="model">
+    <h3>Peter Cat Recording Co.</h3>
+    <span class="move">Letting the path accumulate</span>
+    <p class="study">Peter Cat Recording Co. offers almost the opposite picture of growth from Avicii. The career accumulated slowly—across records, touring and long gaps—and the audience widened without the band making itself any tidier to describe.</p>
+    <p class="study">Its music pulls together cabaret, jazz, soul, disco, psychedelia, indie rock and old popular song, along with sounds that seem to belong to an alternative version of the past. These elements do not arrive in tidy sections. They have been absorbed into a language that feels both familiar and oddly displaced.</p>
+    <p class="study">By the time <em>BETA</em> arrived in 2024, Peter Cat Recording Co. had spent more than a decade developing that language. The album was followed by an extensive international tour, with audiences outside India already singing along to new material shortly after its release.</p>
+    <p class="study">This kind of career is difficult to turn into a quick lesson because accumulation is the lesson. A peculiar sound becomes legible across several records. A live audience deepens over repeated tours. The world becomes richer because it has been lived in for years.</p>
+    <p class="study">From outside, slow compounding is often rewritten as a breakthrough. That can make the years before the validating event look like a waiting room, when they may actually be the years in which the work is becoming itself.</p>
+    <p class="study">Peter Cat Recording Co. suggests another kind of coherence. It does not have to come from staying inside one genre. It can come from sensibility—the humour, the voice, the strange relationship between elegance and disorder—returning often enough that people begin to recognise the mind behind it.</p>
+    <p class="study">Slow growth is not automatically healthier, and obscurity is not a virtue. What matters here is that the work did not become more generic as the audience expanded. The strangeness had time to compound.</p>
+    <p class="study">A career can become larger without becoming easier to summarise.</p>
+    <div class="mrow">
+      <div class="clip"><a class="pframe" href="https://www.youtube.com/watch?v=LzhjjQGGqK0" target="_blank" rel="noopener" data-embed="LzhjjQGGqK0"><img loading="lazy" src="https://i.ytimg.com/vi/LzhjjQGGqK0/hqdefault.jpg" alt="Peter Cat Recording Co. interview"><span class="pb">▶</span></a><div class="cl"><b>In conversation</b>—Peter Cat Recording Co. on their sound, their world, and building a career on their own terms. <a href="https://www.youtube.com/watch?v=LzhjjQGGqK0" target="_blank" rel="noopener">YouTube ↗</a></div></div>
+      <p class="start"><b>To hear this in practice</b><a href="https://www.youtube.com/watch?v=ZoSD4l32m2I" target="_blank" rel="noopener">Memory Box</a>, <a href="https://www.youtube.com/watch?v=961LpbX4zCU" target="_blank" rel="noopener">Floated By</a> and <a href="https://www.youtube.com/watch?v=PVgG5OCWmNE" target="_blank" rel="noopener">People Never Change</a>.<span class="then"><span class="tl">Then explore</span>a <a href="https://www.youtube.com/watch?v=bD1WpNU4ZJs" target="_blank" rel="noopener">full-band performance live on KEXP</a>.</span></p>
+    </div>
+  </div>
+
+  <div class="closer">
+    <h4>Growth is not one shape</h4>
+    <p>Jessie Ware expanded rather than started again, letting a part of herself that already existed into the work. Avicii's story exposes how much repeated scale can ask of the person carrying it. Peter Cat Recording Co. compounded slowly, and the strangeness survived the audience getting larger.</p>
+    <p>None of the three is the correct answer, and the second is not a cautionary tale with a tidy moral. What they share is that the useful question was never simply how big the audience could become.</p>
+    <p>It is what the artist will be asked to repeat once the music connects, and whether there is still somewhere to go afterwards.</p>
+  </div>
+</section>
+
+<!-- ============ CARRYING FORWARD ============ -->
+<section id="forward" class="wrap">
+  <h2>What may be worth carrying forward</h2>
+  <p>Taking an artist into the world is not the same as making the artist more visible.</p>
+  <p>The work around a release can help people find their way into an unfamiliar sound. It can make separate songs feel connected, reveal a side of the artist that the recordings have not yet shown, and give collaborators room to add something without taking over the work.</p>
+  <p>The difficulty is that almost every useful move has an unhelpful version.</p>
+  <p>Sharing the process can become compulsory self-documentation.<br>A visual identity can become a costume.<br>World-building can become an elaborate way of avoiding what is still weak in the song.<br>Independence can become isolation.<br>Adaptability can slowly remove the qualities that made adapting worthwhile.</p>
+  <p>Across these examples, the outward moves that feel most convincing tend to begin with something already true. The emotional language is already in the song. The warmth is already somewhere in the person. The clothes, movement, collaborators or visual system help bring it into view.</p>
+  <p>Problems begin when the outward move loses that connection and starts asking the artist to maintain something that was never really theirs.</p>
+  <p>Which makes most of this less urgent than it can feel. The work often reveals what it needs more slowly than the pressure to decide arrives.</p>
+</section>
+
+<div class="wrap">
+  <div class="colophon">
+    <p class="by">Compiled and edited by Nishant Bhaskar. Drafted with AI assistance; the selection, structure, and judgment calls are mine.</p>
+  </div>
+</div>
+
+<footer>
+  Board Two · Taking the Artist into the World · July 2026 · Eight artists, three questions.
+</footer>
+
+<script>
+  // Thumbnails open the video on YouTube in a new tab (the anchors' own href).
+  // In-page embedding is not used: YouTube's player refuses to load from a
+  // local file:// page (Error 153), so a direct link is the reliable route.
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.chnav a[href^="#"]'));
+    var map = {}; links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+    var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var link = map[en.target.id];
+          if (link){ link.classList.add('active'); link.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'}); }
+        }
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    sections.forEach(function(s){ obs.observe(s); });
+  })();
+</script>
+
+</body>
+</html>
