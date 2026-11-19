@@ -1,0 +1,162 @@
+/* Side quests: the dark skin. Layered on journal.css (same components, same type), so load both.
+   Ground and greys match the music pages; one accent per kind. */
+
+:root {
+  --bg: #0e0d0b;
+  --surface: #171512;
+  --surface-alt: #1f1c18;
+  --text: #ece7dd;
+  --text-secondary: #a89f8f;
+  --border: #2c2823;
+  --ink: #ece7dd;
+  --sage: #6b7a5e;
+  /* kinds */
+  --song: #E8A33D;      /* Music */
+  --comic: #E26D5A;     /* Videos */
+  --photos: #6FA8DC;    /* Visuals */
+  --experiment: #B6C85A;/* Notes */
+  --accent: var(--clay);
+}
+html { color-scheme: dark; }
+body { background: var(--bg); color: var(--text); }
+::selection { background: var(--clay); color: var(--bg); }
+
+/* nav */
+nav.top { background: rgba(14, 13, 11, .9); }
+nav.top.is-scrolled { border-bottom-color: var(--border); }
+nav.top .brand, nav.top .links a[aria-current] { color: var(--text); }
+nav.top .brand span { color: var(--text-secondary); }
+
+/* hero */
+.journal-hero .eyebrow { color: var(--song); }
+.journal-hero h1 em { color: var(--text-secondary); }
+
+/* chips */
+.chip { color: var(--text-secondary); border-color: var(--border); background: transparent; }
+.chip .n { color: var(--text-secondary); opacity: .8; }
+.chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.chip[aria-pressed="true"] .n { color: var(--bg); opacity: .7; }
+.chip[data-value="Music"][aria-pressed="true"]       { background: var(--song); border-color: var(--song); box-shadow: 0 0 18px -4px var(--song); }
+.chip[data-value="Videos"][aria-pressed="true"]      { background: var(--comic); border-color: var(--comic); box-shadow: 0 0 18px -4px var(--comic); }
+.chip[data-value="Visuals"][aria-pressed="true"]     { background: var(--photos); border-color: var(--photos); box-shadow: 0 0 18px -4px var(--photos); }
+.chip[data-value="Notes"][aria-pressed="true"] { background: var(--experiment); border-color: var(--experiment); box-shadow: 0 0 18px -4px var(--experiment); }
+@media (hover: hover) { .chip:hover { color: var(--text); border-color: var(--text-secondary); } }
+
+/* cards: a thin coloured rule at the top, kind label in its colour */
+.entry { --k: var(--text-secondary); border-top-color: var(--border); }
+.entry[data-kind="Music"]       { --k: var(--song); }
+.entry[data-kind="Videos"]      { --k: var(--comic); }
+.entry[data-kind="Visuals"]     { --k: var(--photos); }
+.entry[data-kind="Notes"] { --k: var(--experiment); }
+.entry .meta .kind { color: var(--k); }
+.entry .tile { border-color: var(--border); background: var(--surface); }
+.entry .tile img { filter: none; }
+.entry .tile.mark .num, .entry .tile.quote::before { color: var(--k); }
+.entry .tags, .entry .deck, .entry .meta { color: var(--text-secondary); }
+.entry h3 a { color: var(--text); }
+@media (min-width: 600px) {
+  .entry { position: relative; padding-top: 14px; }
+  .entry::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 2px; background: var(--k); opacity: .9; }
+  .entry { transition: background .25s ease; }
+  /* cards are not links here: no whole-card hover; only the controls respond */
+}
+@media (max-width: 599px) {
+  .entry .tile { box-shadow: inset 0 3px 0 var(--k); }
+  .entry:active { background: color-mix(in srgb, var(--k) 10%, transparent); }
+}
+
+/* the song page's own player */
+.song-head .play audio { width: 100%; color-scheme: dark; }
+
+/* song page */
+.post .kicker .num { color: var(--song); }
+.post .kicker, .post .byline { color: var(--text-secondary); }
+.post .deck { color: var(--text-secondary); }
+.post .draft { color: var(--song); border-color: var(--song); }
+.song-head .cover { border-color: var(--border); box-shadow: 0 20px 60px -30px var(--song); }
+.song-head .facts { color: var(--text-secondary); }
+.song-head .facts a { color: var(--text); border-bottom-color: var(--border); }
+.song-head .facts a:hover { color: var(--song); border-bottom-color: var(--song); }
+.post .about { color: var(--text); }
+.post .lyrics h2::before, .post .lyrics .part { color: var(--song); }
+.post .lyrics pre { color: var(--text); }
+.post .series-nav { border-top-color: var(--border); }
+.series-nav .dir { color: var(--text-secondary); }
+.series-nav .t { color: var(--text); }
+@media (hover: hover) { .series-nav a:hover .t { color: var(--song); } }
+
+/* footer and empty state */
+footer.site { border-top-color: var(--border); color: var(--text-secondary); }
+footer.site a { color: var(--text); }
+.empty { color: var(--text-secondary); }
+
+/* brand glyph */
+nav.top .brand .glyph { font-style: normal; color: var(--song); margin-left: 2px; }
+
+/* outro: the banner and the invitation */
+.outro { margin: 72px 0 24px; border-top: 1px solid var(--border); padding-top: 28px; }
+.outro .banner { overflow: hidden; white-space: nowrap; font-family: var(--sans); font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--text-secondary); margin: 0 calc(-1 * var(--pad)); padding: 0 var(--pad); }
+.outro .banner span { display: inline-block; padding-right: 48px; }
+.outro .banner span + span { display: none; }
+@media (min-width: 600px) { .outro .banner span + span { display: inline-block; } .outro .banner span::after { content: "✳"; margin-left: 48px; color: var(--song); } }
+.outro h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 8vw, 72px); line-height: 1.02; letter-spacing: -.015em; color: var(--text); margin: 28px 0 20px; }
+.outro h2 sup { color: var(--song); font-size: .5em; vertical-align: top; }
+.outro .ask { font-size: 18px; line-height: 1.55; color: var(--text-secondary); max-width: 46ch; }
+.outro .ways { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+.outro .ways a { display: inline-block; border: 1px solid var(--text); color: var(--text); border-radius: 999px; padding: 10px 18px; font-family: var(--sans); font-size: 13px; letter-spacing: .06em; transition: all .18s ease; -webkit-tap-highlight-color: transparent; }
+.outro .ways a:active { transform: scale(.98); }
+@media (hover: hover) { .outro .ways a:hover { background: var(--song); border-color: var(--song); color: var(--bg); } }
+.outro .fn { margin-top: 28px; font-family: var(--serif); font-style: italic; color: var(--text-secondary); font-size: 15px; }
+.outro .fn sup { color: var(--song); margin-right: 2px; }
+footer.site .motto { margin-bottom: 8px; color: var(--text); font-family: var(--serif); font-style: italic; }
+
+/* player row in the kind's colour */
+.entry .player .pp { border-color: var(--border); }
+.entry .player.is-playing .pp { background: var(--k); border-color: var(--k); }
+.entry .player.is-playing .pp .ico { border-left-color: #0e0d0b; border-right-color: #0e0d0b; }
+.entry .player .seek { background: linear-gradient(to right, var(--k) var(--p, 0%), var(--border) var(--p, 0%)); }
+.entry .player .seek::-webkit-slider-thumb { background: var(--k); }
+.entry .player .seek::-moz-range-thumb { background: var(--k); }
+.tile .badge { background: rgba(14,13,11,.8); color: var(--k); }
+
+/* media pages (videos, visuals) */
+.media-post[data-kind="Videos"] .kicker .num { color: var(--comic); }
+.media-post[data-kind="Visuals"] .kicker .num { color: var(--photos); }
+.media-post figure.header .tile { aspect-ratio: auto; }
+.media-post figure.header video, .media-post figure.header img { display: block; width: 100%; height: auto; }
+.media-post figure.header video { background: #000; }
+
+/* notes: text tile on the card, the quote on the page */
+.entry[data-kind="Notes"] .tile.quote { background: color-mix(in srgb, var(--experiment) 14%, var(--surface)); border-color: color-mix(in srgb, var(--experiment) 40%, var(--border)); }
+.entry[data-kind="Notes"] .tile.quote p { color: var(--text); font-size: 17px; }
+.media-post[data-kind="Notes"] .kicker .num { color: var(--experiment); }
+.media-post figure.header .note-quote { margin: 0; padding: 28px 0 8px; border-top: 1px solid var(--border); }
+.media-post .note-quote p { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 34px); line-height: 1.3; color: var(--text); letter-spacing: -.005em; }
+.media-post .note-quote cite { display: block; margin-top: 18px; font-style: normal; font-family: var(--sans); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--experiment); }
+
+/* side-quest card: title is plain text; meta sits at the foot like the mock (descriptor left, date right) */
+.entry h3 { color: var(--text); }
+.entry .meta { justify-content: space-between; margin-top: 14px; }
+.entry .meta .date { margin-left: auto; }
+@media (max-width: 599px) { .entry .meta { margin-top: 10px; } }
+.entry .deck { -webkit-line-clamp: unset; display: block; overflow: visible; }
+.entry .note { margin-top: 12px; color: var(--text); font-size: 15px; line-height: 1.6; }
+.entry .note p + p { margin-top: 10px; }
+.entry .more { margin-top: 12px; border: 0; background: none; padding: 0; color: var(--k); font-family: var(--sans); font-size: 12px; letter-spacing: .06em; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) { .entry .more:hover { text-decoration: underline; } }
+.entry .tile.quote { position: relative; }
+.entry .tile.quote .glyph { position: absolute; right: 14px; bottom: 10px; font-size: 26px; color: var(--k); }
+@media (max-width: 599px) {
+  .entry .tile.quote p { display: none; }
+  .entry .tile.quote::before { display: none; }
+  .entry .tile.quote .glyph { position: static; font-size: 34px; }
+  .entry .tile.quote { display: flex; align-items: center; justify-content: center; }
+}
+@media (min-width: 600px) { .entry .tile.quote::before { display: none; } .entry .tile.quote { align-items: flex-start; padding: 46px 22px 40px; } .entry .tile.quote p { font-size: 16px; } }
+
+/* phones: the tile is too small for overlay controls, so the action becomes a text button in the row */
+.entry .act { display: none; margin-top: 12px; border: 0; background: none; padding: 0; color: var(--k); font-family: var(--sans); font-size: 12px; letter-spacing: .06em; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+@media (max-width: 599px) {
+  .entry .act { display: inline-block; }
+  .tile.media .watch, .tile.media .preview, .tile.media .dur { display: none; }
+}

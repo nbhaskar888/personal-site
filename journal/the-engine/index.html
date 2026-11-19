@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Engine — An Operating Manual for Releases, Discovery and Growth</title>
+<style>
+:root{
+  --paper:#faf7f1;
+  --card:#ffffff;
+  --ink:#26221c;
+  --body:#3b352c;
+  --soft:#5f584d;
+  --line:#e2dccf;
+  --a1:#2f7a5e;  /* green — the runway */
+  --a2:#8a5fae;  /* violet — content */
+  --a3:#b3552e;  /* terracotta — growth & the world */
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--paper);
+  color:var(--body);
+  font-family:var(--serif);
+  font-size:clamp(16px,1vw + 13px,18px);
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.col{max-width:760px}
+
+header.hero{padding:clamp(56px,9vw,104px) 0 clamp(32px,5vw,52px);border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--a1);margin-bottom:18px}
+h1.title{font-family:var(--serif);font-weight:400;font-size:clamp(38px,6.5vw,72px);line-height:1.04;letter-spacing:-.02em;color:var(--ink);margin-bottom:16px}
+.sub{font-size:clamp(16px,1.4vw,20px);color:var(--soft);max-width:640px;line-height:1.5;font-style:italic}
+
+nav.top{position:sticky;top:0;z-index:50;background:rgba(250,247,241,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .bar{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:10px 24px;max-width:980px;margin:0 auto}
+nav.top .bar::-webkit-scrollbar{display:none}
+nav.top a{font-family:var(--sans);font-size:11.5px;letter-spacing:.05em;color:var(--soft);text-decoration:none;white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+nav.top a.active{color:var(--paper);background:var(--ink);border-color:var(--ink);font-weight:700}
+
+section{padding:clamp(40px,6vw,68px) 0;border-top:1px solid var(--line);scroll-margin-top:58px}
+section:first-of-type{border-top:none}
+.snum{font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:11px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.015em;color:var(--ink);margin-bottom:8px}
+.tag{font-style:italic;color:var(--soft);margin-bottom:26px;max-width:640px}
+section p{margin-bottom:16px;max-width:760px}
+h3{font-family:var(--sans);font-size:16.5px;font-weight:600;color:var(--ink);margin:26px 0 10px}
+strong{color:var(--ink)}
+ul.plain{margin:0 0 16px 22px;max-width:740px}
+ul.plain li{margin-bottom:7px}
+a.ext{border-bottom:1px solid #cfc4ae;text-decoration:none}
+a.ext:hover{color:var(--a3);border-bottom-color:var(--a3)}
+
+.phase{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--a1);border-radius:0 10px 10px 0;padding:18px 22px;margin:0 0 14px;max-width:820px}
+.phase .ln{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--a1);margin-bottom:7px}
+.phase h3{margin:0 0 8px;font-size:16px}
+.phase p{margin-bottom:8px;font-size:.95em}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--a1);border-radius:0 10px 10px 0;padding:20px 24px;margin:26px 0;max-width:760px}
+.callout .cl{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:10px;color:var(--a1)}
+.callout p{margin-bottom:12px}
+.callout p:last-child{margin-bottom:0}
+.co2{border-left-color:var(--a2)}
+.co2 .cl{color:var(--a2)}
+.co3{border-left-color:var(--a3)}
+.co3 .cl{color:var(--a3)}
+
+.tbl{width:100%;border-collapse:collapse;margin:22px 0;background:var(--card);border:1px solid var(--line);font-size:.92em}
+.tbl th{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);text-align:left;padding:11px 14px;border-bottom:2px solid var(--line);font-weight:600}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td b{color:var(--ink);font-weight:600}
+
+.fest{margin:24px 0;max-width:780px}
+.fest .f{padding:14px 0;border-bottom:1px solid var(--line)}
+.fest .f:last-child{border-bottom:none}
+.fest .fn{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink)}
+.fest .fd{font-size:.93em;color:var(--body);margin-top:3px;line-height:1.55}
+
+.check{margin:22px 0;max-width:740px}
+.check li{list-style:none;padding:10px 0 10px 30px;border-bottom:1px solid var(--line);position:relative}
+.check li:last-child{border-bottom:none}
+.check li::before{content:"";position:absolute;left:2px;top:15px;width:13px;height:13px;border:2px solid var(--a2);border-radius:3px}
+
+.note{font-family:var(--sans);font-size:12.5px;color:var(--soft);line-height:1.6;border-left:2px solid var(--line);padding-left:16px;margin:24px 0;max-width:700px}
+
+footer{border-top:1px solid var(--line);padding:38px 0 56px;text-align:center}
+footer p{font-family:var(--sans);font-size:12.5px;color:var(--soft)}
+
+@media(max-width:719px){
+  .tbl,.tbl thead,.tbl tbody,.tbl tr,.tbl td,.tbl th{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl tr{border-bottom:2px solid var(--line);padding:6px 0}
+  .tbl td{border-bottom:none;padding:7px 14px}
+  .tbl td::before{content:attr(data-l);display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
+}
+@media(max-width:640px){
+  section{padding:34px 0}
+  .phase,.callout{padding:16px 18px}
+}
+@media print{
+  body{background:#fff}
+  nav.top{display:none}
+  .phase,.callout,.tbl tr,.fest .f{break-inside:avoid}
+  a{text-decoration:none}
+}
+</style>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.svg" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/favicon.svg" sizes="16x16" type="image/png">
+<link rel="shortcut icon" href="../assets/favicon.svg">
+<link rel="apple-touch-icon" href="../assets/favicon.svg">
+<style>
+  .backnav{padding:20px 0 0}
+  .backnav a{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;color:var(--soft);text-decoration:none;display:inline-block;padding:6px 2px;transition:color .18s ease}
+  .backnav a:hover{color:var(--ink)}
+  @media print{.backnav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap backnav"><a href="../index.html">← Journal</a></div>
+
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">Operating manual · Two of two</div>
+    <h1 class="title">The Engine</h1>
+    <p class="sub">Releases, discovery and the road out — the operating rhythm for the next eighteen months.</p>
+    <p class="jdate" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#a89f8f;margin-top:18px;font-style:normal">Nishant Bhaskar · 28 Aug 2026</p>
+  </header>
+</div>
+
+<nav class="top">
+  <div class="bar">
+    <a href="#open">Opening</a>
+    <a href="#s01">Release runway</a>
+    <a href="#s02">180 days</a>
+    <a href="#s03">Discovery language</a>
+    <a href="#s04">India live</a>
+    <a href="#s05">Global route</a>
+    <a href="#s06">The EPK</a>
+    <a href="#s07">Collaboration</a>
+    <a href="#s08">KPIs</a>
+    <a href="#s09">Hygiene</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="open">
+    <p class="col" style="font-size:1.1em;color:var(--ink)">The companion manual, <a href="../the-terrain/index.html" style="color:var(--ink);border-bottom:1px solid var(--line)"><strong>The Terrain</strong></a>, set up the structure: ownership, partners, deals. This one is the part you run every week — how a batch of finished songs becomes a twelve-month release campaign, a discovery rhythm, a live ladder and a six-month push outward.</p>
+    <p class="col">To make it concrete, assume you have nine finished songs and want them released over the next twelve months. That is the worked example this manual runs on — an English-first singer-songwriter lane, an India base. If your batch is six songs or twelve, stretch or compress the runway; the shape holds.</p>
+    <p class="col">One principle governs the example: <strong>momentum beats volume — but only if the rhythm is one the artist can sustain and believe in.</strong> A release plan is a set of loops, not a list of dates: release, learn, adjust, release. Platform windows matter, but they are not the reason to make an artist behave in a way that feels alien to the project.</p>
+    <p class="col">The operating sequence should be: <strong>intent → identity → audience → discovery design → channels → execution.</strong> In practice: for one artist, discovery may naturally come through funny reels and constant studio snippets. For another it may be live sessions, beautifully made short films, sparse writing, collaborations, intimate performances, listening rooms or a highly coherent visual language. The sequence exists so those choices are made from the artist outward, not from the platform inward. The pages below are a worked engine, not a template.</p>
+    <p class="col">An early-stage artist may use only a fraction of it. Start with the next real constraint — finishing the work, finding collaborators, playing rooms, releasing cleanly, or reaching the first people who care — and add machinery only when it helps.</p>
+  </section>
+
+  <section id="s01">
+    <div class="snum" style="color:var(--a1)">01 · The release runway</div>
+    <h2>Nine songs, twelve months</h2>
+    <p class="tag">Three phases: momentum, story arc, showcase lift.</p>
+    <p>Say the nine songs are mixed and mastered. Here is one way the twelve months can play out.</p>
+
+    <div class="phase">
+      <div class="ln">Phase A · Momentum — Q1–Q2</div>
+      <h3>Singles 1–3, spaced every 6–8 weeks</h3>
+      <p>If the songs and the artist can support that cadence, each single can generate a set of alternate assets — an acoustic version, a live-room video, a producer flip (a commissioned reinterpretation). The full six-format toolbox is in section 03.</p>
+      <p style="color:var(--soft)">Objective: three opportunities to learn — which songs people keep, which discovery formats fit the artist, which cities and rooms respond, and how much platform support follows.</p>
+    </div>
+    <div class="phase">
+      <div class="ln">Phase B · Story arc — Q3</div>
+      <h3>A 5–6 track EP</h3>
+      <p>Combine the earlier singles with new material and one collaboration. Drop a music video 10–14 days after the EP to sustain editorial momentum and give press and festival curators a second hook.</p>
+    </div>
+    <div class="phase">
+      <div class="ln">Phase C · Showcase lift — Q4</div>
+      <h3>A deluxe / live EP</h3>
+      <p>Two or three live versions with supporting visuals, timed to land alongside global showcase submissions.</p>
+    </div>
+
+    <div class="callout">
+      <span class="cl">Why this shape works</span>
+      <p>Singles build anticipation and give each song its own discovery window. The EP can turn a run of singles into a body of work if the songs genuinely belong together — for media, DSPs and fans, a body of work reads differently than a string of songs. The live phase extends shelf life and positions the project for performance slots. By month twelve you have a body of work with a shape — which is what press, DSPs and bookers actually assess.</p>
+      <p>Note the arithmetic: this runway releases six or seven of the nine songs. That is deliberate — hold the rest back. A second EP with nothing in reserve is how year two stalls.</p>
+      <p>The point is continuity and learning, not feeding a calendar.</p>
+    </div>
+  </section>
+
+  <section id="s02">
+    <div class="snum" style="color:var(--a1)">02 · The release runway</div>
+    <h2>The first 180 days</h2>
+    <p class="tag">A micro-plan around Single #1. Day 0 is its release day — the first row runs up to it.</p>
+    <table class="tbl">
+      <thead><tr><th>Window</th><th>Focus</th><th>Key actions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td data-l="Window"><b>The run-up (six weeks before Day 0)</b></td><td data-l="Focus">Prep &amp; Single #1</td>
+          <td data-l="Actions">Finalise the master; assign ISRC/UPC; complete rights registrations. Upload to the distributor four to five weeks out — the editorial pitch needs the track already delivered. Prepare two to four discovery assets in the artist's natural public language (section 03). Announce two-city micro-shows. Start pitching label-service partners with the early data.</td>
+        </tr>
+        <tr>
+          <td data-l="Window"><b>Days 1–90</b></td><td data-l="Focus">Single #2</td>
+          <td data-l="Actions">Release the next useful expression of the song — a live take, lyric piece, visualiser, short film or performance cut — rather than a format created only because the calendar asks for one. Film a live session in a distinctive venue. Assemble and circulate a festival-ready EPK (section 06).</td>
+        </tr>
+        <tr>
+          <td data-l="Window"><b>Days 91–150</b></td><td data-l="Focus">Single #3</td>
+          <td data-l="Actions">Release Single #3's lead asset. Stage two curated listening sessions — 100–150 capacity, designed environment, full visual production — plus one access show (open mic, smaller club, college slot) for reach. Consider a producer flip or other reinterpretation if it adds something artistically or reaches a genuinely adjacent scene. Prep EP masters, artwork and metadata.</td>
+        </tr>
+        <tr>
+          <td data-l="Window"><b>Days 151–180</b></td><td data-l="Focus">EP prep</td>
+          <td data-l="Actions">Announce the EP with a Bandcamp pre-order. Release one acoustic pre-drop. Lock the design collaborator for EP art and capsule merch. Begin global showcase submissions.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <span class="cl">The deadline that bites</span>
+      <p>Spotify's editorial pitch cutoff is seven days before release, but pitches submitted three to four weeks ahead get far more consideration — treat four weeks as your deadline, not seven days. Keep a T-30 checklist — a fixed list completed thirty days before each release day: split sheets, ISRCs, artwork, metadata, pitch submitted. (T-30 means thirty days before release; the same notation runs through this manual.) Miss it and one important pre-release discovery route is unavailable.</p>
+    </div>
+    <div class="callout">
+      <span class="cl">Hygiene is fixed; expression is not</span>
+      <p>Split sheets, metadata, delivery dates and rights admin should be systematic. The way the artist appears in public should not be. Systematise the plumbing; keep the expression alive.</p>
+    </div>
+  </section>
+
+  <section id="s03">
+    <div class="snum" style="color:var(--a2)">03 · Discovery</div>
+    <h2>The artist's discovery language</h2>
+    <p class="tag">The job is not to produce content. It is to create repeated, believable ways for the right people to encounter the artist.</p>
+    <p>Platforms reward repeat behaviour, but artists are not interchangeable media formats. The strategy should begin with the artist's intent and temperament, then choose the channels.</p>
+    <p>In this worked example, give each single roughly a four-week campaign window. The six formats below are a <strong>toolbox, not a quota</strong> — use only the ones that belong to the artist and the song.</p>
+    <table class="tbl">
+      <thead><tr><th>Asset</th><th>Format</th><th>Typical timing</th><th>Possible job</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Asset"><b>Hero</b></td><td data-l="Format">Music video or performance cut</td><td data-l="When">Launch week</td><td data-l="Job">The centrepiece; core storytelling visual</td></tr>
+        <tr><td data-l="Asset"><b>Hook</b></td><td data-l="Format">20–40s chorus-first clip</td><td data-l="When">T-14 to T-7</td><td data-l="Job">Tease the drop; hook early listeners</td></tr>
+        <tr><td data-l="Asset"><b>Story</b></td><td data-l="Format">Behind-the-scenes (BTS) or writing insight</td><td data-l="When">T-10 to +7</td><td data-l="Job">Personal connection; narrative depth</td></tr>
+        <tr><td data-l="Asset"><b>Live</b></td><td data-l="Format">One-take room or venue clip</td><td data-l="When">+7 days</td><td data-l="Job">Authenticity; musician credibility</td></tr>
+        <tr><td data-l="Asset"><b>Flip</b></td><td data-l="Format">Producer or DJ reinterpretation</td><td data-l="When">+14 days</td><td data-l="Job">Freshness; reach through collaborators</td></tr>
+        <tr><td data-l="Asset"><b>Fan</b></td><td data-l="Format">User-generated content (UGC) — duets, stitches, reposts</td><td data-l="When">Ongoing</td><td data-l="Job">Participation — evidence that the audience is beginning to do something with the work</td></tr>
+      </tbody>
+    </table>
+    <table class="tbl">
+      <thead><tr><th>Discovery mode</th><th>What it can look like</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Mode"><b>Personality / process-led</b></td><td data-l="Looks like">Studio moments, humour, experiments, making-of</td></tr>
+        <tr><td data-l="Mode"><b>Performance-led</b></td><td data-l="Looks like">Live rooms, one-takes, stripped versions, touring</td></tr>
+        <tr><td data-l="Mode"><b>Visual / cinematic</b></td><td data-l="Looks like">Short films, photography, art direction, objects</td></tr>
+        <tr><td data-l="Mode"><b>Collaboration / scene-led</b></td><td data-l="Looks like">Peer acts, producers, venues, community platforms</td></tr>
+        <tr><td data-l="Mode"><b>Editorial / sparse</b></td><td data-l="Looks like">Fewer, more considered appearances, writing, interviews, high-quality releases</td></tr>
+      </tbody>
+    </table>
+    <h3>Choose a cadence the artist can inhabit</h3>
+    <p>If frequent social posting is native to the artist, build a weekly rhythm and pre-plan it. If it is not, choose a slower but more deliberate pattern and make the moments count. "Authenticity" is not an excuse for invisibility; the artist still needs a deliberate discovery system. But visibility that slowly makes the artist feel false is not sustainable either. Either way, keep a rolling calendar tied to each release's T-timeline. Plan the required assets and deadlines ahead; leave room for spontaneous material when it belongs.</p>
+  </section>
+
+  <section id="s04">
+    <div class="snum" style="color:var(--a3)">04 · The world</div>
+    <h2>The live ladder — develop before you scale</h2>
+    <p class="tag">Live is discovery and revenue, but it is also where the artist learns how to become a live artist. Months 2–10, calibrated to a singer-songwriter lane; re-rank for other lanes.</p>
+    <p>A useful progression is not "small gig → festival." It is a series of rooms: <strong>30 → 70 → 150 → 300 → 700 → larger</strong>. Each teaches something different — pacing, set construction, stage presence, sound, visual language, audience interaction and which songs actually land. Small rooms also create repeated collisions between artists, fans, organisers and future collaborators.</p>
+    <p>The festival list below is one set of targets inside that ladder, not the ladder itself.</p>
+    <div class="fest">
+      <div class="f"><div class="fn">Ziro Festival of Music</div><div class="fd">Curated discovery lineup; the performance-plus-storytelling format suits song-led sets. A natural first target.</div></div>
+      <div class="f"><div class="fn">NH7 Weekender</div><div class="fd">India's best-known indie festival brand, with real press exposure — but it books established acts and has skipped years recently. A later-stage target; confirm the edition is happening before planning around it.</div></div>
+      <div class="f"><div class="fn">Sofar Sounds India</div><div class="fd">Intimate, vetted listening rooms in cities across India. Small fees at best — take it for the room and the footage, which becomes EPK material.</div></div>
+      <div class="f"><div class="fn">Bandland (Bangalore)</div><div class="fd">Skews rock and alternative — relevant if your live set carries real band weight; the wrong room for a quiet set.</div></div>
+      <div class="f"><div class="fn">Magnetic Fields</div><div class="fd">Only viable with placement on a singer-songwriter or acoustic stage — the festival skews electronic, so curation matters.</div></div>
+    </div>
+  </section>
+
+  <section id="s05">
+    <div class="snum" style="color:var(--a3)">05 · The world</div>
+    <h2>The global route</h2>
+    <p class="tag">For the showcase-led route: you play these in months 12–18 — but you apply in months 4–10, because the windows below close long before the festival. Lead with Reeperbahn, The Great Escape and Focus Wales. Windows shown are typical — confirm current dates on each festival's site before planning around them.</p>
+    <p>There are at least two routes outward. One is <strong>showcase-led</strong>: use industry events to create relationships, representation and credibility. The other is <strong>audience-led</strong>: listeners stay with the artist for years, move across cities and countries, bring friends and partners, and gradually create pockets of demand abroad. The strongest careers may use both.</p>
+    <table class="tbl">
+      <thead><tr><th>Festival</th><th>Where / when</th><th>Typical application window</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://www.reeperbahnfestival.com" target="_blank" rel="noopener">Reeperbahn</a></b></td><td data-l="Where">Hamburg, Germany · Sep</td><td data-l="Window">Feb–May, same year</td><td data-l="Notes">A strong fit for melodic, song-led lanes; influential industry showcase with media exposure. Excellent for label and publisher networking.</td></tr>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://esns.nl" target="_blank" rel="noopener">ESNS / Eurosonic</a></b></td><td data-l="Where">Groningen, Netherlands · Jan</td><td data-l="Window">—</td><td data-l="Notes">Books European acts only — an India-based artist cannot apply. Worth attending as a delegate once you have European representation; the conference is where EU bookers actually are.</td></tr>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://greatescapefestival.com" target="_blank" rel="noopener">The Great Escape</a></b></td><td data-l="Where">Brighton, UK · May</td><td data-l="Window">Opens ~Nov, prior year; closes mid-Feb, festival year</td><td data-l="Notes">Europe's leading new-music showcase. Coordinate with two or three EU routing dates.</td></tr>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://focuswales.com" target="_blank" rel="noopener">Focus Wales</a></b></td><td data-l="Where">Wrexham, UK · May</td><td data-l="Window">Two waves: Sep and Nov, prior year</td><td data-l="Notes">Accessible discovery showcase; a good stepping stone into the UK/EU circuit.</td></tr>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://icelandairwaves.is" target="_blank" rel="noopener">Iceland Airwaves</a></b></td><td data-l="Where">Reykjavík, Iceland · Nov</td><td data-l="Window">Feb–Apr, same year</td><td data-l="Notes">Taste-driven small-venue network; ideal for A/V-leaning projects. A stretch — best after the first wave.</td></tr>
+        <tr><td data-l="Festival"><b><a class="ext" href="https://www.sxsw.com/festivals/music/" target="_blank" rel="noopener">SXSW</a></b></td><td data-l="Where">Austin, USA · Mar</td><td data-l="Window">Jun–Nov, prior year (fees rise as the deadline nears — apply early)</td><td data-l="Notes">North America's key entry point. High cost, high competition; best attempted with a US co-manager or sync agent already in place.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout co3">
+      <span class="cl">Showcases are signal events, not finish lines</span>
+      <p>The real value is the professional relationships and media credibility they unlock. Each one should feed back into stronger releases, better partnerships and more visibility. If a showcase produces no follow-up conversations, treat that as information for the next application — not just a bad night.</p>
+      <p>A showcase is not the same thing as an international audience. Do not spend heavily to "go global" simply because a festival accepts the act. Ask whether there are already listeners, scene connections, routing partners or realistic follow-up dates that can make the trip compound.</p>
+    </div>
+  </section>
+
+  <section id="s06">
+    <div class="snum" style="color:var(--a3)">06 · The world</div>
+    <h2>The EPK</h2>
+    <p class="tag">One page plus a shared folder. Update after every major show or release.</p>
+    <ul class="check">
+      <li>A 150-word global bio</li>
+      <li>A one-sentence articulation of the artist world — what makes the project recognisable beyond genre labels</li>
+      <li>Two short press quotes</li>
+      <li>Hi-res photos — portrait, live, landscape — plus logo or wordmark</li>
+      <li>Two live performance videos with properly recorded audio — a desk feed or dedicated recording, not a phone from the back — and one music video</li>
+      <li>Stage plot, input list, tech rider</li>
+      <li>A data sheet: top cities, save and repeat-listen signals, live draw, meaningful fan behaviour, sold-out shows, notable collaborations</li>
+      <li>A contact list: manager, booking, press, label-services point</li>
+    </ul>
+    <p>Keep one master EPK folder and never fork it. A festival programmer opening a stale kit with last year's numbers reads it as a signal about the operation, not just the music. Keep it current.</p>
+  </section>
+
+  <section id="s07">
+    <div class="snum" style="color:var(--a2)">07 · Collaboration</div>
+    <h2>Collaboration — what it is for</h2>
+    <p class="tag">The best collaborations do one of three things: deepen the work, deepen the world, or deepen the network around the artist.</p>
+    <ul class="plain">
+      <li><strong>Production, co-writing, musicianship — deepen the work.</strong> Work with producers, instrumentalists, arrangers and writers who can change the quality of the music, not merely add a credit. Repeated collaboration matters because tacit craft transfers by making together.</li>
+      <li><strong>Visual, design, stage — deepen the world.</strong> Treat filmmakers, designers, stylists and stage collaborators as creative co-authors when the relationship deserves it. A recurring visual collaborator — across artwork, video, stage objects or capsule merch (a small, limited merchandise drop) — can make the whole project more coherent.</li>
+      <li><strong>Producer flips and reinterpretations — extend the work selectively.</strong> Keep only when a reinterpretation opens a real sonic possibility or a genuinely adjacent scene.</li>
+      <li><strong>Sonic features — use when artistically necessary.</strong> A vocalist or producer feature only when it clearly extends the universe. Cross-promotion alone is not a reason.</li>
+      <li><strong>Peer and scene collaboration — deepen the network.</strong> A real peer relationship can create future collaborators, rooms, audience overlap, learning and belonging. Avoid audience swaps disguised as art.</li>
+    </ul>
+    <div class="callout co2">
+      <span class="cl">Build circles, not just credits</span>
+      <p>Collaborators are not only campaign assets. Repeated creative relationships can raise standards, transfer tacit knowledge, open future opportunities and make the career less solitary. Credit genuine contributors properly; it expands the circle of people who feel invested in the work.</p>
+    </div>
+  </section>
+
+  <section id="s08">
+    <div class="snum" style="color:var(--a1)">08 · Measurement</div>
+    <h2>KPIs worth tracking</h2>
+    <p class="tag">Track three different things: <strong>reach, retention and relationship</strong>. The worked targets are directional, not a definition of success.</p>
+    <table class="tbl">
+      <thead><tr><th>Metric</th><th>Target</th><th>Why this one</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Metric"><b>Monthly listeners</b></td><td data-l="Target">25–35K</td><td data-l="Why">Parity with the middle band of the scene's ladder — roughly where partner conversations get easier. Not a gate; artists well below this play festivals and get editorial.</td></tr>
+        <tr><td data-l="Metric"><b>Spotify save rate</b></td><td data-l="Target">6–8%</td><td data-l="Why">Saves divided by listeners, from Spotify for Artists. A retention signal — it matters more than raw listeners; discovery without saves is rented attention.</td></tr>
+        <tr><td data-l="Metric"><b>Repeat-listen ratio</b></td><td data-l="Target">Track at 3 / 6 / 12 months</td><td data-l="Why">Catalogue stickiness — tells you whether each song is a single or part of a world.</td></tr>
+        <tr><td data-l="Metric"><b>Discovery asset travel</b></td><td data-l="Target">Track by format; no universal threshold</td><td data-l="Why">Did any artist-native format travel beyond the existing audience? Compare performance clips with visual work, process, collaborations or short-form rather than assuming Reels are the answer.</td></tr>
+        <tr><td data-l="Metric"><b>Fan behaviour</b></td><td data-l="Target">Track trend at 3 / 6 / 12 months</td><td data-l="Why">Repeat attendance, people bringing friends, direct fan contacts, merch and physical purchases, replies, user participation — evidence that attention is becoming relationship.</td></tr>
+        <tr><td data-l="Metric"><b>Live draw</b></td><td data-l="Target">150–200 cap sold out at home; 80–120 in two other cities</td><td data-l="Why">Curated traction over scale. Small and sold out beats large and half-empty — for the room, the photos and the story.</td></tr>
+        <tr><td data-l="Metric"><b>Press</b></td><td data-l="Target">1 long-form feature + 2–3 mentions</td><td data-l="Why">Long-form beats mentions for credibility; it's what partners actually read.</td></tr>
+        <tr><td data-l="Metric"><b>Editorial / showcase</b></td><td data-l="Target">1 editorial playlist inclusion + 1 festival invite</td><td data-l="Why">Tastemaker validation — the external signal the rest of the system trusts.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <span class="cl">Reach is not relationship</span>
+      <p>A useful progression is <strong>audience → fans → community</strong>. Audience is reach. Fans come back. Community begins when people feel some belonging around the artist and the work. You do not need to manufacture community; the point is simply to notice when attention is becoming something deeper.</p>
+    </div>
+  </section>
+
+  <section id="s09">
+    <div class="snum" style="color:var(--a1)">09 · Process</div>
+    <h2>Process hygiene</h2>
+    <p class="tag">Five habits that make the whole engine compound.</p>
+    <ul class="plain">
+      <li><strong>A release control sheet.</strong> One document with dates, assets, budgets and statuses. If it isn't on the sheet, it isn't happening.</li>
+      <li><strong>A post-mortem after every drop.</strong> What connected, what didn't, what to replicate next cycle. Twenty minutes, written down, before the next campaign starts.</li>
+      <li><strong>Sprints inside a long game.</strong> Each release is a sprint; the career is not.</li>
+      <li><strong>Automate the middle.</strong> Use software and AI for notes, calendars, asset tracking, metadata checks, reporting, research, follow-ups and organisational memory. Keep song choice, identity, important collaborators, artist-world decisions and career judgment human-led.</li>
+      <li><strong>Protect creative blocks.</strong> Cluster operational work and meetings rather than allowing the release machine to leak into every day. The engine exists to support the work, not to occupy all the time between releases.</li>
+    </ul>
+    <div class="callout">
+      <span class="cl">The closing thought</span>
+      <p>Information is rarely the bottleneck. The useful loop still has to run: <strong>release, encounter people, learn, adjust, release.</strong> But repeatability is not the final goal. The real test is year three: whether the artist can still run the loop without it flattening the work or exhausting the person inside it.</p>
+    </div>
+    <p class="note">Application windows move every year — re-check every date in section 05 before planning around it. The loop itself — momentum phases, the T-30 checklist, post-mortems — should outlast the specifics.</p>
+  </section>
+
+</div>
+
+<div class="wrap">
+  <footer>
+    <p>The Engine · Operating manual, two of two · Companion: The Terrain — the system, the partners, the deals.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var links = [].slice.call(document.querySelectorAll('nav.top a[href^="#"]'));
+  var map = {}; links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+  var sections = Object.keys(map).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var link = map[en.target.id];
+        if (link){ link.classList.add('active'); link.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'}); }
+      }
+    });
+  }, {rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(function(s){ obs.observe(s); });
+})();
+</script>
+
+</body>
+</html>
