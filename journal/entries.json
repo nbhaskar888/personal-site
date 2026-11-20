@@ -1,0 +1,233 @@
+{
+  "site": {
+    "title": "Journal — Nishant Bhaskar",
+    "url": "https://nbhas.xyz/journal/",
+    "description": "Essays, songs, comics and notes. New ventures, old questions.",
+    "author": "Nishant Bhaskar",
+    "kinds": [
+      "Essay",
+      "Note",
+      "Music",
+      "Videos",
+      "Notes",
+      "Visuals"
+    ],
+    "tags": [
+      "culture",
+      "music",
+      "technology",
+      "ai",
+      "venture-building",
+      "spirituality",
+      "experiments",
+      "suno",
+      "kids",
+      "side-quests"
+    ]
+  },
+  "series": {
+    "india-culture": {
+      "title": "India, culture and the world",
+      "num": "०१",
+      "deck": "Four essays on taste, value, tradition and who builds the institutions that make them stick."
+    }
+  },
+  "entries": [
+    {
+      "slug": "who-gets-to-define-taste",
+      "kind": "Essay",
+      "title": "Who Gets to Define Taste?",
+      "deck": "A beer book, a mango, a jaggery sold like a wine, and the question of why India's depth so rarely gets written down for strangers.",
+      "date": "2026-11-20",
+      "tags": [
+        "culture"
+      ],
+      "series": "india-culture",
+      "part": 1,
+      "image": "who-gets-to-define-taste/header.jpg",
+      "image_alt": "Mango plate from Hortus Malabaricus, 1683, the fruit painted blue"
+    },
+    {
+      "slug": "recognition-is-not-value",
+      "kind": "Essay",
+      "title": "Recognition Is Not Value",
+      "deck": "822 GI tags, a book about Kolkata's kitchens, and the loop that keeps makers poor.",
+      "date": "2026-12-05",
+      "tags": [
+        "culture",
+        "venture-building"
+      ],
+      "series": "india-culture",
+      "part": 2,
+      "image": "recognition-is-not-value/header.jpg",
+      "image_alt": "Tanjore painting of a weaver at his loom, c.1840",
+      "status": "unlisted"
+    },
+    {
+      "slug": "when-tradition-meets-the-market",
+      "kind": "Essay",
+      "title": "When Tradition Meets the Market",
+      "deck": "A modak at Ringo, a sparkler left in the sun, and what happens to a tradition when you make it valuable.",
+      "date": "2026-12-11",
+      "tags": [
+        "culture"
+      ],
+      "series": "india-culture",
+      "part": 3,
+      "image": "when-tradition-meets-the-market/header.jpg",
+      "image_alt": "A dim room at Edge City, Goa, lit red and purple, people seated on the floor",
+      "status": "unlisted"
+    },
+    {
+      "slug": "who-builds-cultural-authority",
+      "kind": "Essay",
+      "title": "Who Builds Cultural Authority?",
+      "deck": "An art fair, a French town with a 400-year-old sweet, and how an institution earns its standing.",
+      "date": "2026-12-18",
+      "tags": [
+        "culture",
+        "venture-building"
+      ],
+      "series": "india-culture",
+      "part": 4,
+      "image": "who-builds-cultural-authority/header.jpg",
+      "image_alt": "A large illuminated elephant sculpture outside Art Mumbai 2026",
+      "status": "unlisted"
+    },
+    {
+      "slug": "tribes-of-sound",
+      "kind": "Essay",
+      "title": "Tribes of Sound",
+      "deck": "A cultural anthropology of popular music, 1950s to today.",
+      "date": "2026-08-20",
+      "tags": [
+        "music",
+        "culture"
+      ],
+      "image": "tribes-of-sound/header.jpg",
+      "kicker": "Long read",
+      "image_alt": "Overlapping translucent watercolor arcs in ochre, slate blue, sage, and terracotta intersecting a rounded triangular ink outline on cream paper."
+    },
+    {
+      "slug": "finding-the-artist",
+      "kind": "Note",
+      "title": "Finding the Artist",
+      "deck": "Voice, instinct, and what's already there. Ten artists, two questions.",
+      "date": "2026-08-28",
+      "tags": [
+        "music"
+      ],
+      "image": "finding-the-artist/header.jpg",
+      "kicker": "Inspiration board · 01",
+      "image_alt": "An organic, irregular terracotta watercolor circle nestled inside concentric black ink rings and muted blue and lavender arcs on cream paper."
+    },
+    {
+      "slug": "taking-the-artist-into-the-world",
+      "kind": "Note",
+      "title": "Taking the Artist into the World",
+      "deck": "Audience, visual language, and the life that forms around the songs. Eight artists, three questions.",
+      "date": "2026-08-28",
+      "tags": [
+        "music"
+      ],
+      "image": "taking-the-artist-into-the-world/header.jpg",
+      "kicker": "Inspiration board · 02",
+      "image_alt": "A sweeping black ink curve and dusty blue wash extending from a tight cluster of geometric shapes toward a soft golden horizon on cream paper."
+    },
+    {
+      "slug": "building-around-the-artist",
+      "kind": "Essay",
+      "title": "Building Around the Artist",
+      "deck": "The Indian indie ecosystem: who does what, what it costs, and what keeps an artist going.",
+      "date": "2026-08-28",
+      "tags": [
+        "music",
+        "venture-building"
+      ],
+      "image": "building-around-the-artist/header.jpg",
+      "kicker": "Operating manual · 01",
+      "image_alt": "Abstract watercolor hills in sage, sand, and terracotta resting on a stepped black ink architectural foundation beneath a single ochre circle."
+    },
+    {
+      "slug": "getting-the-work-to-people",
+      "kind": "Essay",
+      "title": "Getting the Work to People",
+      "deck": "Releases, discovery, and the road out.",
+      "date": "2026-08-28",
+      "tags": [
+        "music",
+        "venture-building"
+      ],
+      "image": "getting-the-work-to-people/header.jpg",
+      "kicker": "Operating manual · 02",
+      "image_alt": "Nine small watercolor circles in slate blue, terracotta, and charcoal arranged at rhythmic intervals along parallel horizontal ink lines."
+    },
+    {
+      "slug": "a-fun-tricky-ride",
+      "kind": "Music",
+      "title": "A fun, tricky ride",
+      "deck": "An R&B track made in Suno on my own voice, about someone whose weather changes by the minute.",
+      "date": "2026-08-31",
+      "tags": [],
+      "image": "a-fun-tricky-ride/cover.jpg",
+      "image_alt": "Cover art for A fun, tricky ride",
+      "audio": "a-fun-tricky-ride/a-fun-tricky-ride.m4a",
+      "kicker": "3:00",
+      "meta": "R&B · Suno, on my own voice",
+      "section": "sidequests"
+    },
+    {
+      "slug": "ready-for-school",
+      "kind": "Music",
+      "title": "Ready for School",
+      "deck": "Forty-seven seconds for the morning rush: shoes on, fruit finished, call the lift, the yellow bus is coming.",
+      "date": "2026-09-17",
+      "tags": [],
+      "image": "ready-for-school/cover.jpg",
+      "image_alt": "Cover art for Ready for School",
+      "audio": "ready-for-school/ready-for-school.m4a",
+      "kicker": "0:47",
+      "meta": "For the kids · Suno",
+      "section": "sidequests"
+    },
+    {
+      "slug": "kayak-in-the-pool",
+      "kind": "Videos",
+      "title": "Kayak in the pool",
+      "deck": "Thirteen seconds of paddling nowhere in particular, with a small co-pilot.",
+      "date": "2026-11-10",
+      "section": "sidequests",
+      "meta": "Phone video · 13 s",
+      "image": "kayak-in-the-pool/poster.jpg",
+      "image_alt": "Paddling a yellow kayak across a pool, with a child in a helmet riding behind",
+      "video": "kayak-in-the-pool/kayak.mp4",
+      "kicker": "0:13",
+      "tags": []
+    },
+    {
+      "slug": "the-whale-version",
+      "kind": "Visuals",
+      "title": "The whale version",
+      "deck": "Same kayak, same paddle, different ocean. The whale was never there.",
+      "date": "2026-11-18",
+      "section": "sidequests",
+      "meta": "AI image · from the pool video",
+      "image": "the-whale-version/whale.jpg",
+      "image_alt": "A kayak at sea with a humpback whale breaching behind it; an AI-made image",
+      "tags": []
+    },
+    {
+      "slug": "good-design-is-unobtrusive",
+      "kind": "Notes",
+      "title": "Good design is unobtrusive",
+      "deck": "Dieter Rams, the fifth of his ten principles. Pinned here as a working rule for everything on this site.",
+      "date": "2026-11-18",
+      "section": "sidequests",
+      "tags": [],
+      "image": null,
+      "quote": "Products fulfilling a purpose are like tools. They are neither decorative objects nor works of art.",
+      "meta": "Dieter Rams · principle 5 of 10",
+      "note": "<p>“Products fulfilling a purpose are like tools. They are neither decorative objects nor works of art. Their design should therefore be both neutral and restrained, to leave room for the user’s self-expression.”</p><p>Kept as a note rather than an essay because it needs no commentary. It’s the test for the journal’s pages, the diagrams and this side of the site: neutral and restrained, so the work and the reader have the room.</p>"
+    }
+  ]
+}
