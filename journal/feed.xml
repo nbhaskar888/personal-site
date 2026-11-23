@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Journal — Nishant Bhaskar</title>
+  <link>https://nbhas.xyz/journal/</link>
+  <atom:link href="https://nbhas.xyz/journal/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Essays, songs, comics and notes. New ventures, old questions.</description>
+  <language>en</language>
+  <lastBuildDate>Mon, 23 Nov 2026 08:26:08 GMT</lastBuildDate>
+  <item>
+    <title>Recognition Is Not Value</title>
+    <link>https://nbhas.xyz/journal/recognition-is-not-value/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/recognition-is-not-value/</guid>
+    <pubDate>Sat, 21 Nov 2026 03:30:00 GMT</pubDate>
+    <category>Essay</category>
+    <category>culture</category>
+    <category>venture-building</category>
+    <description>822 GI tags, a book about Kolkata's kitchens, and the loop that keeps makers poor.</description>
+  </item>
+  <item>
+    <title>Who Gets to Define Taste?</title>
+    <link>https://nbhas.xyz/journal/who-gets-to-define-taste/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/who-gets-to-define-taste/</guid>
+    <pubDate>Fri, 13 Nov 2026 03:30:00 GMT</pubDate>
+    <category>Essay</category>
+    <category>culture</category>
+    <description>A beer book, a mango, a jaggery sold like a wine, and the question of why India's depth so rarely gets written down for strangers.</description>
+  </item>
+  <item>
+    <title>Taking the Artist into the World</title>
+    <link>https://nbhas.xyz/journal/taking-the-artist-into-the-world/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/taking-the-artist-into-the-world/</guid>
+    <pubDate>Fri, 07 Aug 2026 03:30:00 GMT</pubDate>
+    <category>Note</category>
+    <category>music</category>
+    <description>Audience, visual language, and the life that forms around the songs. Eight artists, three questions.</description>
+  </item>
+  <item>
+    <title>Finding the Artist</title>
+    <link>https://nbhas.xyz/journal/finding-the-artist/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/finding-the-artist/</guid>
+    <pubDate>Wed, 29 Jul 2026 03:30:00 GMT</pubDate>
+    <category>Note</category>
+    <category>music</category>
+    <description>Voice, instinct, and what's already there. Ten artists, two questions.</description>
+  </item>
+  <item>
+    <title>Tribes of Sound</title>
+    <link>https://nbhas.xyz/journal/tribes-of-sound/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/tribes-of-sound/</guid>
+    <pubDate>Mon, 20 Jul 2026 03:30:00 GMT</pubDate>
+    <category>Essay</category>
+    <category>music</category>
+    <category>culture</category>
+    <description>A cultural anthropology of popular music, 1950s to today.</description>
+  </item>
+  <item>
+    <title>Getting the Work to People</title>
+    <link>https://nbhas.xyz/journal/getting-the-work-to-people/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/getting-the-work-to-people/</guid>
+    <pubDate>Mon, 13 Apr 2026 03:30:00 GMT</pubDate>
+    <category>Essay</category>
+    <category>music</category>
+    <category>venture-building</category>
+    <description>Releases, discovery, and the road out.</description>
+  </item>
+  <item>
+    <title>Building Around the Artist</title>
+    <link>https://nbhas.xyz/journal/building-around-the-artist/</link>
+    <guid isPermaLink="true">https://nbhas.xyz/journal/building-around-the-artist/</guid>
+    <pubDate>Mon, 09 Mar 2026 03:30:00 GMT</pubDate>
+    <category>Essay</category>
+    <category>music</category>
+    <category>venture-building</category>
+    <description>The Indian indie ecosystem: who does what, what it costs, and what keeps an artist going.</description>
+  </item>
+</channel>
+</rss>
