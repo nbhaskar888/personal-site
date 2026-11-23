@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — Journal — Nishant Bhaskar</title>
+<meta name="description" content="{{DECK}}">
+<link rel="canonical" href="https://nbhas.xyz/journal/{{SLUG}}/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Journal — Nishant Bhaskar" href="../feed.xml">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DECK}}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nbhas.xyz/journal/{{SLUG}}/">
+<meta property="og:image" content="https://nbhas.xyz/journal/{{SLUG}}/{{OG_IMAGE}}">
+<meta property="og:site_name" content="Nishant Bhaskar">
+<meta property="article:published_time" content="{{ISO_DATE}}">
+<meta property="article:author" content="Nishant Bhaskar">
+<meta name="author" content="Nishant Bhaskar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nbhaskar888">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"{{TITLE}}","description":"{{DECK}}","datePublished":"{{ISO_DATE}}","author":{"@type":"Person","name":"Nishant Bhaskar","url":"https://nbhas.xyz/"},"image":"https://nbhas.xyz/journal/{{SLUG}}/{{OG_IMAGE}}","url":"https://nbhas.xyz/journal/{{SLUG}}/","mainEntityOfPage":"https://nbhas.xyz/journal/{{SLUG}}/","isPartOf":{"@type":"Blog","name":"Journal — Nishant Bhaskar","url":"https://nbhas.xyz/journal/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/journal.css">
+<link rel="stylesheet" href="../assets/chrome.css">
+</head>
+<body class="chrome-journal">
+<nav class="top">
+  <div class="inner">
+    <!-- NAV:START -->
+    <!-- NAV:END -->
+  </div>
+</nav>
+
+<main class="wrap">
+<article class="post">
+  <header>
+    <div class="kicker"><span>{{KICKER}}</span></div>
+    <h1>{{TITLE}}</h1>
+    <p class="deck">{{DECK}}</p>
+    <p class="byline"><span>Nishant Bhaskar</span><span>{{DATE}}</span>{{DRAFT_BADGE}}</p>
+  </header>
+
+  <figure class="header">
+    <div class="tile"><img src="{{HEADER_IMAGE}}" alt="{{HEADER_ALT}}"></div>
+    <figcaption>
+      <span class="cap">{{HEADER_CAPTION}}</span>
+    </figcaption>
+  </figure>
+
+  <!-- FIGURES — copy one of these into the body where it belongs.
+
+       Images usually arrive from Nishant, often with a caption. Convert the source into
+       this post's own folder as JPEG: max 1600px wide, quality 87, progressive. Use his
+       caption wording as given; if he didn't supply one, write it from the post's voice.
+       Alt text is always written fresh — describe what is IN the picture, and never reuse
+       the caption text, or a screen reader reads the same sentence twice.
+
+       WIDE DIAGRAM — an illustration with labels inside it. Must be .diagram, NOT .photo:
+       the photo rule scales to the viewport and makes the labels unreadable on a phone,
+       which doesn't show up on desktop. §6: the caption names the one concrete example
+       the diagram rests on.
+
+  <figure class="inline diagram">
+  <div class="scroll"><img src="NAME.jpg" alt="what is in the picture" loading="lazy" decoding="async"></div>
+  <figcaption>What it shows, and the example it rests on.<span class="hint">swipe to see the whole diagram →</span></figcaption>
+  </figure>
+
+       PHOTOGRAPH — scales down, no horizontal scroll.
+
+  <figure class="inline photo">
+  <img src="NAME.jpg" alt="what is in the picture" loading="lazy">
+  <figcaption>What it is, and where it came from — credit it when it isn't his own.</figcaption>
+  </figure>
+
+       §6: one lead image and one diagram per essay, no more.
+  -->
+
+
+  <div class="body">
+{{BODY}}
+  </div>
+
+  <section class="sources">
+    <h4>Sources and notes</h4>
+    {{SOURCES}}
+  </section>
+</article>
+</main>
+
+<footer class="site">
+    <!-- POSTNAV:START -->
+    <!-- POSTNAV:END -->
+</footer>
+<script src="../assets/journal.js" defer></script>
+</body>
+</html>
